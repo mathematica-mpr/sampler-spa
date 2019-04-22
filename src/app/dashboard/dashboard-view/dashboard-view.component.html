@@ -1,0 +1,10 @@
+<div [class]="dashboardClass">
+    <div class="control">
+        <label for="reg">Enter a random number </label>
+        <!-- <input type="number" name="reg" id="reg" #reg (keyup)="runRegression(reg.value)"> -->
+    </div>
+    <app-dashboard-graph class="chart"[selectedArray]="selectedArray"></app-dashboard-graph>
+
+</div>
+
+<input (click)="nextChapter()" type="button" value="Next chapter">

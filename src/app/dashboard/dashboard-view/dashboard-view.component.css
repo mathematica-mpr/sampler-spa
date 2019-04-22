@@ -1,0 +1,23 @@
+.dashboard-view {
+    display: grid;
+    height: 200px;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(49%, 1fr));
+    transition: padding-top 0.2s;
+    transition-timing-function: ease-out;
+}
+
+.dashboard-view.scroll-down {
+    padding-top: 20px;
+}
+
+.chart {
+    height: 35px;
+}
+
+.dashboard-view > * {
+    /* remove once down with layout */
+    border: 1px solid black;
+    border-radius: 5px;
+    height: auto;
+}
