@@ -9,13 +9,13 @@ export const mockChapter: Chapter = {
             content: 'This is what we did with our awesome data'
         }
     ],
-    chapterInputs: [
+    inputs: [
         { name: 'prevalence', order: 0 },
         { name: 'TP', order: 1 },
         { name: 'FP', order: 2 },
         { name: 'TN', order: 3 }
     ],
-    chapterGraphs: [
+    graphs: [
         {
             title: 'Confusion Errors',
             graphs: [

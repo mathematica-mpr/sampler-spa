@@ -1,12 +1,12 @@
 export interface Chapter {
     title: string;
     order: number;
-    descriptions: Description[];
-    chapterInputs: ChapterInput[];
-    chapterGraphs: ChapterGraph[];
+    descriptions: ChapterDescription[];
+    inputs: ChapterInput[];
+    graphs: ChapterGraph[];
 }
 
-export interface Description {
+export interface ChapterDescription {
     title: string;
     content: string;
 }
