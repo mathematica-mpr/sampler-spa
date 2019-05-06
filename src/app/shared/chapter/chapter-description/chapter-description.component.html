@@ -1,3 +1,5 @@
-<p>
-  chapter-description works!
-</p>
+<div *ngFor="let description of descriptions">
+    <h2>{{ description.title }}</h2>
+
+    <p>{{ description.content }}</p>
+</div>

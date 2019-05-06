@@ -7,7 +7,7 @@ import { ChapterDescription } from '../../../core/models/chapter';
     styleUrls: ['./chapter-description.component.css']
 })
 export class ChapterDescriptionComponent implements OnInit {
-    @Input() description: ChapterDescription;
+    @Input() descriptions: ChapterDescription[];
     constructor() {}
 
     ngOnInit() {}
