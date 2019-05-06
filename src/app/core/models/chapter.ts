@@ -6,22 +6,23 @@ export interface Chapter {
     graphs: ChapterGraph[];
 }
 
-export interface ChapterDescription {
+export interface ChapterElement {
+    name: string;
     title: string;
+    order: number;
+    type?: string;
+}
+
+export interface ChapterDescription extends ChapterElement {
     content: string;
 }
 
-export interface ChapterInput {
-    name: string;
-    order: number;
-}
+export interface ChapterInput extends ChapterElement {}
 
-export interface ChapterGraph {
-    title: string;
+export interface ChapterGraph extends ChapterElement {
     graphs: Graph[];
 }
 
-export interface Graph {
-    title: string;
+export interface Graph extends ChapterElement {
     data: any[];
 }
