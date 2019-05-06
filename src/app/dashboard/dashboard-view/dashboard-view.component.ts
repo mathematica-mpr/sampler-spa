@@ -13,5 +13,7 @@ export class DashboardViewComponent implements OnInit {
         this.chapter = this.chapterService.getChapter(0);
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+        console.log(this.chapter);
+    }
 }

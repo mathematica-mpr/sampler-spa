@@ -1,5 +1,8 @@
 <div class="dashboard-view">
-    <app-chapter-description class="description"></app-chapter-description>
-    <app-chapter-inputs class="inputs"></app-chapter-inputs>
-    <app-chapter-graphs class="graphs"></app-chapter-graphs>
+    <app-chapter-description
+        class="descriptions"
+        [descriptions]="chapter.descriptions"
+    ></app-chapter-description>
+    <app-chapter-inputs class="inputs" [inputs]="chapter.inputs"></app-chapter-inputs>
+    <app-chapter-graphs class="graphs" [graphs]="chapter.graphs"></app-chapter-graphs>
 </div>
