@@ -3,7 +3,7 @@
     height: 50vmax;
     grid-gap: 10px;
     grid-template-areas:
-        'description graphs'
+        'descriptions graphs'
         'inputs graphs';
 }
 
@@ -12,7 +12,7 @@
 }
 
 .description {
-    grid-area: description;
+    grid-area: descriptions;
 }
 
 .inputs {
