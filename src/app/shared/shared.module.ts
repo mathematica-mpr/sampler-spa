@@ -5,6 +5,7 @@ import { ChapterInputsComponent } from './chapter/chapter-inputs/chapter-inputs.
 import { ChapterGraphsComponent } from './chapter/chapter-graphs/chapter-graphs.component';
 import { LineComponent } from './graph/line/line.component';
 import { LineGraphComponent } from './graph/line-graph/line-graph.component';
+import { NumberInputComponent } from './input/number-input/number-input.component';
 
 @NgModule({
     imports: [CommonModule],
@@ -13,7 +14,8 @@ import { LineGraphComponent } from './graph/line-graph/line-graph.component';
         ChapterInputsComponent,
         ChapterGraphsComponent,
         LineComponent,
-        LineGraphComponent
+        LineGraphComponent,
+        NumberInputComponent
     ],
     exports: [ChapterDescriptionComponent, ChapterInputsComponent, ChapterGraphsComponent]
 })
