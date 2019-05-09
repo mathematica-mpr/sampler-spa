@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChapterService } from '../../core/chapter.service';
 import { Chapter } from '../../core/models/chapter';
+import { ChapterItem } from '../../core/models/chapter-item';
 
 @Component({
     selector: 'app-dashboard-view',
@@ -9,11 +10,13 @@ import { Chapter } from '../../core/models/chapter';
 })
 export class DashboardViewComponent implements OnInit {
     private chapter: Chapter;
+    chapterItem: ChapterItem;
     constructor(private chapterService: ChapterService) {
         this.chapter = this.chapterService.getChapter(0);
     }
 
     ngOnInit() {
         console.log(this.chapter);
+        this.chapterItem = this.chapterService.getChapterItem(this.chapter.inputs[0]);
     }
 }

@@ -5,6 +5,8 @@ import { ChapterInputsComponent } from './chapter/chapter-inputs/chapter-inputs.
 import { ChapterGraphsComponent } from './chapter/chapter-graphs/chapter-graphs.component';
 import { LineGraphComponent } from './graph/line-graph/line-graph.component';
 import { NumberInputComponent } from './input/number-input/number-input.component';
+import { ChapterItemComponent } from './chapter/chapter-item/chapter-item.component';
+import { ChapterDirective } from './chapter/chapter.directive';
 
 @NgModule({
     imports: [CommonModule],
@@ -13,8 +15,17 @@ import { NumberInputComponent } from './input/number-input/number-input.componen
         ChapterInputsComponent,
         ChapterGraphsComponent,
         LineGraphComponent,
-        NumberInputComponent
+        NumberInputComponent,
+        ChapterItemComponent,
+        ChapterDirective
     ],
-    exports: [ChapterDescriptionComponent, ChapterInputsComponent, ChapterGraphsComponent]
+    exports: [
+        ChapterItemComponent,
+        ChapterDescriptionComponent,
+        ChapterInputsComponent,
+        ChapterGraphsComponent,
+        NumberInputComponent,
+        ChapterDirective
+    ]
 })
 export class SharedModule {}
