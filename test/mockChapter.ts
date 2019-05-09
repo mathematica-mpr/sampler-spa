@@ -8,12 +8,17 @@ export const mockChapter: Chapter = {
             name: 'FinalChapterDescription',
             title: 'Our awesome data',
             order: 0,
-            type: 'section',
+            type: 'SectionDescription',
             content: 'This is what we did with our awesome data'
         }
     ],
     inputs: [
-        { name: 'prevalence', title: 'Prevalence', order: 0, type: 'number' },
+        {
+            name: 'prevalence',
+            title: 'Prevalence',
+            order: 0,
+            type: 'NumberInput'
+        },
         { name: 'TP', title: 'True Positive', order: 1, type: 'number' },
         { name: 'FP', title: 'False Positive', order: 2, type: 'number' },
         { name: 'TN', title: 'True Negative', order: 3, type: 'number' }
@@ -23,7 +28,7 @@ export const mockChapter: Chapter = {
             name: 'confusionErrorGraph',
             title: 'Confusion Errors',
             order: 0,
-            type: 'line',
+            type: 'LineGraph',
             graphs: []
         },
         {
