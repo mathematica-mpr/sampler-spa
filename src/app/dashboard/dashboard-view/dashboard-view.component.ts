@@ -10,13 +10,19 @@ import { ChapterItem } from '../../core/models/chapter-item';
 })
 export class DashboardViewComponent implements OnInit {
     private chapter: Chapter;
-    chapterItem: ChapterItem;
+    description: ChapterItem;
+    input: ChapterItem;
+    graph: ChapterItem;
     constructor(private chapterService: ChapterService) {
         this.chapter = this.chapterService.getChapter(0);
     }
 
     ngOnInit() {
         console.log(this.chapter);
-        this.chapterItem = this.chapterService.getChapterItem(this.chapter.inputs[0]);
+        this.description = this.chapterService.getChapterItem(
+            this.chapter.descriptions[0]
+        );
+        this.input = this.chapterService.getChapterItem(this.chapter.inputs[0]);
+        this.graph = this.chapterService.getChapterItem(this.chapter.graphs[0]);
     }
 }

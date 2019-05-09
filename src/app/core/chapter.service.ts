@@ -3,13 +3,17 @@ import { Chapter, ChapterElement } from './models/chapter';
 import { mockChapter } from 'test/mockChapter';
 import { NumberInputComponent } from '../shared/input/number-input/number-input.component';
 import { ChapterItem } from './models/chapter-item';
+import { SectionDescriptionComponent } from '../shared/description/section-description/section-description.component';
+import { LineGraphComponent } from '../shared/graph/line-graph/line-graph.component';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ChapterService {
     chapterItemMap = {
-        number: NumberInputComponent
+        section: SectionDescriptionComponent,
+        number: NumberInputComponent,
+        line: LineGraphComponent
     };
 
     constructor() {}

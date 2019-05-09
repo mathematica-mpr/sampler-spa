@@ -8,6 +8,7 @@ export const mockChapter: Chapter = {
             name: 'FinalChapterDescription',
             title: 'Our awesome data',
             order: 0,
+            type: 'section',
             content: 'This is what we did with our awesome data'
         }
     ],
@@ -18,6 +19,13 @@ export const mockChapter: Chapter = {
         { name: 'TN', title: 'True Negative', order: 3, type: 'number' }
     ],
     graphs: [
+        {
+            name: 'confusionErrorGraph',
+            title: 'Confusion Errors',
+            order: 0,
+            type: 'line',
+            graphs: []
+        },
         {
             name: 'confusionErrorGraph',
             title: 'Confusion Errors',
