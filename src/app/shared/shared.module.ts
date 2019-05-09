@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { ChapterDescriptionComponent } from './chapter/chapter-description/chapter-description.component';
 import { ChapterInputsComponent } from './chapter/chapter-inputs/chapter-inputs.component';
 import { ChapterGraphsComponent } from './chapter/chapter-graphs/chapter-graphs.component';
-import { LineComponent } from './graph/line/line.component';
 import { LineGraphComponent } from './graph/line-graph/line-graph.component';
 import { NumberInputComponent } from './input/number-input/number-input.component';
 
@@ -13,7 +12,6 @@ import { NumberInputComponent } from './input/number-input/number-input.componen
         ChapterDescriptionComponent,
         ChapterInputsComponent,
         ChapterGraphsComponent,
-        LineComponent,
         LineGraphComponent,
         NumberInputComponent
     ],
