@@ -15,6 +15,12 @@ import { SectionDescriptionComponent } from './description/section-description/s
         ChapterDirective,
         SectionDescriptionComponent
     ],
-    exports: [ChapterItemComponent, NumberInputComponent, ChapterDirective]
+    exports: [
+        ChapterItemComponent,
+        ChapterDirective,
+        NumberInputComponent,
+        SectionDescriptionComponent,
+        LineGraphComponent
+    ]
 })
 export class SharedModule {}

@@ -5,6 +5,8 @@ import { DashboardViewComponent } from './dashboard-view/dashboard-view.componen
 import { ChapterItemComponent } from '../shared/chapter/chapter-item/chapter-item.component';
 import { NumberInputComponent } from '../shared/input/number-input/number-input.component';
 import { ChapterDirective } from '../shared/chapter/chapter.directive';
+import { SectionDescriptionComponent } from '../shared/description/section-description/section-description.component';
+import { LineGraphComponent } from '../shared/graph/line-graph/line-graph.component';
 
 @NgModule({
     imports: [CommonModule, DashboardRoutingModule],
@@ -12,8 +14,14 @@ import { ChapterDirective } from '../shared/chapter/chapter.directive';
         DashboardViewComponent,
         ChapterItemComponent,
         NumberInputComponent,
-        ChapterDirective
+        ChapterDirective,
+        SectionDescriptionComponent,
+        LineGraphComponent
     ],
-    entryComponents: [NumberInputComponent]
+    entryComponents: [
+        NumberInputComponent,
+        SectionDescriptionComponent,
+        LineGraphComponent
+    ]
 })
 export class DashboardModule {}
