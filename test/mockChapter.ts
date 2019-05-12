@@ -19,9 +19,9 @@ export const mockChapter: Chapter = {
             order: 0,
             type: 'NumberInput'
         },
-        { name: 'TP', title: 'True Positive', order: 1, type: 'number' },
-        { name: 'FP', title: 'False Positive', order: 2, type: 'number' },
-        { name: 'TN', title: 'True Negative', order: 3, type: 'number' }
+        { name: 'TP', title: 'True Positive', order: 1, type: 'NumberInput' },
+        { name: 'FP', title: 'False Positive', order: 2, type: 'NumberInput' },
+        { name: 'TN', title: 'True Negative', order: 3, type: 'NumberInput' }
     ],
     graphs: [
         {
@@ -34,20 +34,21 @@ export const mockChapter: Chapter = {
         {
             name: 'confusionErrorGraph',
             title: 'Confusion Errors',
-            order: 0,
+            order: 1,
+            type: 'LineGraph',
             graphs: [
                 {
                     title: 'FP',
                     order: 0,
                     name: 'FPGraph',
-                    type: 'line',
+                    type: 'LineGraph',
                     data: [{ x: 0, y: 0 }]
                 },
                 {
                     title: 'TP',
                     order: 1,
                     name: 'TPGraph',
-                    type: 'line',
+                    type: 'LineGraph',
                     data: [{ x: 0, y: 0 }]
                 },
                 {
@@ -61,7 +62,7 @@ export const mockChapter: Chapter = {
                     title: 'TN',
                     order: 3,
                     name: 'TNGraph',
-                    type: 'line',
+                    type: 'LineGraph',
                     data: [{ x: 0, y: 0 }]
                 }
             ]

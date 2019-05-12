@@ -1,5 +1,20 @@
 <div class="dashboard-view">
-    <app-chapter-item class="descriptions" [chapterItem]="description"></app-chapter-item>
-    <app-chapter-item class="inputs" [chapterItem]="input"></app-chapter-item>
-    <app-chapter-item class="graphs" [chapterItem]="graph"></app-chapter-item>
+    <!-- this logic could be moved in a chapter-Items component -->
+    <div class="description">
+        <div *ngFor="let description of descriptions">
+            <app-chapter-item [chapterItem]="description"></app-chapter-item>
+        </div>
+    </div>
+
+    <div class="inputs">
+        <div *ngFor="let input of inputs">
+            <app-chapter-item [chapterItem]="input"></app-chapter-item>
+        </div>
+    </div>
+
+    <div class="graphs">
+        <div *ngFor="let graph of graphs">
+            <app-chapter-item [chapterItem]="graph"></app-chapter-item>
+        </div>
+    </div>
 </div>
