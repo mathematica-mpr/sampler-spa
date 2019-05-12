@@ -9,19 +9,25 @@ import { ChapterItem } from '../../core/models/chapter-item';
     styleUrls: ['./dashboard-view.component.css']
 })
 export class DashboardViewComponent implements OnInit {
+    private chapterIndex: number = 0;
     private chapter: Chapter;
-    description: ChapterItem;
-    input: ChapterItem;
-    graph: ChapterItem;
+    descriptions: ChapterItem[];
+    inputs: ChapterItem[];
+    graphs: ChapterItem[];
     constructor(private chapterService: ChapterService) {
-        this.chapter = this.chapterService.getChapter(0);
+        this.chapter = this.chapterService.getChapter(this.chapterIndex);
     }
 
     ngOnInit() {
-        this.description = this.chapterService.getChapterItem(
-            this.chapter.descriptions[0]
-        );
-        this.input = this.chapterService.getChapterItem(this.chapter.inputs[0]);
-        this.graph = this.chapterService.getChapterItem(this.chapter.graphs[0]);
+        if (this.chapter.descriptions.length > 0)
+            this.descriptions = this.chapterService.getChapterItems(
+                this.chapter.descriptions
+            );
+
+        if (this.chapter.inputs.length > 0)
+            this.inputs = this.chapterService.getChapterItems(this.chapter.inputs);
+
+        if (this.chapter.graphs.length > 0)
+            this.graphs = this.chapterService.getChapterItems(this.chapter.graphs);
     }
 }

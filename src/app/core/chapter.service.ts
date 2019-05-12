@@ -27,21 +27,15 @@ export class ChapterService {
         return mockChapter;
     }
 
-    // ChapterItemFactory(chapterElementType: string): Type<any> {
-    //     //  https://stackoverflow.com/questions/40115072/how-to-load-component-dynamically-using-component-name-in-angular2
-    //     const factories = Array.from(this.resolver['_factories'].keys());
-    //     const factoryClass = <Type<any>>(
-    //         factories.find((x: any) => x.name === chapterElementType)
-    //     );
-    //     const factory = this.resolver.resolveComponentFactory(factoryClass);
-    //     return factory.componentType;
-    // }
-
-    mapChapterItem(chapterElementType: string): Type<any> {
+    getComponentType(chapterElementType: string): Type<any> {
+        // TODO: find a way to generate Type from string
         return this.chapterItemMap[chapterElementType];
     }
 
-    getChapterItem(chapterElement: ChapterElement): ChapterItem {
-        return new ChapterItem(this.mapChapterItem(chapterElement.type), chapterElement);
+    getChapterItems(chapterElements: ChapterElement[]): ChapterItem[] {
+        return chapterElements.map((x: ChapterElement) => {
+            let componentType: Type<any> = this.getComponentType(x.type);
+            return new ChapterItem(componentType, x);
+        });
     }
 }

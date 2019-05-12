@@ -20,7 +20,10 @@ export class ChapterItemComponent implements OnInit {
     constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
 
     ngOnInit() {
-        // TODO: move to loadComponent
+        this.loadComponent();
+    }
+
+    loadComponent(): void {
         let componentFactory = this.componentFactoryResolver.resolveComponentFactory(
             this.chapterItem.component
         );
@@ -28,6 +31,6 @@ export class ChapterItemComponent implements OnInit {
         let viewContainerRef = this.chapterHost.viewContainerRef;
         viewContainerRef.clear();
 
-        let componentRef = viewContainerRef.createComponent(componentFactory);
+        viewContainerRef.createComponent(componentFactory);
     }
 }
