@@ -11,5 +11,7 @@ export class NumberInputComponent extends BaseInput implements OnInit {
         super();
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+        console.log(this.config);
+    }
 }

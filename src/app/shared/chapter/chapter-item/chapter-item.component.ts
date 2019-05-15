@@ -31,6 +31,8 @@ export class ChapterItemComponent implements OnInit {
         let viewContainerRef = this.chapterHost.viewContainerRef;
         viewContainerRef.clear();
 
-        viewContainerRef.createComponent(componentFactory);
+        let component = viewContainerRef.createComponent(componentFactory);
+
+        component.instance['config'] = this.chapterItem.data;
     }
 }
