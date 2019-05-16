@@ -8,8 +8,8 @@ import { ChapterInputService } from '../../../core/chapter-input.service';
     styleUrls: ['./number-input.component.css']
 })
 export class NumberInputComponent extends BaseInput implements OnInit {
-    constructor(private chapterInputService: ChapterInputService) {
-        super();
+    constructor(chapterInputService: ChapterInputService) {
+        super(chapterInputService);
     }
 
     ngOnInit() {}
