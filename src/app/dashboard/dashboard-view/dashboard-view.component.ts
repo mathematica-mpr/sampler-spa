@@ -23,11 +23,19 @@ export class DashboardViewComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.initDescriptions();
+        this.initInput();
+        this.initGraphs();
+    }
+
+    initDescriptions(): void {
         if (this.chapter.descriptions.length > 0)
             this.descriptions = this.chapterService.getChapterItems(
                 this.chapter.descriptions
             );
+    }
 
+    initInput(): void {
         if (this.chapter.inputs.length > 0) {
             this.chapterInputService.setInputFormGroup(this.chapter.inputs);
             this.inputs = this.chapterService.getChapterItems(this.chapter.inputs);
@@ -35,8 +43,11 @@ export class DashboardViewComponent implements OnInit {
                 console.log(result)
             );
         }
+    }
 
-        if (this.chapter.graphs.length > 0)
+    initGraphs(): void {
+        if (this.chapter.graphs.length > 0) {
             this.graphs = this.chapterService.getChapterItems(this.chapter.graphs);
+        }
     }
 }
