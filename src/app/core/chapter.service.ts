@@ -15,7 +15,6 @@ export class ChapterService {
     }
 
     getComponentType(chapterElementType: string): Type<any> {
-        // TODO: find a way to generate Type from string
         return ChapterItemMap[chapterElementType];
     }
 
