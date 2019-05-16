@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseInput } from '../base-input';
+import { ChapterInputService } from '../../../core/chapter-input.service';
 
 @Component({
     selector: 'app-number-input',
@@ -7,11 +8,9 @@ import { BaseInput } from '../base-input';
     styleUrls: ['./number-input.component.css']
 })
 export class NumberInputComponent extends BaseInput implements OnInit {
-    constructor() {
+    constructor(private chapterInputService: ChapterInputService) {
         super();
     }
 
-    ngOnInit() {
-        console.log(this.config);
-    }
+    ngOnInit() {}
 }
