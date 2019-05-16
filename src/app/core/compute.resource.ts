@@ -5,9 +5,12 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
     providedIn: 'root'
 })
 export class ComputeResource {
-    lambda_regression = 'https://3bqo3rqk1g.execute-api.us-east-1.amazonaws.com/default/rare-app-reg/';
+    lambda_regression =
+        'https://3bqo3rqk1g.execute-api.us-east-1.amazonaws.com/default/rare-app-reg/';
 
     constructor(private http: HttpClient) {}
+
+    getResult(chapterName: string, params: number[]): void {}
 
     getRegression(num: number) {
         const options = this.getOptions(num);
@@ -26,6 +29,9 @@ export class ComputeResource {
     }
 
     getHeader() {
-        return new HttpHeaders().set('X-Api-Key', 'NgGDJR0YDB8efIcHCTcwwQzcax8kjE65CAYRZenh');
+        return new HttpHeaders().set(
+            'X-Api-Key',
+            'NgGDJR0YDB8efIcHCTcwwQzcax8kjE65CAYRZenh'
+        );
     }
 }
