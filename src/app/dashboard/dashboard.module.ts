@@ -7,9 +7,10 @@ import { NumberInputComponent } from '../shared/input/number-input/number-input.
 import { ChapterDirective } from '../shared/chapter/chapter.directive';
 import { SectionDescriptionComponent } from '../shared/description/section-description/section-description.component';
 import { LineGraphComponent } from '../shared/graph/line-graph/line-graph.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
-    imports: [CommonModule, DashboardRoutingModule],
+    imports: [CommonModule, DashboardRoutingModule, ReactiveFormsModule, FormsModule],
     declarations: [
         DashboardViewComponent,
         ChapterItemComponent,
