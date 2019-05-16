@@ -39,8 +39,11 @@ export class DashboardViewComponent implements OnInit {
         if (this.chapter.inputs.length > 0) {
             this.chapterInputService.setInputFormGroup(this.chapter.inputs);
             this.inputs = this.chapterService.getChapterItems(this.chapter.inputs);
-            this.chapterInputService.inputFormGroup.valueChanges.subscribe(result =>
-                console.log(result)
+            this.chapterInputService.inputFormGroup.valueChanges.subscribe(
+                result => console.log(result)
+                // TODO:
+                // 1) send request
+                // 2) update graphs with new results
             );
         }
     }
