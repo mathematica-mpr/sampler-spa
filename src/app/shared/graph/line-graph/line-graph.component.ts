@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
+import * as d3 from 'd3';
 import { BaseGraph } from '../base-graph';
 
 @Component({
@@ -7,9 +8,15 @@ import { BaseGraph } from '../base-graph';
     styleUrls: ['./line-graph.component.css']
 })
 export class LineGraphComponent extends BaseGraph implements OnInit {
-    constructor() {
-        super();
+    constructor(elementRef: ElementRef) {
+        super(elementRef);
     }
 
     ngOnInit() {}
+
+    instantiateGraph() {
+        d;
+    }
+
+    getConfig() {}
 }
