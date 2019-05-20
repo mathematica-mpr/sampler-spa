@@ -14,9 +14,7 @@ export class LineGraphComponent extends BaseGraph implements OnInit {
 
     ngOnInit() {}
 
-    instantiateGraph() {
-        d;
-    }
+    instantiateGraph() {}
 
     getConfig() {}
 }
