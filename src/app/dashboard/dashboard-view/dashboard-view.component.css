@@ -1,6 +1,6 @@
 .dashboard-view {
     display: grid;
-    height: 50vmax;
+    height: 60vh;
     grid-gap: 10px;
     grid-template-areas:
         'descriptions  graphs'

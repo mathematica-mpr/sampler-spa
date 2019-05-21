@@ -1,10 +1,4 @@
-import {
-    Component,
-    OnInit,
-    AfterViewInit,
-    ViewEncapsulation,
-    ElementRef
-} from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewEncapsulation } from '@angular/core';
 import * as d3 from 'd3';
 import { BaseGraph } from '../base-graph';
 import { Dimension } from '../../../core/models/dimension';
@@ -35,7 +29,7 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
     xScale;
     yScale;
 
-    constructor(private elRef: ElementRef) {
+    constructor() {
         super();
     }
 
