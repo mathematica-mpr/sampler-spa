@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ChapterService } from '../../core/chapter.service';
-import { Chapter } from '../../core/models/chapter';
+import { Chapter, BaseChapterGraph } from '../../core/models/chapter';
 import { ChapterItem } from '../../core/models/chapter-item';
 import { ChapterInputService } from '../../core/chapter-input.service';
+import { ComputeResource } from '../../core/compute.resource';
 
 @Component({
     selector: 'app-dashboard-view',
@@ -17,15 +18,19 @@ export class DashboardViewComponent implements OnInit {
     graphs: ChapterItem[];
     constructor(
         private chapterService: ChapterService,
-        private chapterInputService: ChapterInputService
+        private chapterInputService: ChapterInputService,
+        private computeResource: ComputeResource
     ) {
-        this.chapter = this.chapterService.getChapter(this.chapterIndex);
+        this.chapterService.setChapter(this.chapterIndex);
     }
 
     ngOnInit() {
-        this.initDescriptions();
-        this.initInput();
-        this.initGraphs();
+        this.chapterService.chapter.subscribe(result => {
+            this.chapter = result;
+            this.initDescriptions();
+            this.initInput();
+            this.initGraphs();
+        });
     }
 
     initDescriptions(): void {
@@ -39,12 +44,12 @@ export class DashboardViewComponent implements OnInit {
         if (this.chapter.inputs.length > 0) {
             this.chapterInputService.setInputFormGroup(this.chapter.inputs);
             this.inputs = this.chapterService.getChapterItems(this.chapter.inputs);
-            this.chapterInputService.inputFormGroup.valueChanges.subscribe(
-                result => console.log(result)
-                // TODO:
-                // 1) send request
-                // 2) update graphs with new results
-            );
+            this.chapterInputService.inputFormGroup.valueChanges.subscribe(result => {
+                console.log(result);
+                this.computeResource
+                    .getResult('hello', [0, 0, 0])
+                    .subscribe(computed => {});
+            });
         }
     }
 
