@@ -1,0 +1,25 @@
+.confusion-error-matrix {
+    display: grid;
+    grid-template-areas:
+        'tn fp'
+        'fn  tp';
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 20vh;
+}
+
+.tn {
+    grid-area: tn;
+}
+
+.fp {
+    grid-area: fp;
+}
+
+.fn {
+    grid-area: fn;
+}
+
+.tp {
+    grid-area: tp;
+}

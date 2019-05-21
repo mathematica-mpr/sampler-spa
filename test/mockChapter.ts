@@ -25,7 +25,7 @@ export const mockChapter: Chapter = {
     ],
     graphs: [
         {
-            name: 'confusionErrorGraph',
+            name: 'lineGraph',
             title: 'Confusion Errors',
             order: 0,
             type: 'LineGraph',
@@ -35,33 +35,33 @@ export const mockChapter: Chapter = {
             name: 'confusionErrorGraph',
             title: 'Confusion Errors',
             order: 1,
-            type: 'LineGraph',
+            type: 'ConfusionErrorGraph',
             graphs: [
                 {
                     title: 'FP',
                     order: 0,
-                    name: 'FPGraph',
+                    name: 'fp',
                     type: 'LineGraph',
                     data: [{ x: 0, y: 0 }]
                 },
                 {
                     title: 'TP',
                     order: 1,
-                    name: 'TPGraph',
+                    name: 'tp',
                     type: 'LineGraph',
                     data: [{ x: 0, y: 0 }]
                 },
                 {
                     title: 'FN',
                     order: 2,
-                    name: 'FNGraph',
+                    name: 'fn',
                     type: 'line',
                     data: [{ x: 0, y: 0 }]
                 },
                 {
                     title: 'TN',
                     order: 3,
-                    name: 'TNGraph',
+                    name: 'tn',
                     type: 'LineGraph',
                     data: [{ x: 0, y: 0 }]
                 }

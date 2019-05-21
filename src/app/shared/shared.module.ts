@@ -22,7 +22,8 @@ import { ConfusionErrorGraphComponent } from './graph/confusion-error-graph/conf
         ChapterDirective,
         NumberInputComponent,
         SectionDescriptionComponent,
-        LineGraphComponent
+        LineGraphComponent,
+        ConfusionErrorGraphComponent
     ]
 })
 export class SharedModule {}

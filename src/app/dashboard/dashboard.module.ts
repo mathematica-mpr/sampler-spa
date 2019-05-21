@@ -8,6 +8,7 @@ import { ChapterDirective } from '../shared/chapter/chapter.directive';
 import { SectionDescriptionComponent } from '../shared/description/section-description/section-description.component';
 import { LineGraphComponent } from '../shared/graph/line-graph/line-graph.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ConfusionErrorGraphComponent } from '../shared/graph/confusion-error-graph/confusion-error-graph.component';
 
 @NgModule({
     imports: [CommonModule, DashboardRoutingModule, ReactiveFormsModule, FormsModule],
@@ -17,12 +18,14 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
         NumberInputComponent,
         ChapterDirective,
         SectionDescriptionComponent,
-        LineGraphComponent
+        LineGraphComponent,
+        ConfusionErrorGraphComponent
     ],
     entryComponents: [
         NumberInputComponent,
         SectionDescriptionComponent,
-        LineGraphComponent
+        LineGraphComponent,
+        ConfusionErrorGraphComponent
     ]
 })
 export class DashboardModule {}
