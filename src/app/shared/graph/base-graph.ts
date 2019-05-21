@@ -1,9 +1,10 @@
 import { Input, ElementRef } from '@angular/core';
+import { ChapterElement } from '../../core/models/chapter';
 
 export abstract class BaseGraph {
-    @Input() config;
+    @Input() config: ChapterElement;
 
-    constructor(private elementRef: ElementRef) {}
+    constructor() {}
 
     abstract instantiateGraph();
 
