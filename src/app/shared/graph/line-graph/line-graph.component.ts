@@ -23,7 +23,7 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
         { x: 7, y: 1 }
     ];
     wrapperDimension: Dimension;
-    margin = { top: 20, right: 20, bottom: 30, left: 40 };
+    margin = { top: 20, right: 20, bottom: 20, left: 20 };
     innerWidth: number;
     innerHeight: number;
     xScale;
@@ -56,11 +56,11 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
             .append('svg')
             .attr('width', this.wrapperDimension.width)
             .attr('height', this.wrapperDimension.height)
-            .append('g');
-        // .attr(
-        //     'transform',
-        //     'translate(' + this.margin.left + ',' + this.margin.top + ')'
-        // );
+            .append('g')
+            .attr(
+                'transform',
+                'translate(' + this.margin.left + ',' + this.margin.top + ')'
+            );
 
         g.selectAll('circle')
             .data(this.dataLinear)
@@ -93,7 +93,7 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
     getXscale() {
         return d3
             .scaleLinear()
-            .domain([-4, 16])
+            .domain([0.1, 7])
             .range([0, this.innerWidth]);
     }
 
