@@ -5,6 +5,7 @@ import { NumberInputComponent } from './input/number-input/number-input.componen
 import { ChapterItemComponent } from './chapter/chapter-item/chapter-item.component';
 import { ChapterDirective } from './chapter/chapter.directive';
 import { SectionDescriptionComponent } from './description/section-description/section-description.component';
+import { ConfusionErrorGraphComponent } from './graph/confusion-error-graph/confusion-error-graph.component';
 
 @NgModule({
     imports: [CommonModule],
@@ -13,7 +14,8 @@ import { SectionDescriptionComponent } from './description/section-description/s
         NumberInputComponent,
         ChapterItemComponent,
         ChapterDirective,
-        SectionDescriptionComponent
+        SectionDescriptionComponent,
+        ConfusionErrorGraphComponent
     ],
     exports: [
         ChapterItemComponent,
