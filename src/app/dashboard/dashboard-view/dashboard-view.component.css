@@ -3,12 +3,15 @@
     height: 50vmax;
     grid-gap: 10px;
     grid-template-areas:
-        'descriptions graphs graphs'
-        'inputs graphs graphs';
+        'descriptions  graphs'
+        'inputs  graphs';
+    grid-template-columns: 3fr 4fr;
 }
 
 .graphs {
     grid-area: graphs;
+    display: grid;
+    grid-template-rows: auto;
 }
 
 .description {
@@ -17,10 +20,11 @@
 
 .inputs {
     grid-area: inputs;
-    max-width: 2fr;
+    max-width: 1fr;
     display: grid;
     grid-template-columns: repeat(2, 2fr);
     padding: 2%;
+    grid-template-rows: auto;
 }
 
 .dashboard-view > * {
