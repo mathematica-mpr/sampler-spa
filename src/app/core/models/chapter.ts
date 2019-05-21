@@ -1,4 +1,4 @@
-export interface Chapter {
+export class Chapter {
     title: string;
     order: number;
     descriptions: ChapterDescription[];
@@ -6,23 +6,23 @@ export interface Chapter {
     graphs: (BaseChapterGraph | CompositeChapterGraph)[];
 }
 
-export interface ChapterElement {
+export class ChapterElement {
     name: string;
     title: string;
     order: number;
     type?: string;
 }
 
-export interface ChapterDescription extends ChapterElement {
+export class ChapterDescription extends ChapterElement {
     content: string;
 }
 
-export interface ChapterInput extends ChapterElement {}
+export class ChapterInput extends ChapterElement {}
 
-export interface BaseChapterGraph extends ChapterElement {
+export class BaseChapterGraph extends ChapterElement {
     data: any[];
 }
 
-export interface CompositeChapterGraph extends ChapterElement {
+export class CompositeChapterGraph extends ChapterElement {
     graphs: BaseChapterGraph[];
 }
