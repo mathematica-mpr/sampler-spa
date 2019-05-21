@@ -3,7 +3,7 @@ export interface Chapter {
     order: number;
     descriptions: ChapterDescription[];
     inputs: ChapterInput[];
-    graphs: ChapterGraph[];
+    graphs: (BaseChapterGraph | CompositeChapterGraph)[];
 }
 
 export interface ChapterElement {
@@ -19,10 +19,10 @@ export interface ChapterDescription extends ChapterElement {
 
 export interface ChapterInput extends ChapterElement {}
 
-export interface ChapterGraph extends ChapterElement {
-    graphs: Graph[];
+export interface BaseChapterGraph extends ChapterElement {
+    data: any[];
 }
 
-export interface Graph extends ChapterElement {
-    data: any[];
+export interface CompositeChapterGraph extends ChapterElement {
+    graphs: BaseChapterGraph[];
 }

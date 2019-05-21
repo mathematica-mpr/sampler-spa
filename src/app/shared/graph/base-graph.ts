@@ -1,8 +1,8 @@
-import { Input, ElementRef } from '@angular/core';
-import { ChapterElement } from '../../core/models/chapter';
+import { Input } from '@angular/core';
+import { BaseChapterGraph } from '../../core/models/chapter';
 
 export abstract class BaseGraph {
-    @Input() config: ChapterElement;
+    @Input() config: BaseChapterGraph;
 
     constructor() {}
 

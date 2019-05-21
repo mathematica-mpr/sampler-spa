@@ -10,18 +10,7 @@ import { Dimension } from '../../../core/models/dimension';
     encapsulation: ViewEncapsulation.None
 })
 export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewInit {
-    dataLinear = [
-        { x: 0.1, y: 0.1 },
-        { x: 0.5, y: 1 },
-        { x: 1, y: 2 },
-        { x: 1.5, y: 3 },
-        { x: 2, y: 4 },
-        { x: 4, y: 5 },
-        { x: 5.5, y: 4 },
-        { x: 6, y: 3 },
-        { x: 6.5, y: 2 },
-        { x: 7, y: 1 }
-    ];
+    dataLinear: { x: number; y: number }[];
     wrapperDimension: Dimension;
     margin = { top: 20, right: 20, bottom: 20, left: 20 };
     innerWidth: number;
@@ -34,6 +23,7 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
     }
 
     ngOnInit(): void {
+        this.dataLinear = this.config.data;
         const wrapperClass: string = '.' + this.config.name + this.config.order;
         this.wrapperDimension = this.getDimension(wrapperClass);
         this.innerWidth =
