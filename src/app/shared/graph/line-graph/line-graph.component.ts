@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewEncapsulation } from '@angular/core';
 import * as d3 from 'd3';
 import { BaseGraph } from '../base-graph';
 import { Dimension } from '../../../core/models/dimension';
@@ -6,11 +6,12 @@ import { Dimension } from '../../../core/models/dimension';
 @Component({
     selector: 'app-line-graph',
     templateUrl: './line-graph.component.html',
-    styleUrls: ['./line-graph.component.css']
+    styleUrls: ['./line-graph.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
 export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewInit {
     dataLinear = [
-        { x: 0, y: 0 },
+        { x: 0.1, y: 0.1 },
         { x: 0.5, y: 1 },
         { x: 1, y: 2 },
         { x: 1.5, y: 3 },
@@ -55,11 +56,11 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
             .append('svg')
             .attr('width', this.wrapperDimension.width)
             .attr('height', this.wrapperDimension.height)
-            .append('g')
-            .attr(
-                'transform',
-                'translate(' + this.margin.left + ',' + this.margin.top + ')'
-            );
+            .append('g');
+        // .attr(
+        //     'transform',
+        //     'translate(' + this.margin.left + ',' + this.margin.top + ')'
+        // );
 
         g.selectAll('circle')
             .data(this.dataLinear)
@@ -69,19 +70,15 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
             .attr('cx', d => this.xScale(d.x))
             .attr('cy', d => this.yScale(d.y));
 
-        // var lineGenerator = d3
-        //     .line()
-        //     .curve(d3.curveCardinal)
-        //     .x(function(d) {
-        //         return this.xScale(d.x);
-        //     })
-        //     .y(function(d) {
-        //         return this.yScaleLinear(d.y);
-        //     });
+        var lineGenerator = d3
+            .line()
+            .curve(d3.curveCardinal)
+            .x(d => this.xScale(d['x']))
+            .y(d => this.yScale(d['y']));
 
-        // g.append('path')
-        //     .attr('d', lineGenerator(this.dataLinear))
-        //     .attr('class', 'regression');
+        g.append('path')
+            .attr('d', lineGenerator(this.dataLinear))
+            .attr('class', 'regression');
     }
 
     getConfig() {}
