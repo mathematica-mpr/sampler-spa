@@ -1,4 +1,10 @@
-import { Component, OnInit, AfterViewInit, ViewEncapsulation } from '@angular/core';
+import {
+    Component,
+    OnInit,
+    AfterViewInit,
+    ViewEncapsulation,
+    ElementRef
+} from '@angular/core';
 import * as d3 from 'd3';
 import { BaseGraph } from '../base-graph';
 import { Dimension } from '../../../core/models/dimension';
@@ -29,7 +35,7 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
     xScale;
     yScale;
 
-    constructor() {
+    constructor(private elRef: ElementRef) {
         super();
     }
 
@@ -49,10 +55,10 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
     }
 
     instantiateGraph(): void {
-        const myclass = '.line-graph' + this.config.order;
+        const divId = '#' + this.config.name + this.config.order;
 
         const g = d3
-            .select(myclass)
+            .select(divId)
             .append('svg')
             .attr('width', this.wrapperDimension.width)
             .attr('height', this.wrapperDimension.height)
