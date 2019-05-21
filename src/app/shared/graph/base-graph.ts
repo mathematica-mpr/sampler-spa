@@ -1,8 +1,8 @@
 import { Input } from '@angular/core';
-import { BaseChapterGraph } from '../../core/models/chapter';
+import { ChapterGraph } from '../../core/models/chapter';
 
 export abstract class BaseGraph {
-    @Input() config: BaseChapterGraph;
+    @Input() config: ChapterGraph;
 
     constructor() {}
 

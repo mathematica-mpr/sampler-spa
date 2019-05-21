@@ -3,7 +3,7 @@ export class Chapter {
     order: number;
     descriptions: ChapterDescription[];
     inputs: ChapterInput[];
-    graphs: (BaseChapterGraph | CompositeChapterGraph)[];
+    graphs: ChapterGraph[];
 }
 
 export class ChapterElement {
@@ -11,6 +11,7 @@ export class ChapterElement {
     title: string;
     order: number;
     type?: string;
+    data?: any[];
 }
 
 export class ChapterDescription extends ChapterElement {
@@ -19,10 +20,7 @@ export class ChapterDescription extends ChapterElement {
 
 export class ChapterInput extends ChapterElement {}
 
-export class BaseChapterGraph extends ChapterElement {
-    data: any[];
-}
-
-export class CompositeChapterGraph extends ChapterElement {
-    graphs: BaseChapterGraph[];
+export class ChapterGraph extends ChapterElement {
+    data?: any[];
+    graphs?: ChapterGraph[];
 }

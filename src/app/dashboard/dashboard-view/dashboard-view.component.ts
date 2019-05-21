@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChapterService } from '../../core/chapter.service';
-import { Chapter, BaseChapterGraph } from '../../core/models/chapter';
+import { Chapter, ChapterGraph } from '../../core/models/chapter';
 import { ChapterItem } from '../../core/models/chapter-item';
 import { ChapterInputService } from '../../core/chapter-input.service';
 import { ComputeResource } from '../../core/compute.resource';
@@ -30,6 +30,7 @@ export class DashboardViewComponent implements OnInit {
             this.initDescriptions();
             this.initInput();
             this.initGraphs();
+            console.log(this.chapter);
         });
     }
 
@@ -46,9 +47,13 @@ export class DashboardViewComponent implements OnInit {
             this.inputs = this.chapterService.getChapterItems(this.chapter.inputs);
             this.chapterInputService.inputFormGroup.valueChanges.subscribe(result => {
                 console.log(result);
-                this.computeResource
-                    .getResult('hello', [0, 0, 0])
-                    .subscribe(computed => {});
+                this.computeResource.getResult('hello', [0, 0, 0]).subscribe(computed => {
+                    // this.graphs[0].chapterElement.data = computed;
+                    this.chapter.graphs[0].data = computed;
+
+                    this.chapterService.updateChapterProperties(this.chapter);
+                    console.log(this.chapter);
+                });
             });
         }
     }
