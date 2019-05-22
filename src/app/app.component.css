@@ -22,6 +22,7 @@
 
 .header {
     grid-area: header;
+    border-bottom: 5px solid #018383;
 }
 
 .content {
@@ -30,4 +31,6 @@
 
 .footer {
     grid-area: footer;
+    border-top: 2px solid; /*move this to upper container*/
+    border-image: linear-gradient(to left, #d02b27, #f1b51c, #018383, #0b2949) 5;
 }
