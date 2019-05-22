@@ -39,16 +39,12 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
 
     ngAfterViewInit(): void {
         this.config$.subscribe(response => {
+            console.log(response);
             if (!this.instantiated) {
                 this.config = response;
                 this.divId = '#' + this.config.name + this.config.order;
                 this.dataLinear = this.config.data;
-                const wrapperClass: string = '.' + this.config.name + this.config.order;
-                this.wrapperDimension = this.getDimension(wrapperClass);
-                this.innerWidth =
-                    this.wrapperDimension.width - this.margin.left - this.margin.right;
-                this.innerHeight =
-                    this.wrapperDimension.height - this.margin.top - this.margin.bottom;
+                this.setDimensions();
                 this.instantiateGraph();
                 this.instantiated = true;
             } else {
@@ -56,6 +52,15 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
                 this.update();
             }
         });
+    }
+
+    setDimensions(): void {
+        const wrapperClass: string = '.' + this.config.name + this.config.order;
+        this.wrapperDimension = this.getDimension(wrapperClass);
+        this.innerWidth =
+            this.wrapperDimension.width - this.margin.left - this.margin.right;
+        this.innerHeight =
+            this.wrapperDimension.height - this.margin.top - this.margin.bottom;
     }
 
     update() {
