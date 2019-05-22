@@ -10,13 +10,23 @@ import { ChapterElement } from '../../../core/models/chapter';
 })
 export class ConfusionErrorGraphComponent extends CompositeGraph implements OnInit {
     graphs: BehaviorSubject<ChapterElement>[] = [];
+    instantiated = false;
     constructor() {
         super();
     }
 
     ngOnInit() {
-        this.config$.value.graphs.forEach((graph, i) => {
-            this.graphs.push(new BehaviorSubject(graph));
+        this.config$.subscribe(response => {
+            if (!this.instantiated) {
+                response.graphs.forEach(graph => {
+                    this.graphs.push(new BehaviorSubject(graph));
+                });
+                this.instantiated = true;
+            } else {
+                response.graphs.forEach((graph, i) => {
+                    this.graphs[i].next(graph);
+                });
+            }
         });
     }
 }

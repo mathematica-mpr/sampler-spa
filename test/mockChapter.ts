@@ -26,7 +26,7 @@ export const mockChapter: Chapter = {
     graphs: [
         {
             name: 'lineGraph',
-            title: 'Confusion Errors',
+            title: 'First Graph',
             order: 0,
             type: 'LineGraph',
             data: [

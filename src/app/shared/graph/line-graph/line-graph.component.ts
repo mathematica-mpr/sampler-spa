@@ -22,6 +22,7 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
     margin = { top: 20, right: 20, bottom: 20, left: 20 };
     innerWidth: number;
     innerHeight: number;
+    divId: string;
     xScale;
     yScale;
     g;
@@ -40,6 +41,7 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
         this.config$.subscribe(response => {
             if (!this.instantiated) {
                 this.config = response;
+                this.divId = '#' + this.config.name + this.config.order;
                 this.dataLinear = this.config.data;
                 const wrapperClass: string = '.' + this.config.name + this.config.order;
                 this.wrapperDimension = this.getDimension(wrapperClass);
@@ -64,7 +66,8 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
             .attr('d', this.lineGenerator(this.dataLinear));
 
         // Update all circles
-        d3.selectAll('circle')
+        d3.select(this.divId)
+            .selectAll('circle')
             .data(this.dataLinear)
             .transition()
             .duration(750)
@@ -72,7 +75,8 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
             .attr('cy', d => this.yScale(d.y));
 
         // Enter new circles
-        d3.selectAll('circle')
+        d3.select(this.divId)
+            .selectAll('circle')
             .data(this.dataLinear)
             .enter()
             .append('circle')
@@ -81,22 +85,19 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
             .attr('r', 5);
 
         // // Remove old
-        d3.selectAll('circle')
+        d3.select(this.divId)
+            .selectAll('circle')
             .data(this.dataLinear)
             .exit()
             .remove();
     }
 
     instantiateGraph(): void {
-        const divId = '#' + this.config.name + this.config.order;
-
         this.xScale = this.getXscale();
         this.yScale = this.getYScale();
 
-        console.log(d3.select(divId));
-
         this.g = d3
-            .select(divId)
+            .select(this.divId)
             .append('svg')
             .attr('width', this.wrapperDimension.width)
             .attr('height', this.wrapperDimension.height)
