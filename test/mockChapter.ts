@@ -6,7 +6,7 @@ export const mockChapter: Chapter = {
     descriptions: [
         {
             name: 'FinalChapterDescription',
-            title: 'Our awesome data',
+            title: 'Our Findings',
             order: 0,
             type: 'SectionDescription',
             content:
