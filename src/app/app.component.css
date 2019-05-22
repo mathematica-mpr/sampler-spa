@@ -12,7 +12,7 @@
 }
 
 .wrapper > * {
-    border: 1px solid black; /* remove once down with layout */
+    /* border: 1px solid black;  */
     border-radius: 5px;
     padding: 10px;
     font-size: 100%;

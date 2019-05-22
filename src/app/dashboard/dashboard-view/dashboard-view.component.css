@@ -1,7 +1,7 @@
 .dashboard-view {
     display: grid;
     height: 60vh;
-    grid-gap: 10px;
+    grid-gap: 5px;
     grid-template-areas:
         'descriptions  graphs'
         'inputs  graphs';
@@ -12,6 +12,7 @@
     grid-area: graphs;
     display: grid;
     grid-template-rows: auto;
+    margin: 10%;
 }
 
 .description {
@@ -23,11 +24,15 @@
     max-width: 1fr;
     display: grid;
     grid-template-columns: repeat(2, 2fr);
-    padding: 2%;
     grid-template-rows: auto;
 }
 
 .input-item {
+    display: grid;
+    align-content: center;
+}
+
+.description-item {
     display: grid;
     justify-content: center;
     align-content: center;
@@ -35,7 +40,7 @@
 
 .dashboard-view > * {
     /* remove once down with layout */
-    border: 1px solid black;
-    border-radius: 5px;
+    /* border: 1px solid black;
+    border-radius: 5px; */
     height: auto;
 }

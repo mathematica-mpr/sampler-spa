@@ -9,7 +9,8 @@ export const mockChapter: Chapter = {
             title: 'Our awesome data',
             order: 0,
             type: 'SectionDescription',
-            content: 'This is what we did with our awesome data'
+            content:
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas commodo tortor eu interdum congue. Fusce convallis felis purus, non scelerisque arcu lobortis ultricies. Donec dapibus mauris sed orci vulputate, eu ultrices urna maximus. Ut id euismod eros. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean blandit odio vitae enim ornare, sed tristique tellus accumsan.'
         }
     ],
     inputs: [
