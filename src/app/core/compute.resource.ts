@@ -10,24 +10,29 @@ export class ComputeResource {
     lambda_regression =
         'https://3bqo3rqk1g.execute-api.us-east-1.amazonaws.com/default/rare-app-reg/';
 
+    mockData = [
+        { x: 0.1, y: 0.1 },
+        { x: 0.5, y: 1 },
+        { x: 1, y: 2 },
+        { x: 1.5, y: 3 },
+        { x: 2, y: 4 },
+        { x: 4, y: 5 },
+        { x: 5.5, y: 4 },
+        { x: 6, y: 3 },
+        { x: 6.5, y: 2 },
+        { x: 7, y: 1 }
+    ];
+
     constructor(private http: HttpClient) {}
 
     getResult(
         chapterName: string,
         params: number[]
     ): Observable<{ x: number; y: number }[]> {
-        return new BehaviorSubject([
-            { x: 1.1, y: 2.1 },
-            { x: 0.5, y: 3 },
-            { x: 1, y: 4 },
-            { x: 1.5, y: 2 },
-            { x: 2, y: 3 },
-            { x: 4, y: 2 },
-            { x: 5.5, y: 4 },
-            { x: 6, y: 2 },
-            { x: 6.5, y: 3 },
-            { x: 7, y: 1 }
-        ]).pipe(take(1));
+        let newData = this.mockData.map(x => {
+            return { x: x.x, y: Math.random() * 3 * x.y };
+        });
+        return new BehaviorSubject(newData).pipe(take(1));
     }
 
     getRegression(num: number) {
