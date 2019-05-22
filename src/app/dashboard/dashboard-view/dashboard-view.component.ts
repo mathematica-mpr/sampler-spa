@@ -16,6 +16,7 @@ export class DashboardViewComponent implements OnInit {
     descriptions: ChapterItem[];
     inputs: ChapterItem[];
     graphs: ChapterItem[];
+    init = false;
     constructor(
         private chapterService: ChapterService,
         private chapterInputService: ChapterInputService,
@@ -27,9 +28,16 @@ export class DashboardViewComponent implements OnInit {
     ngOnInit() {
         this.chapterService.chapter.subscribe(result => {
             this.chapter = result;
-            this.initDescriptions();
-            this.initInput();
-            this.initGraphs();
+
+            if (!this.init) {
+                this.initDescriptions();
+                this.initInput();
+                this.initGraphs();
+                this.init = true;
+            } else {
+                this.updateGraphs();
+            }
+
             console.log(this.chapter);
         });
     }
@@ -52,7 +60,6 @@ export class DashboardViewComponent implements OnInit {
                     this.chapter.graphs[0].data = computed;
 
                     this.chapterService.updateChapterProperties(this.chapter);
-                    console.log(this.chapter);
                 });
             });
         }
@@ -61,6 +68,14 @@ export class DashboardViewComponent implements OnInit {
     initGraphs(): void {
         if (this.chapter.graphs.length > 0) {
             this.graphs = this.chapterService.getChapterItems(this.chapter.graphs);
+        }
+    }
+
+    updateGraphs(): void {
+        if (this.chapter.graphs.length > 0) {
+            this.chapter.graphs.forEach((graph, i) =>
+                this.graphs[i].chapterElement.next(graph)
+            );
         }
     }
 }

@@ -33,6 +33,6 @@ export class ChapterItemComponent implements OnInit {
 
         let component = viewContainerRef.createComponent(componentFactory);
 
-        component.instance['config'] = this.chapterItem.chapterElement;
+        component.instance['config$'] = this.chapterItem.chapterElement;
     }
 }

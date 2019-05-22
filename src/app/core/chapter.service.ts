@@ -3,7 +3,7 @@ import { Chapter, ChapterElement } from './models/chapter';
 import { mockChapter } from 'test/mockChapter';
 import { ChapterItem } from './models/chapter-item';
 import { ChapterItemMap } from './chapter-item.resource';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, of, Subject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -29,7 +29,7 @@ export class ChapterService {
     getChapterItems(chapterElements: ChapterElement[]): ChapterItem[] {
         return chapterElements.map((x: ChapterElement) => {
             let componentType: Type<any> = this.getComponentType(x.type);
-            return new ChapterItem(componentType, x);
+            return new ChapterItem(componentType, new BehaviorSubject(x));
         });
     }
 }

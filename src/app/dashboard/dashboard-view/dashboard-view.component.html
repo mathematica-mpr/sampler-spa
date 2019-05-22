@@ -13,7 +13,7 @@
     </div>
 
     <div class="graphs">
-        <div *ngFor="let graph of graphs" [class]="graph.chapterElement.name + graph.chapterElement.order">
+        <div *ngFor="let graph of graphs" [class]="graph.chapterElement.value.name + graph.chapterElement.value.order">
             <app-chapter-item [chapterItem]="graph"></app-chapter-item>
         </div>
     </div>

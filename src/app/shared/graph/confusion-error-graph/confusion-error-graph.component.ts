@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CompositeGraph } from '../composite-graph';
+import { BehaviorSubject } from 'rxjs';
+import { ChapterElement } from '../../../core/models/chapter';
 
 @Component({
     selector: 'app-confusion-error-graph',
@@ -7,9 +9,14 @@ import { CompositeGraph } from '../composite-graph';
     styleUrls: ['./confusion-error-graph.component.css']
 })
 export class ConfusionErrorGraphComponent extends CompositeGraph implements OnInit {
+    graphs: BehaviorSubject<ChapterElement>[] = [];
     constructor() {
         super();
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.config$.value.graphs.forEach((graph, i) => {
+            this.graphs.push(new BehaviorSubject(graph));
+        });
+    }
 }

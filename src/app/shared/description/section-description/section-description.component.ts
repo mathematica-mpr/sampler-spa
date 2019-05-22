@@ -11,5 +11,9 @@ export class SectionDescriptionComponent extends BaseDescription implements OnIn
         super();
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.config$.subscribe(response => {
+            this.config = response;
+        });
+    }
 }

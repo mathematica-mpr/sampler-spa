@@ -24,31 +24,78 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
     innerHeight: number;
     xScale;
     yScale;
+    g;
+    dot;
+    line;
+    lineGenerator;
+    instantiated = false;
 
     constructor() {
         super();
     }
 
-    ngOnInit(): void {
-        this.dataLinear = this.config.data;
-        const wrapperClass: string = '.' + this.config.name + this.config.order;
-        this.wrapperDimension = this.getDimension(wrapperClass);
-        this.innerWidth =
-            this.wrapperDimension.width - this.margin.left - this.margin.right;
-        this.innerHeight =
-            this.wrapperDimension.height - this.margin.top - this.margin.bottom;
-        this.xScale = this.getXscale();
-        this.yScale = this.getYScale();
-    }
+    ngOnInit(): void {}
 
     ngAfterViewInit(): void {
-        this.instantiateGraph();
+        this.config$.subscribe(response => {
+            if (!this.instantiated) {
+                this.config = response;
+                this.dataLinear = this.config.data;
+                const wrapperClass: string = '.' + this.config.name + this.config.order;
+                this.wrapperDimension = this.getDimension(wrapperClass);
+                this.innerWidth =
+                    this.wrapperDimension.width - this.margin.left - this.margin.right;
+                this.innerHeight =
+                    this.wrapperDimension.height - this.margin.top - this.margin.bottom;
+                this.instantiateGraph();
+                this.instantiated = true;
+            } else {
+                this.dataLinear = this.config.data;
+                this.update();
+            }
+        });
+    }
+
+    update() {
+        // Update line
+        this.line
+            .transition()
+            .duration(750)
+            .attr('d', this.lineGenerator(this.dataLinear));
+
+        // Update all circles
+        d3.selectAll('circle')
+            .data(this.dataLinear)
+            .transition()
+            .duration(750)
+            .attr('cx', d => this.xScale(d.x))
+            .attr('cy', d => this.yScale(d.y));
+
+        // Enter new circles
+        d3.selectAll('circle')
+            .data(this.dataLinear)
+            .enter()
+            .append('circle')
+            .attr('cx', d => this.xScale(d.x))
+            .attr('cy', d => this.yScale(d.y))
+            .attr('r', 5);
+
+        // // Remove old
+        d3.selectAll('circle')
+            .data(this.dataLinear)
+            .exit()
+            .remove();
     }
 
     instantiateGraph(): void {
         const divId = '#' + this.config.name + this.config.order;
 
-        const g = d3
+        this.xScale = this.getXscale();
+        this.yScale = this.getYScale();
+
+        console.log(d3.select(divId));
+
+        this.g = d3
             .select(divId)
             .append('svg')
             .attr('width', this.wrapperDimension.width)
@@ -59,7 +106,8 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
                 'translate(' + this.margin.left + ',' + this.margin.top + ')'
             );
 
-        g.selectAll('circle')
+        this.dot = this.g
+            .selectAll('circle')
             .data(this.dataLinear)
             .enter()
             .append('circle')
@@ -67,14 +115,15 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
             .attr('cx', d => this.xScale(d.x))
             .attr('cy', d => this.yScale(d.y));
 
-        var lineGenerator = d3
+        this.lineGenerator = d3
             .line()
             .curve(d3.curveCardinal)
             .x(d => this.xScale(d['x']))
             .y(d => this.yScale(d['y']));
 
-        g.append('path')
-            .attr('d', lineGenerator(this.dataLinear))
+        this.line = this.g
+            .append('path')
+            .attr('d', this.lineGenerator(this.dataLinear))
             .attr('class', 'regression');
     }
 
