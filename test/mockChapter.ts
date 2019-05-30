@@ -15,8 +15,14 @@ export const mockChapter: Chapter = {
     ],
     inputs: [
         {
-            name: 'prevalence',
-            title: 'Prevalence',
+            name: 'case',
+            title: 'Cases',
+            order: 0,
+            type: 'NumberInput'
+        },
+        {
+            name: 'noncase',
+            title: 'Non-Cases',
             order: 0,
             type: 'NumberInput'
         },
