@@ -18,6 +18,8 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
     divId: string;
     xScale;
     yScale;
+    xAxis;
+    svg;
     g;
     dot;
     line;
@@ -62,65 +64,42 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
             .transition()
             .duration(750)
             .attr('d', this.lineGenerator(this.dataLinear));
-
-        // Update all circles
-        d3.select(this.divId)
-            .selectAll('circle')
-            .data(this.dataLinear)
-            .transition()
-            .duration(750)
-            .attr('cx', d => this.xScale(d.x))
-            .attr('cy', d => this.yScale(d.y));
-
-        // Enter new circles
-        d3.select(this.divId)
-            .selectAll('circle')
-            .data(this.dataLinear)
-            .enter()
-            .append('circle')
-            .attr('cx', d => this.xScale(d.x))
-            .attr('cy', d => this.yScale(d.y))
-            .attr('r', 5);
-
-        // // Remove old
-        d3.select(this.divId)
-            .selectAll('circle')
-            .data(this.dataLinear)
-            .exit()
-            .remove();
     }
 
     instantiateGraph(): void {
         this.xScale = this.getXscale();
         this.yScale = this.getYScale();
 
-        this.g = d3
+        this.svg = d3
             .select(this.divId)
             .append('svg')
             .attr('width', this.wrapperDimension.width)
-            .attr('height', this.wrapperDimension.height)
+            .attr('height', this.wrapperDimension.height);
+
+        this.xAxis = d3
+            .axisBottom(this.xScale)
+            .ticks(3)
+            .tickSizeOuter(0);
+
+        // xAxis
+        this.svg
             .append('g')
             .attr(
                 'transform',
-                'translate(' + this.margin.left + ',' + this.margin.top + ')'
-            );
+                'translate(' + this.margin.left + ',' + this.innerHeight + ')'
+            )
+            .call(this.xAxis);
 
-        this.dot = this.g
-            .selectAll('circle')
-            .data(this.dataLinear)
-            .enter()
-            .append('circle')
-            .attr('r', 3)
-            .attr('cx', d => this.xScale(d.x))
-            .attr('cy', d => this.yScale(d.y));
-
+        // line
         this.lineGenerator = d3
             .line()
             .curve(d3.curveCardinal)
             .x(d => this.xScale(d['x']))
             .y(d => this.yScale(d['y']));
 
-        this.line = this.g
+        this.line = this.svg
+            .append('g')
+            .attr('transform', 'translate(' + this.margin.left + ',0)')
             .append('path')
             .attr('d', this.lineGenerator(this.dataLinear))
             .attr('class', 'regression');

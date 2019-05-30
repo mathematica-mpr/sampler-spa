@@ -4,6 +4,7 @@
     width: auto;
     height: 90%;
     margin: 2% 10%;
+    max-width: 1200px;
     display: grid;
     grid-template-rows: auto;
     grid-gap: 1%;
