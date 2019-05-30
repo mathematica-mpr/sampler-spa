@@ -4,7 +4,7 @@
     grid-template-areas:
         'descriptions  graphs'
         'inputs  graphs';
-    grid-template-columns: 3fr 4fr;
+    grid-template-columns: 2fr 6fr;
 }
 
 .graphs {
@@ -20,15 +20,7 @@
 
 .inputs {
     grid-area: inputs;
-    max-width: 1fr;
     display: grid;
-    grid-template-columns: repeat(2, 2fr);
-    grid-template-rows: auto;
-}
-
-.input-item {
-    display: grid;
-    align-content: center;
 }
 
 .description-item {
