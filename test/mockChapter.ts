@@ -15,15 +15,15 @@ export const mockChapter: Chapter = {
     ],
     inputs: [
         {
-            name: 'case',
-            title: 'Cases',
+            name: 'population',
+            title: 'Population size',
             order: 0,
             type: 'RangeInput'
         },
         {
-            name: 'noncase',
-            title: 'Non-Cases',
-            order: 0,
+            name: 'prevalence',
+            title: 'Prevalence',
+            order: 1,
             type: 'RangeInput'
         },
         {
