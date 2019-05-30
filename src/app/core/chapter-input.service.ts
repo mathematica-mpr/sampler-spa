@@ -16,10 +16,23 @@ export class ChapterInputService {
         this.inputFormGroup = this.getInputFormGroup(chapterInputs);
     }
 
+    // TODO: refactor this
     getInputFormGroup(chapterInputs: ChapterInput[]): FormGroup {
         let formGroup = new FormGroup({});
         chapterInputs.forEach((chapterInput: ChapterInput) => {
-            formGroup.addControl(chapterInput.name, this.getFormControl(chapterInput));
+            if (chapterInput.inputs) {
+                chapterInput.inputs.forEach((chapterInput: ChapterInput) => {
+                    formGroup.addControl(
+                        chapterInput.name,
+                        this.getFormControl(chapterInput)
+                    );
+                });
+            } else {
+                formGroup.addControl(
+                    chapterInput.name,
+                    this.getFormControl(chapterInput)
+                );
+            }
         });
         return formGroup;
     }
