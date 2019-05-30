@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChapterService } from '../../core/chapter.service';
-import { Chapter, ChapterGraph } from '../../core/models/chapter';
+import { Chapter } from '../../core/models/chapter';
 import { ChapterItem } from '../../core/models/chapter-item';
 import { ChapterInputService } from '../../core/chapter-input.service';
 import { ComputeResource } from '../../core/compute.resource';

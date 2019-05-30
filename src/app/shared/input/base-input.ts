@@ -1,10 +1,11 @@
 import { Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ChapterInputService } from '../../core/chapter-input.service';
-import { ChapterElement } from '../../core/models/chapter';
+import { ChapterElement, ChapterInput } from '../../core/models/chapter';
+import { BehaviorSubject } from 'rxjs';
 
 export class BaseInput {
-    @Input() config$;
+    @Input() config$: BehaviorSubject<ChapterInput>;
     config: ChapterElement;
     chapterInputForm: FormGroup;
 

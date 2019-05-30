@@ -18,7 +18,9 @@ export class ChapterDescription extends ChapterElement {
     content: string;
 }
 
-export class ChapterInput extends ChapterElement {}
+export class ChapterInput extends ChapterElement {
+    inputs?: ChapterInput[];
+}
 
 export class ChapterGraph extends ChapterElement {
     data?: any[];

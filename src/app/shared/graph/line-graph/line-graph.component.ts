@@ -1,11 +1,4 @@
-import {
-    Component,
-    OnInit,
-    AfterViewInit,
-    ViewEncapsulation,
-    SimpleChanges,
-    OnChanges
-} from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewEncapsulation } from '@angular/core';
 import * as d3 from 'd3';
 import { BaseGraph } from '../base-graph';
 import { Dimension } from '../../../core/models/dimension';

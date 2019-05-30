@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, AfterContentInit } from '@angular/core';
 import { BaseInput } from '../base-input';
 import { ChapterInputService } from '../../../core/chapter-input.service';
 
@@ -7,12 +7,16 @@ import { ChapterInputService } from '../../../core/chapter-input.service';
     templateUrl: './number-input.component.html',
     styleUrls: ['./number-input.component.css']
 })
-export class NumberInputComponent extends BaseInput implements OnInit {
+export class NumberInputComponent extends BaseInput implements OnInit, AfterContentInit {
     constructor(chapterInputService: ChapterInputService) {
         super(chapterInputService);
     }
 
     ngOnInit() {
+        console.log(this.chapterInputForm);
+    }
+
+    ngAfterContentInit(): void {
         this.config$.subscribe(response => {
             this.config = response;
         });
