@@ -6,6 +6,7 @@ import { ChapterItemComponent } from './chapter/chapter-item/chapter-item.compon
 import { ChapterDirective } from './chapter/chapter.directive';
 import { SectionDescriptionComponent } from './description/section-description/section-description.component';
 import { ConfusionErrorGraphComponent } from './graph/confusion-error-graph/confusion-error-graph.component';
+import { ConfusionErrorInputComponent } from './input/confusion-error-input/confusion-error-input.component';
 
 @NgModule({
     imports: [CommonModule],
@@ -15,7 +16,8 @@ import { ConfusionErrorGraphComponent } from './graph/confusion-error-graph/conf
         ChapterItemComponent,
         ChapterDirective,
         SectionDescriptionComponent,
-        ConfusionErrorGraphComponent
+        ConfusionErrorGraphComponent,
+        ConfusionErrorInputComponent
     ],
     exports: [
         ChapterItemComponent,
@@ -23,7 +25,8 @@ import { ConfusionErrorGraphComponent } from './graph/confusion-error-graph/conf
         NumberInputComponent,
         SectionDescriptionComponent,
         LineGraphComponent,
-        ConfusionErrorGraphComponent
+        ConfusionErrorGraphComponent,
+        ConfusionErrorInputComponent
     ]
 })
 export class SharedModule {}

@@ -20,9 +20,18 @@ export const mockChapter: Chapter = {
             order: 0,
             type: 'NumberInput'
         },
-        { name: 'TP', title: 'True Positive', order: 1, type: 'NumberInput' },
-        { name: 'FP', title: 'False Positive', order: 2, type: 'NumberInput' },
-        { name: 'TN', title: 'True Negative', order: 3, type: 'NumberInput' }
+        {
+            name: 'confusionErrorInput',
+            title: 'Confusion Errors',
+            order: 2,
+            type: 'ConfusionErrorInput',
+            inputs: [
+                { name: 'TP', title: 'True Positive', order: 1, type: 'NumberInput' },
+                { name: 'FP', title: 'False Positive', order: 2, type: 'NumberInput' },
+                { name: 'FN', title: 'False Negative', order: 3, type: 'NumberInput' },
+                { name: 'TN', title: 'True Negative', order: 4, type: 'NumberInput' }
+            ]
+        }
     ],
     graphs: [
         {
