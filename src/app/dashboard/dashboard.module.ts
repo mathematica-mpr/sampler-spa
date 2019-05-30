@@ -10,6 +10,7 @@ import { LineGraphComponent } from '../shared/graph/line-graph/line-graph.compon
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ConfusionErrorGraphComponent } from '../shared/graph/confusion-error-graph/confusion-error-graph.component';
 import { ConfusionErrorInputComponent } from '../shared/input/confusion-error-input/confusion-error-input.component';
+import { RangeInputComponent } from '../shared/input/range-input/range-input.component';
 
 @NgModule({
     imports: [CommonModule, DashboardRoutingModule, ReactiveFormsModule, FormsModule],
@@ -21,14 +22,16 @@ import { ConfusionErrorInputComponent } from '../shared/input/confusion-error-in
         SectionDescriptionComponent,
         LineGraphComponent,
         ConfusionErrorGraphComponent,
-        ConfusionErrorInputComponent
+        ConfusionErrorInputComponent,
+        RangeInputComponent
     ],
     entryComponents: [
         NumberInputComponent,
         SectionDescriptionComponent,
         LineGraphComponent,
         ConfusionErrorGraphComponent,
-        ConfusionErrorInputComponent
+        ConfusionErrorInputComponent,
+        RangeInputComponent
     ]
 })
 export class DashboardModule {}

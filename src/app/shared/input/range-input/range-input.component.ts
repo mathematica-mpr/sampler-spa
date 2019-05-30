@@ -3,11 +3,11 @@ import { BaseInput } from '../base-input';
 import { ChapterInputService } from '../../../core/chapter-input.service';
 
 @Component({
-    selector: 'app-number-input',
-    templateUrl: './number-input.component.html',
-    styleUrls: ['./number-input.component.css']
+    selector: 'app-range-input',
+    templateUrl: './range-input.component.html',
+    styleUrls: ['./range-input.component.css']
 })
-export class NumberInputComponent extends BaseInput implements OnInit, AfterContentInit {
+export class RangeInputComponent extends BaseInput implements OnInit, AfterContentInit {
     constructor(chapterInputService: ChapterInputService) {
         super(chapterInputService);
     }

@@ -18,13 +18,13 @@ export const mockChapter: Chapter = {
             name: 'case',
             title: 'Cases',
             order: 0,
-            type: 'NumberInput'
+            type: 'RangeInput'
         },
         {
             name: 'noncase',
             title: 'Non-Cases',
             order: 0,
-            type: 'NumberInput'
+            type: 'RangeInput'
         },
         {
             name: 'confusionErrorInput',
