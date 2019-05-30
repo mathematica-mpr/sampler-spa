@@ -32,7 +32,6 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
 
     ngAfterViewInit(): void {
         this.config$.subscribe(response => {
-            console.log(response);
             if (!this.instantiated) {
                 this.config = response;
                 this.divId = '#' + this.config.name + this.config.order;
@@ -48,7 +47,8 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
     }
 
     setDimensions(): void {
-        const wrapperClass: string = '.' + this.config.name + this.config.order;
+        const wrapperClass: string =
+            '.graphs > ' + '.' + this.config.name + this.config.order;
         this.wrapperDimension = this.getDimension(wrapperClass);
         this.innerWidth =
             this.wrapperDimension.width - this.margin.left - this.margin.right;
