@@ -12,10 +12,6 @@ export class ChapterInputService {
 
     constructor() {}
 
-    setInputFormGroup(chapterInputs: ChapterInput[]) {
-        this.getInputFormGroup(chapterInputs);
-    }
-
     getInputFormGroup(chapterInputs: ChapterInput[]): void {
         chapterInputs.forEach((chapterInput: ChapterInput) => {
             if (chapterInput.inputs) {

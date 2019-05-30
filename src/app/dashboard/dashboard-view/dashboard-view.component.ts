@@ -49,7 +49,7 @@ export class DashboardViewComponent implements OnInit {
 
     initInput(): void {
         if (this.chapter.inputs.length > 0) {
-            this.chapterInputService.setInputFormGroup(this.chapter.inputs);
+            this.chapterInputService.getInputFormGroup(this.chapter.inputs);
             this.inputs = this.chapterService.getChapterItems(this.chapter.inputs);
             this.chapterInputService.inputFormGroup.valueChanges.subscribe(result => {
                 // TODO: for each result
