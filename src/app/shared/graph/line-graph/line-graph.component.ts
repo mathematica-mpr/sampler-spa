@@ -23,6 +23,7 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
     g;
     dot;
     line;
+    mean;
     lineGenerator;
     instantiated = false;
 
@@ -64,6 +65,12 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
             .transition()
             .duration(750)
             .attr('d', this.lineGenerator(this.dataLinear));
+
+        this.mean
+            .transition()
+            .duration(750)
+            .attr('x1', this.xScale(d3.mean(this.dataLinear, d => d.x)))
+            .attr('x2', this.xScale(d3.mean(this.dataLinear, d => d.x)));
     }
 
     instantiateGraph(): void {
@@ -90,7 +97,7 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
             )
             .call(this.xAxis);
 
-        // line
+        // line-graph
         this.lineGenerator = d3
             .line()
             .curve(d3.curveCardinal)
@@ -103,6 +110,24 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
             .append('path')
             .attr('d', this.lineGenerator(this.dataLinear))
             .attr('class', 'regression');
+
+        // average line
+        this.mean = this.svg
+            .append('g')
+            .attr(
+                'transform',
+                'translate(' + this.margin.left + ',' + this.innerHeight + ')'
+            )
+            .append('line')
+            .attr('class', 'mean-line')
+            .attr('x1', this.xScale(d3.mean(this.dataLinear, d => d.x)))
+            .attr('x2', this.xScale(d3.mean(this.dataLinear, d => d.x)))
+            .attr('y1', 0)
+            .attr('y2', -innerHeight)
+            .style('stroke-width', 1)
+            .style('stroke', 'black')
+            .style('stroke-dasharray', '4,4')
+            .style('fill', 'none');
     }
 
     getConfig() {}
