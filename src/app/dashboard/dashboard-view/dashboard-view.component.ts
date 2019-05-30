@@ -51,6 +51,8 @@ export class DashboardViewComponent implements OnInit {
         if (this.chapter.inputs.length > 0) {
             this.chapterInputService.getInputFormGroup(this.chapter.inputs);
             this.inputs = this.chapterService.getChapterItems(this.chapter.inputs);
+
+            // TODO: this should its own function
             this.chapterInputService.inputFormGroup.valueChanges.subscribe(result => {
                 // TODO: for each result
                 // TODO: use a pipe
