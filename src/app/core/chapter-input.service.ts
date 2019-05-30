@@ -8,33 +8,29 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
     providedIn: 'root'
 })
 export class ChapterInputService {
-    inputFormGroup: FormGroup;
+    inputFormGroup: FormGroup = new FormGroup({});
 
     constructor() {}
 
     setInputFormGroup(chapterInputs: ChapterInput[]) {
-        this.inputFormGroup = this.getInputFormGroup(chapterInputs);
+        this.getInputFormGroup(chapterInputs);
     }
 
-    // TODO: refactor this
-    getInputFormGroup(chapterInputs: ChapterInput[]): FormGroup {
-        let formGroup = new FormGroup({});
+    getInputFormGroup(chapterInputs: ChapterInput[]): void {
         chapterInputs.forEach((chapterInput: ChapterInput) => {
             if (chapterInput.inputs) {
-                chapterInput.inputs.forEach((chapterInput: ChapterInput) => {
-                    formGroup.addControl(
-                        chapterInput.name,
-                        this.getFormControl(chapterInput)
-                    );
-                });
+                this.getInputFormGroup(chapterInput.inputs);
             } else {
-                formGroup.addControl(
-                    chapterInput.name,
-                    this.getFormControl(chapterInput)
-                );
+                this.addControl(chapterInput);
             }
         });
-        return formGroup;
+    }
+
+    addControl(chapterInput: ChapterInput): void {
+        this.inputFormGroup.addControl(
+            chapterInput.name,
+            this.getFormControl(chapterInput)
+        );
     }
 
     getFormControl(chapterInput: ChapterInput): FormControl {
