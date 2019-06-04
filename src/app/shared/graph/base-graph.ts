@@ -8,6 +8,5 @@ export abstract class BaseGraph {
     constructor() {}
 
     abstract instantiateGraph();
-
-    abstract getConfig();
+    abstract updateGraph();
 }

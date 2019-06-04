@@ -44,7 +44,7 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
                 this.instantiated = true;
             } else {
                 this.dataLinear = this.config.data;
-                this.update();
+                this.updateGraph();
             }
         });
     }
@@ -59,9 +59,17 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
             this.wrapperDimension.height - this.margin.top - this.margin.bottom;
     }
 
-    update() {
+    updateGraph() {
         this.xScale = this.getXscale();
         this.yScale = this.getYScale();
+
+        this.xAxis = this.getXAxis();
+
+        // Update xAxis
+        d3.select('#' + 'x-axis' + this.config.name + this.config.order)
+            .transition()
+            .duration(750)
+            .call(this.xAxis);
 
         // Update line
         this.line
@@ -69,6 +77,7 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
             .duration(750)
             .attr('d', this.lineGenerator(this.dataLinear));
 
+        // update mean line
         this.mean
             .transition()
             .duration(750)
@@ -77,9 +86,6 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
     }
 
     instantiateGraph(): void {
-        this.xScale = this.getXscale();
-        this.yScale = this.getYScale();
-
         this.svg = d3
             .select(this.divId)
             .append('svg')
@@ -89,14 +95,16 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
                 '0 0 ' + this.wrapperDimension.width + ' ' + this.wrapperDimension.height
             );
 
-        this.xAxis = d3
-            .axisBottom(this.xScale)
-            .ticks(3)
-            .tickSizeOuter(0);
+        this.xScale = this.getXscale();
+        this.yScale = this.getYScale();
+
+        this.xAxis = this.getXAxis();
 
         // xAxis
         this.svg
             .append('g')
+            .attr('class', 'x-axis')
+            .attr('id', x => 'x-axis' + this.config.name + this.config.order)
             .attr(
                 'transform',
                 'translate(' +
@@ -147,7 +155,12 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
             .style('fill', 'none');
     }
 
-    getConfig() {}
+    getXAxis() {
+        return d3
+            .axisBottom(this.xScale)
+            .ticks(3)
+            .tickSizeOuter(0);
+    }
 
     getDimension(className: string): Dimension {
         return d3

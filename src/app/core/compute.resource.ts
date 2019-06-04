@@ -30,7 +30,10 @@ export class ComputeResource {
         params: number[]
     ): Observable<{ x: number; y: number }[]> {
         let newData = this.mockData.map(x => {
-            return { x: x.x, y: Math.random() * 3 * x.y };
+            return {
+                x: Math.random() * 3 * Math.random() * 10 * x.x,
+                y: Math.random() * 3 * x.y
+            };
         });
         return new BehaviorSubject(newData).pipe(take(1));
     }
