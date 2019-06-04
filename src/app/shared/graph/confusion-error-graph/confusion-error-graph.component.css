@@ -1,15 +1,38 @@
 .confusion-error-matrix {
     display: grid;
     grid-template-areas:
-        'tn fp'
-        'fn  tp';
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+        '. headerPlus headerMinus'
+        'rowPlus tp fp'
+        'rowMinus fn  tn';
+    grid-template-columns: 1fr 4fr 4fr;
+    grid-template-rows: 1fr 4fr 4fr;
     height: 100%;
 }
 
-.tn {
-    grid-area: tn;
+h3 {
+    font-size: 110%;
+}
+
+.table-header {
+    align-self: center;
+    justify-self: center;
+}
+
+.header#plus {
+    grid-area: headerPlus;
+}
+.header#minus {
+    grid-area: headerMinus;
+}
+.row#plus {
+    grid-area: rowPlus;
+}
+.row#minus {
+    grid-area: rowMinus;
+}
+
+.tp {
+    grid-area: tp;
     border-right: 1px solid black;
     border-bottom: 1px solid black;
 }
@@ -26,8 +49,8 @@
     border-top: 1px solid black;
 }
 
-.tp {
-    grid-area: tp;
+.tn {
+    grid-area: tn;
     border-left: 1px solid black;
     border-top: 1px solid black;
 }

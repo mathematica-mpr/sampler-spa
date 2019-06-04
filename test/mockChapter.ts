@@ -65,9 +65,9 @@ export const mockChapter: Chapter = {
             type: 'ConfusionErrorGraph',
             graphs: [
                 {
-                    title: 'FP',
+                    title: 'TP',
                     order: 0,
-                    name: 'fp',
+                    name: 'tp',
                     type: 'LineGraph',
                     data: [
                         { x: 0.1, y: 0.1 },
@@ -83,9 +83,9 @@ export const mockChapter: Chapter = {
                     ]
                 },
                 {
-                    title: 'TP',
+                    title: 'FP',
                     order: 1,
-                    name: 'tp',
+                    name: 'fp',
                     type: 'LineGraph',
                     data: [
                         { x: 0.1, y: 0.1 },

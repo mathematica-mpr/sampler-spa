@@ -10,7 +10,6 @@
 .graphs {
     grid-area: graphs;
     display: grid;
-    grid-auto-rows: 1fr;
 }
 
 .description {
@@ -22,10 +21,21 @@
     display: grid;
 }
 
+.item {
+    margin: 2%;
+    padding: 2%;
+    border-radius: 5px;
+    padding: 2px 16;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
 .description-item {
     display: grid;
     justify-content: center;
     align-content: center;
+}
+
+.graph-item {
 }
 
 .dashboard-view > * {

@@ -1,19 +1,19 @@
 <div class="dashboard-view">
     <!-- this logic could be moved in a chapter-Items component -->
     <div class="description">
-        <div class="description-item" *ngFor="let description of descriptions">
+        <div class="item description-item" *ngFor="let description of descriptions">
             <app-chapter-item [chapterItem]="description"></app-chapter-item>
         </div>
     </div>
 
     <div class="inputs">
-        <div class="input-item" *ngFor="let input of inputs">
+        <div class="item input-item" *ngFor="let input of inputs">
             <app-chapter-item [chapterItem]="input"></app-chapter-item>
         </div>
     </div>
 
     <div class="graphs">
-        <div *ngFor="let graph of graphs" [id]="graph.chapterElement.value.name + graph.chapterElement.value.order">
+        <div class="item graph-item" *ngFor="let graph of graphs" [id]="graph.chapterElement.value.name + graph.chapterElement.value.order">
             <app-chapter-item [chapterItem]="graph"></app-chapter-item>
         </div>
     </div>
