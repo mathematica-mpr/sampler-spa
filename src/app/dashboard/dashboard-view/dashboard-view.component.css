@@ -1,13 +1,10 @@
 .dashboard-view {
     display: grid;
-    height: 100%;
-    grid-row-gap: 2%;
-    grid-column-gap: 10%;
+    grid-column-gap: 5%;
     grid-template-areas:
         'descriptions  graphs'
         'inputs  graphs';
     grid-template-columns: 4fr 7fr;
-    margin: 5% 0%;
 }
 
 .graphs {

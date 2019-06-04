@@ -2,9 +2,9 @@
 
 .wrapper {
     width: auto;
-    height: 90%;
-    margin: 2% 10%;
-    max-width: 1200px;
+    height: 100%;
+    max-width: 80%;
+    margin: 0 auto;
     display: grid;
     grid-template-rows: auto;
     grid-gap: 1%;
@@ -15,15 +15,12 @@
 .wrapper > * {
     /* border: 1px solid black;  */
     /* border-radius: 5px; */
-    padding: 10px;
-    font-size: 100%;
-    width: auto;
-    margin: 0;
 }
 
 .header {
     grid-area: header;
     border-bottom: 3px solid #018383;
+    padding: 8px;
 }
 
 .content {
@@ -32,6 +29,7 @@
 
 .footer {
     grid-area: footer;
+    padding: 8px;
     border-top: 2px solid; /*move this to upper container*/
     border-image: linear-gradient(to right, #d02b27, #018383, #f1b51c, #0b2949) 5;
 }
