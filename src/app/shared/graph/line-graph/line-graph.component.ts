@@ -138,7 +138,7 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
             .attr('x1', this.xScale(d3.mean(this.dataLinear, d => d.x)))
             .attr('x2', this.xScale(d3.mean(this.dataLinear, d => d.x)))
             .attr('y1', 0)
-            .attr('y2', -innerHeight)
+            .attr('y2', -this.innerHeight)
             .style('stroke-width', 1)
             .style('stroke', 'black')
             .style('stroke-dasharray', '4,4')
