@@ -12,7 +12,7 @@ import { Dimension } from '../../../core/models/dimension';
 export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewInit {
     dataLinear: { x: number; y: number }[];
     wrapperDimension: Dimension;
-    margin = { top: 20, right: 20, bottom: 20, left: 20 };
+    margin = { top: 20, right: 10, bottom: 20, left: 10 };
     innerWidth: number;
     innerHeight: number;
     divId: string;
@@ -60,6 +60,9 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
     }
 
     update() {
+        this.xScale = this.getXscale();
+        this.yScale = this.getYScale();
+
         // Update line
         this.line
             .transition()
@@ -80,8 +83,11 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
         this.svg = d3
             .select(this.divId)
             .append('svg')
-            .attr('width', this.wrapperDimension.width)
-            .attr('height', this.wrapperDimension.height);
+            .attr('preserveAspectRatio', 'xMinYMin meet')
+            .attr(
+                'viewBox',
+                '0 0 ' + this.wrapperDimension.width + ' ' + this.wrapperDimension.height
+            );
 
         this.xAxis = d3
             .axisBottom(this.xScale)
@@ -93,7 +99,11 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
             .append('g')
             .attr(
                 'transform',
-                'translate(' + this.margin.left + ',' + this.innerHeight + ')'
+                'translate(' +
+                    this.margin.left +
+                    ',' +
+                    (this.innerHeight + this.margin.top) +
+                    ')'
             )
             .call(this.xAxis);
 
@@ -106,7 +116,10 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
 
         this.line = this.svg
             .append('g')
-            .attr('transform', 'translate(' + this.margin.left + ',0)')
+            .attr(
+                'transform',
+                'translate(' + this.margin.left + ', ' + this.margin.top + ')'
+            )
             .append('path')
             .attr('d', this.lineGenerator(this.dataLinear))
             .attr('class', 'regression');
@@ -116,7 +129,11 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
             .append('g')
             .attr(
                 'transform',
-                'translate(' + this.margin.left + ',' + this.innerHeight + ')'
+                'translate(' +
+                    this.margin.left +
+                    ',' +
+                    (this.innerHeight + this.margin.top) +
+                    ')'
             )
             .append('line')
             .attr('class', 'mean-line')
@@ -142,14 +159,24 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
     getXscale() {
         return d3
             .scaleLinear()
-            .domain([0.1, 7])
+            .domain([this.getMin('x'), this.getMax('x')])
             .range([0, this.innerWidth]);
     }
 
     getYScale() {
         return d3
             .scaleLinear()
-            .domain([-4, 16])
+            .domain([this.getMin('y'), this.getMax('y')])
             .range([this.innerHeight, 0]);
+    }
+
+    getMin(axis: string): number {
+        let xArr = this.dataLinear.map(coor => coor[axis]);
+        return Math.min.apply(Math, xArr);
+    }
+
+    getMax(axis: string): number {
+        let xArr = this.dataLinear.map(coor => coor[axis]);
+        return Math.max.apply(Math, xArr);
     }
 }
