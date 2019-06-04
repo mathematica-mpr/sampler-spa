@@ -10,16 +10,24 @@
 
 .tn {
     grid-area: tn;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
 }
 
 .fp {
     grid-area: fp;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
 }
 
 .fn {
     grid-area: fn;
+    border-right: 1px solid black;
+    border-top: 1px solid black;
 }
 
 .tp {
     grid-area: tp;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
 }

@@ -31,7 +31,7 @@ export class ComputeResource {
     ): Observable<{ x: number; y: number }[]> {
         let newData = this.mockData.map(x => {
             return {
-                x: Math.random() * 3 * Math.random() * 10 * x.x,
+                x: x.x,
                 y: Math.random() * 3 * x.y
             };
         });

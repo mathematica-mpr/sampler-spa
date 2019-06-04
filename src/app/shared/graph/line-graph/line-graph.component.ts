@@ -49,16 +49,6 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
         });
     }
 
-    setDimensions(): void {
-        const wrapperClass: string =
-            '.graphs > ' + '.' + this.config.name + this.config.order;
-        this.wrapperDimension = this.getDimension(wrapperClass);
-        this.innerWidth =
-            this.wrapperDimension.width - this.margin.left - this.margin.right;
-        this.innerHeight =
-            this.wrapperDimension.height - this.margin.top - this.margin.bottom;
-    }
-
     updateGraph() {
         this.xScale = this.getXscale();
         this.yScale = this.getYScale();
@@ -77,7 +67,7 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
             .duration(750)
             .attr('d', this.lineGenerator(this.dataLinear));
 
-        // update mean line
+        // Update mean line
         this.mean
             .transition()
             .duration(750)
@@ -153,6 +143,16 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
             .style('stroke', 'black')
             .style('stroke-dasharray', '4,4')
             .style('fill', 'none');
+    }
+
+    setDimensions(): void {
+        const wrapperClass: string =
+            '.graphs > ' + '#' + this.config.name + this.config.order;
+        this.wrapperDimension = this.getDimension(wrapperClass);
+        this.innerWidth =
+            this.wrapperDimension.width - this.margin.left - this.margin.right;
+        this.innerHeight =
+            this.wrapperDimension.height - this.margin.top - this.margin.bottom;
     }
 
     getXAxis() {
