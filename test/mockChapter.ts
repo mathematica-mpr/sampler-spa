@@ -41,21 +41,83 @@ export const mockChapter: Chapter = {
     ],
     graphs: [
         {
-            name: 'lineGraph',
-            title: 'First Graph',
-            order: 0,
-            type: 'LineGraph',
-            data: [
-                { x: 0.1, y: 0.1 },
-                { x: 0.5, y: 1 },
-                { x: 1, y: 2 },
-                { x: 1.5, y: 3 },
-                { x: 2, y: 4 },
-                { x: 4, y: 5 },
-                { x: 5.5, y: 4 },
-                { x: 6, y: 3 },
-                { x: 6.5, y: 2 },
-                { x: 7, y: 1 }
+            name: 'modelPerformanceGraph',
+            title: 'Model Performance',
+            order: 1,
+            type: 'ModelPerformanceGraph',
+            graphs: [
+                {
+                    title: 'PPV (precision)',
+                    order: 0,
+                    name: 'ppv',
+                    type: 'LineGraph',
+                    data: [
+                        { x: 0.1, y: 0.1 },
+                        { x: 0.5, y: 1 },
+                        { x: 1, y: 2 },
+                        { x: 1.5, y: 3 },
+                        { x: 2, y: 4 },
+                        { x: 4, y: 5 },
+                        { x: 5.5, y: 4 },
+                        { x: 6, y: 3 },
+                        { x: 6.5, y: 2 },
+                        { x: 7, y: 1 }
+                    ]
+                },
+                {
+                    title: 'NPV',
+                    order: 1,
+                    name: 'npv',
+                    type: 'LineGraph',
+                    data: [
+                        { x: 0.1, y: 0.1 },
+                        { x: 0.5, y: 1 },
+                        { x: 1, y: 2 },
+                        { x: 1.5, y: 3 },
+                        { x: 2, y: 4 },
+                        { x: 4, y: 5 },
+                        { x: 5.5, y: 4 },
+                        { x: 6, y: 3 },
+                        { x: 6.5, y: 2 },
+                        { x: 7, y: 1 }
+                    ]
+                },
+                {
+                    title: 'Sensitivity (recall)',
+                    order: 2,
+                    name: 'sensitivity',
+                    type: 'line',
+                    data: [
+                        { x: 0.1, y: 0.1 },
+                        { x: 0.5, y: 1 },
+                        { x: 1, y: 2 },
+                        { x: 1.5, y: 3 },
+                        { x: 2, y: 4 },
+                        { x: 4, y: 5 },
+                        { x: 5.5, y: 4 },
+                        { x: 6, y: 3 },
+                        { x: 6.5, y: 2 },
+                        { x: 7, y: 1 }
+                    ]
+                },
+                {
+                    title: 'Specificity',
+                    order: 3,
+                    name: 'specificity',
+                    type: 'LineGraph',
+                    data: [
+                        { x: 0.1, y: 0.1 },
+                        { x: 0.5, y: 1 },
+                        { x: 1, y: 2 },
+                        { x: 1.5, y: 3 },
+                        { x: 2, y: 4 },
+                        { x: 4, y: 5 },
+                        { x: 5.5, y: 4 },
+                        { x: 6, y: 3 },
+                        { x: 6.5, y: 2 },
+                        { x: 7, y: 1 }
+                    ]
+                }
             ]
         },
         {

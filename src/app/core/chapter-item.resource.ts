@@ -5,6 +5,7 @@ import { Type } from '@angular/core';
 import { ConfusionErrorGraphComponent } from '../shared/graph/confusion-error-graph/confusion-error-graph.component';
 import { ConfusionErrorInputComponent } from '../shared/input/confusion-error-input/confusion-error-input.component';
 import { RangeInputComponent } from '../shared/input/range-input/range-input.component';
+import { ModelPerformanceGraphComponent } from '../shared/graph/model-performance-graph/model-performance-graph.component';
 
 export const ChapterItemMap: { [key: string]: Type<any> } = {
     SectionDescription: SectionDescriptionComponent,
@@ -12,5 +13,6 @@ export const ChapterItemMap: { [key: string]: Type<any> } = {
     LineGraph: LineGraphComponent,
     ConfusionErrorGraph: ConfusionErrorGraphComponent,
     ConfusionErrorInput: ConfusionErrorInputComponent,
-    RangeInput: RangeInputComponent
+    RangeInput: RangeInputComponent,
+    ModelPerformanceGraph: ModelPerformanceGraphComponent
 };

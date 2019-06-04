@@ -8,6 +8,7 @@ import { SectionDescriptionComponent } from './description/section-description/s
 import { ConfusionErrorGraphComponent } from './graph/confusion-error-graph/confusion-error-graph.component';
 import { ConfusionErrorInputComponent } from './input/confusion-error-input/confusion-error-input.component';
 import { RangeInputComponent } from './input/range-input/range-input.component';
+import { ModelPerformanceGraphComponent } from './graph/model-performance-graph/model-performance-graph.component';
 
 @NgModule({
     imports: [CommonModule],
@@ -19,7 +20,8 @@ import { RangeInputComponent } from './input/range-input/range-input.component';
         SectionDescriptionComponent,
         ConfusionErrorGraphComponent,
         ConfusionErrorInputComponent,
-        RangeInputComponent
+        RangeInputComponent,
+        ModelPerformanceGraphComponent
     ],
     exports: [
         ChapterItemComponent,
@@ -29,7 +31,8 @@ import { RangeInputComponent } from './input/range-input/range-input.component';
         LineGraphComponent,
         ConfusionErrorGraphComponent,
         ConfusionErrorInputComponent,
-        RangeInputComponent
+        RangeInputComponent,
+        ModelPerformanceGraphComponent
     ]
 })
 export class SharedModule {}

@@ -58,7 +58,7 @@ export class DashboardViewComponent implements OnInit {
                 // TODO: use a pipe
                 this.computeResource.getResult('hello', [0, 0, 0]).subscribe(computed => {
                     // this.graphs[0].chapterElement.data = computed;
-                    this.chapter.graphs[0].data = computed;
+                    this.chapter.graphs[0].graphs.forEach(x => (x.data = computed));
                     this.chapter.graphs[1].graphs.forEach(x => (x.data = computed));
 
                     this.chapterService.updateChapterProperties(this.chapter);

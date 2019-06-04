@@ -1,0 +1,21 @@
+<h3> Model Performance </h3>
+<div class="graphs model-performance">
+  <div class="header table-header" id="ppv"> PPV (precision) </div>
+  <div class="header table-header" id="npv"> NPV </div>
+  <div class="header table-header" id="sensitivity"> Sensitivity (recall) </div>
+  <div class="header table-header" id="specificity"> Specificity </div>
+
+
+  <div class="ppv" id= "ppv0">
+    <app-line-graph [config$]="graphs[0]"></app-line-graph>
+  </div>
+  <div class="npv" id= "npv1">
+    <app-line-graph [config$]="graphs[1]"></app-line-graph>
+  </div>
+  <div class="sensitivity" id= "sensitivity2">
+    <app-line-graph [config$]="graphs[2]"></app-line-graph>
+  </div>
+  <div class="specificity" id= "specificity3">
+    <app-line-graph [config$]="graphs[3]"></app-line-graph>
+  </div>
+</div>
