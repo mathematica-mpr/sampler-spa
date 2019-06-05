@@ -21,6 +21,10 @@ export class ChapterDescription extends ChapterElement {
 
 export class ChapterInput extends ChapterElement {
     inputs?: ChapterInput[];
+    max?: number;
+    min?: number;
+    init?: number;
+    step?: number;
 }
 
 export class ChapterGraph extends ChapterElement {

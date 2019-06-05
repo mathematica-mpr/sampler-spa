@@ -7,8 +7,8 @@ import { take } from 'rxjs/operators';
     providedIn: 'root'
 })
 export class ComputeResource {
-    lambda_regression =
-        'https://3bqo3rqk1g.execute-api.us-east-1.amazonaws.com/default/rare-app-reg/';
+    simulation =
+        'https://dyagyki1xk.execute-api.us-east-2.amazonaws.com/default/simulate';
 
     mockData = [
         { x: 0.1, y: 0.1 },
@@ -27,31 +27,23 @@ export class ComputeResource {
 
     getChapterData(
         chapterName: string,
-        params: number[]
+        params: any
     ): Observable<{ x: number; y: number }[]> {
-        let newData = this.mockData.map(x => {
-            return {
-                x: x.x,
-                y: Math.random() * 3 * x.y
-            };
-        });
-        return new BehaviorSubject(newData).pipe(take(1));
+        const options = this.getOptions(params);
+        return this.http.get<{ x: number; y: number }[]>(this.simulation, options);
     }
 
-    getRegression(num: number) {
-        const options = this.getOptions(num);
-        return this.http.get(this.lambda_regression, options);
-    }
-
-    getOptions(params: number) {
+    getOptions(params: any) {
         return {
             params: this.getParams(params),
             headers: this.getHeader()
         };
     }
 
-    getParams(num: number) {
-        return new HttpParams().set('randomNumber', num.toString());
+    getParams(params: any) {
+        let httpParams = new HttpParams();
+        Object.keys(params).map(key => httpParams.set(key, params[key]));
+        return httpParams;
     }
 
     getHeader() {

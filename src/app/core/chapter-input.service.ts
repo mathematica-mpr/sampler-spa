@@ -30,7 +30,7 @@ export class ChapterInputService {
     }
 
     getFormControl(chapterInput: ChapterInput): FormControl {
-        // TODO: pass initial values
-        return new FormControl();
+        let initVal = chapterInput.init ? chapterInput.init : null;
+        return new FormControl(initVal);
     }
 }

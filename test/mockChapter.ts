@@ -19,13 +19,20 @@ export const mockChapter: Chapter = {
             name: 'population',
             title: 'Population size',
             order: 0,
-            type: 'RangeInput'
+            type: 'RangeInput',
+            max: 100000,
+            min: 10000,
+            init: 10000
         },
         {
-            name: 'prevalence',
+            name: 'prev',
             title: 'Prevalence',
             order: 1,
-            type: 'RangeInput'
+            type: 'RangeInput',
+            max: 1,
+            min: 0,
+            step: 0.001,
+            init: 0.012
         },
         {
             name: 'confusionErrorInput',
@@ -33,10 +40,42 @@ export const mockChapter: Chapter = {
             order: 2,
             type: 'ConfusionErrorInput',
             inputs: [
-                { name: 'TP', title: 'True Positive', order: 1, type: 'NumberInput' },
-                { name: 'FP', title: 'False Positive', order: 2, type: 'NumberInput' },
-                { name: 'FN', title: 'False Negative', order: 3, type: 'NumberInput' },
-                { name: 'TN', title: 'True Negative', order: 4, type: 'NumberInput' }
+                {
+                    name: 'TP',
+                    title: 'True Positive',
+                    order: 1,
+                    type: 'NumberInput',
+                    max: 100,
+                    min: 0,
+                    init: 61
+                },
+                {
+                    name: 'FP',
+                    title: 'False Positive',
+                    order: 2,
+                    type: 'NumberInput',
+                    max: 100,
+                    min: 0,
+                    init: 39
+                },
+                {
+                    name: 'FN',
+                    title: 'False Negative',
+                    order: 3,
+                    type: 'NumberInput',
+                    max: 100,
+                    min: 0,
+                    init: 41
+                },
+                {
+                    name: 'TN',
+                    title: 'True Negative',
+                    order: 4,
+                    type: 'NumberInput',
+                    max: 100,
+                    min: 0,
+                    init: 1481
+                }
             ]
         }
     ],
