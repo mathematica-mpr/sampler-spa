@@ -2,6 +2,7 @@ import { Chapter } from 'src/app/core/models/chapter';
 
 export const mockChapter: Chapter = {
     title: 'The final Chapter',
+    name: 'finalChapter',
     order: 0,
     descriptions: [
         {

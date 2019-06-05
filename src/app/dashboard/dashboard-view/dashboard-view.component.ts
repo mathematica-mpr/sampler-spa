@@ -55,9 +55,14 @@ export class DashboardViewComponent implements OnInit {
 
             this.chapterInputService.inputFormGroup.valueChanges
                 .pipe(
-                    switchMap(value =>
-                        this.computeResource.getChapterData('hello', [0, 0, 0])
-                    ),
+                    switchMap(value => {
+                        console.log(value);
+                        return this.computeResource.getChapterData(this.chapter.name, [
+                            0,
+                            0,
+                            0
+                        ]);
+                    }),
                     map(results => {
                         console.log(results);
                         this.chapter.graphs[0].graphs.forEach(x => (x.data = results));

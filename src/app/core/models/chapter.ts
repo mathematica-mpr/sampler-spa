@@ -1,5 +1,6 @@
 export class Chapter {
     title: string;
+    name: string;
     order: number;
     descriptions: ChapterDescription[];
     inputs: ChapterInput[];
