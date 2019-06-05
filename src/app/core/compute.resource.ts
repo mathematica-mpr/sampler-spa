@@ -25,7 +25,7 @@ export class ComputeResource {
 
     constructor(private http: HttpClient) {}
 
-    getResult(
+    getChapterData(
         chapterName: string,
         params: number[]
     ): Observable<{ x: number; y: number }[]> {
