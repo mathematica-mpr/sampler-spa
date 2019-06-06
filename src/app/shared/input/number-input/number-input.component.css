@@ -1,0 +1,10 @@
+.input-container {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+label {
+    font-size: 60%;
+    text-align: center;
+}

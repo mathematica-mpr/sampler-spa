@@ -1,10 +1,20 @@
-<div [class]="dashboardClass">
-    <div class="control">
-        <label for="reg">Enter a random number </label>
-        <!-- <input type="number" name="reg" id="reg" #reg (keyup)="runRegression(reg.value)"> -->
+<div class="dashboard-view">
+    <!-- this logic could be moved in a chapter-Items component -->
+    <div class="description">
+        <div class="item description-item" *ngFor="let description of descriptions">
+            <app-chapter-item [chapterItem]="description"></app-chapter-item>
+        </div>
     </div>
-    <app-dashboard-graph class="chart"[selectedArray]="selectedArray"></app-dashboard-graph>
 
+    <div class="inputs">
+        <div class="item input-item" *ngFor="let input of inputs">
+            <app-chapter-item [chapterItem]="input"></app-chapter-item>
+        </div>
+    </div>
+
+    <div class="graphs">
+        <div class="item graph-item" *ngFor="let graph of graphs" [id]="graph.chapterElement.value.name + graph.chapterElement.value.order">
+            <app-chapter-item [chapterItem]="graph"></app-chapter-item>
+        </div>
+    </div>
 </div>
-
-<input (click)="nextChapter()" type="button" value="Next chapter">

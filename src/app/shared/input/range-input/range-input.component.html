@@ -1,0 +1,7 @@
+<form [formGroup]="chapterInputForm">
+  <div class="input-container" >
+          <label for="range-input">{{ config.title }}</label>
+          <!-- https://github.com/angular/angular/issues/12540 -->
+          <input [type]="'range'" min="1" max="100" value="50" class="form-control w-50" name="range-input" [formControlName]="config.name"/>
+  </div>
+  </form>

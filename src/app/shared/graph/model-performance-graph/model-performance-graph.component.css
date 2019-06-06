@@ -1,0 +1,51 @@
+.model-performance {
+    display: grid;
+    grid-template-areas:
+        'headerPpv headerNpv headerSensitivity headerSpecificity'
+        'ppv npv sensitivity specificity';
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr 2fr;
+}
+
+h3 {
+    font-size: 110%;
+}
+
+.header {
+    font-size: 90%;
+    text-align: center;
+}
+
+.table-header {
+    align-self: center;
+    justify-self: center;
+}
+
+.header#ppv {
+    grid-area: headerPpv;
+}
+.header#npv {
+    grid-area: headerNpv;
+}
+.header#sensitivity {
+    grid-area: headerSensitivity;
+}
+.header#specificity {
+    grid-area: headerSpecificity;
+}
+
+.ppv {
+    grid-area: ppv;
+}
+
+.npv {
+    grid-area: npv;
+}
+
+.sensitivity {
+    grid-area: sensitivity;
+}
+
+.specificity {
+    grid-area: specificity;
+}

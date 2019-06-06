@@ -3,3 +3,10 @@
 * {
     font-family: 'Open Sans', sans-serif;
 }
+
+html,
+body {
+    height: 100%;
+    display: grid;
+    justify-content: center;
+}
