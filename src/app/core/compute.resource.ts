@@ -36,13 +36,15 @@ export class ComputeResource {
     getOptions(params: any) {
         return {
             params: this.getParams(params),
-            headers: this.getHeader()
+            headers: null // this.getHeader()
         };
     }
 
     getParams(params: any) {
         let httpParams = new HttpParams();
-        Object.keys(params).map(key => httpParams.set(key, params[key]));
+        Object.keys(params).forEach(
+            key => (httpParams = httpParams.append(key, params[key].toString()))
+        );
         return httpParams;
     }
 

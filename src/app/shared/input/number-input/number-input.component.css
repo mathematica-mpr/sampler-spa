@@ -4,6 +4,11 @@
     justify-items: center;
 }
 
+.form-control {
+    width: 90%;
+    font-size: 60%;
+}
+
 label {
     font-size: 60%;
     text-align: center;
