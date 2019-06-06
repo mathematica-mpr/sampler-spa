@@ -1,0 +1,20 @@
+<h3> Confusion Matrix </h3>
+<div class="graphs confusion-error-matrix">
+  <div class="header table-header" id="plus"> + </div>
+  <div class="header table-header" id="minus"> - </div>
+  <div class="row table-header" id="plus"> + </div>
+  <div class="row table-header" id="minus"> - </div>
+
+  <div class="tp" id= "tp0">
+    <app-line-graph [config$]="graphs[0]"></app-line-graph>
+  </div>
+  <div class="fp" id= "fp1">
+    <app-line-graph [config$]="graphs[1]"></app-line-graph>
+  </div>
+  <div class="fn" id= "fn2">
+    <app-line-graph [config$]="graphs[2]"></app-line-graph>
+  </div>
+  <div class="tn" id= "tn3">
+    <app-line-graph [config$]="graphs[3]"></app-line-graph>
+  </div>
+</div>

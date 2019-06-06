@@ -1,32 +1,24 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
-body {
-    margin: 0;
-    height: 100vh;
-}
-
 .wrapper {
     width: auto;
-    height: 95vh;
-    margin: 0 10%;
+    height: 100%;
+    max-width: 800px;
+    margin: 0 auto;
     display: grid;
-    grid-template-rows: auto auto auto;
-    grid-gap: 1%;
     grid-template-areas: 'header' 'content' 'footer';
     align-content: space-between;
 }
 
 .wrapper > * {
-    border: 1px solid black; /* remove once down with layout */
-    border-radius: 5px;
-    padding: 10px;
-    font-size: 100%;
-    width: auto;
-    margin: 0;
+    /* border: 1px solid black;  */
+    /* border-radius: 5px; */
 }
 
 .header {
     grid-area: header;
+    border-bottom: 3px solid #018383;
+    padding: 8px;
 }
 
 .content {
@@ -35,4 +27,7 @@ body {
 
 .footer {
     grid-area: footer;
+    padding: 8px;
+    border-top: 2px solid; /*move this to upper container*/
+    border-image: linear-gradient(to right, #d02b27, #018383, #f1b51c, #0b2949) 5;
 }

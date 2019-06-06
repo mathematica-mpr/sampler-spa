@@ -1,0 +1,7 @@
+<form [formGroup]="chapterInputForm">
+<div class="input-container" >
+        <label for="number-input">{{ config.title }}</label>
+        <!-- https://github.com/angular/angular/issues/12540 -->
+        <input [type]="'number'" class="form-control w-75 input-sm" name="number-input" [formControlName]="config.name"/>
+</div>
+</form>

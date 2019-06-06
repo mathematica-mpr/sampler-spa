@@ -1,5 +1,10 @@
-import { Component, OnInit, HostListener, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ChapterService } from '../../core/chapter.service';
+import { Chapter } from '../../core/models/chapter';
+import { ChapterItem } from '../../core/models/chapter-item';
+import { ChapterInputService } from '../../core/chapter-input.service';
 import { ComputeResource } from '../../core/compute.resource';
+import { map, switchMap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-dashboard-view',
@@ -7,56 +12,74 @@ import { ComputeResource } from '../../core/compute.resource';
     styleUrls: ['./dashboard-view.component.css']
 })
 export class DashboardViewComponent implements OnInit {
-    randomResult: number = 0;
-    arrayOfStuff: string[] = ['hello', 'this is a story', 'about probability', 'and', 'disease', 'the end'];
-    selectedChapter = -1;
-    selectedArray: string[] = [];
-    dashboardClass = 'dashboard-view';
-
-    constructor(private el: ElementRef, private computeResource: ComputeResource) {}
-
-    @HostListener('wheel', ['$event'])
-    onScroll(e: WheelEvent) {
-        if (e.deltaY < 0) {
-            console.log('scrolling up');
-            this.previousChapter();
-        }
-        if (e.deltaY > 0) {
-            console.log('scrolling down', e);
-            this.nextChapter();
-        }
+    private chapterIndex: number = 0;
+    private chapter: Chapter;
+    descriptions: ChapterItem[];
+    inputs: ChapterItem[];
+    graphs: ChapterItem[];
+    init = false;
+    constructor(
+        private chapterService: ChapterService,
+        private chapterInputService: ChapterInputService,
+        private computeResource: ComputeResource
+    ) {
+        this.chapterService.setChapter(this.chapterIndex);
     }
 
     ngOnInit() {
-        this.nextChapter();
+        this.chapterService.chapter.subscribe(result => {
+            this.chapter = result;
+
+            if (!this.init) {
+                this.initDescriptions();
+                this.initInput();
+                this.initGraphs();
+                this.init = true;
+            } else {
+                this.updateGraphs();
+            }
+        });
     }
 
-    nextChapter() {
-        if (this.selectedChapter < this.arrayOfStuff.length - 1) {
-            this.selectedChapter++;
-            this.selectedArray.pop();
-            this.selectedArray.push(this.arrayOfStuff[this.selectedChapter]);
+    initDescriptions(): void {
+        if (this.chapter.descriptions.length > 0)
+            this.descriptions = this.chapterService.getChapterItems(
+                this.chapter.descriptions
+            );
+    }
+
+    initInput(): void {
+        if (this.chapter.inputs.length > 0) {
+            this.chapterInputService.getInputFormGroup(this.chapter.inputs);
+            this.inputs = this.chapterService.getChapterItems(this.chapter.inputs);
+
+            this.chapterInputService.inputFormGroup.valueChanges
+                .pipe(
+                    switchMap(value =>
+                        this.computeResource.getChapterData('hello', [0, 0, 0])
+                    ),
+                    map(results => {
+                        console.log(results);
+                        this.chapter.graphs[0].graphs.forEach(x => (x.data = results));
+                        this.chapter.graphs[1].graphs.forEach(x => (x.data = results));
+
+                        this.chapterService.updateChapterProperties(this.chapter);
+                    })
+                )
+                .subscribe();
         }
     }
 
-    previousChapter() {
-        if (this.selectedChapter > 0) {
-            this.selectedChapter--;
-            this.selectedArray.pop();
-            this.selectedArray.push(this.arrayOfStuff[this.selectedChapter]);
+    initGraphs(): void {
+        if (this.chapter.graphs.length > 0) {
+            this.graphs = this.chapterService.getChapterItems(this.chapter.graphs);
         }
     }
 
-    runRegression(num: number) {
-        if (num) {
-            this.computeResource.getRegression(num).subscribe(
-                result => {
-                    console.log(result);
-                    this.randomResult = result['result'];
-                },
-                error => {
-                    console.error('could not run regression', error);
-                }
+    updateGraphs(): void {
+        if (this.chapter.graphs.length > 0) {
+            this.chapter.graphs.forEach((graph, i) =>
+                this.graphs[i].chapterElement.next(graph)
             );
         }
     }
