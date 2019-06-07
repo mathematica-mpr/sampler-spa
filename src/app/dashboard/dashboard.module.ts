@@ -15,27 +15,9 @@ import { ModelPerformanceGraphComponent } from '../shared/graph/model-performanc
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        DashboardRoutingModule,
-        ReactiveFormsModule,
-        FormsModule,
-        SharedModule
-    ],
-    declarations: [
-        // ChapterItemComponent,
-        DashboardViewComponent
-        // NumberInputComponent,
-        // ChapterDirective,
-        // SectionDescriptionComponent,
-        // LineGraphComponent,
-        // ConfusionErrorGraphComponent,
-        // ConfusionErrorInputComponent,
-        // RangeInputComponent,
-        // ModelPerformanceGraphComponent
-    ],
+    imports: [DashboardRoutingModule, SharedModule],
+    declarations: [DashboardViewComponent],
     entryComponents: [
-        // ChapterItemComponent,
         NumberInputComponent,
         SectionDescriptionComponent,
         LineGraphComponent,

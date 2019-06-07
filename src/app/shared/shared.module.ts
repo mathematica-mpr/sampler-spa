@@ -25,6 +25,9 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
         ModelPerformanceGraphComponent
     ],
     exports: [
+        CommonModule,
+        ReactiveFormsModule,
+        FormsModule,
         ChapterItemComponent,
         ChapterDirective,
         NumberInputComponent,
