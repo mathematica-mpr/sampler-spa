@@ -9,9 +9,10 @@ import { ConfusionErrorGraphComponent } from './graph/confusion-error-graph/conf
 import { ConfusionErrorInputComponent } from './input/confusion-error-input/confusion-error-input.component';
 import { RangeInputComponent } from './input/range-input/range-input.component';
 import { ModelPerformanceGraphComponent } from './graph/model-performance-graph/model-performance-graph.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
-    imports: [CommonModule],
+    imports: [CommonModule, ReactiveFormsModule, FormsModule],
     declarations: [
         LineGraphComponent,
         NumberInputComponent,
@@ -24,6 +25,9 @@ import { ModelPerformanceGraphComponent } from './graph/model-performance-graph/
         ModelPerformanceGraphComponent
     ],
     exports: [
+        CommonModule,
+        ReactiveFormsModule,
+        FormsModule,
         ChapterItemComponent,
         ChapterDirective,
         NumberInputComponent,

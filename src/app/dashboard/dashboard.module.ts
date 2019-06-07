@@ -12,21 +12,11 @@ import { ConfusionErrorGraphComponent } from '../shared/graph/confusion-error-gr
 import { ConfusionErrorInputComponent } from '../shared/input/confusion-error-input/confusion-error-input.component';
 import { RangeInputComponent } from '../shared/input/range-input/range-input.component';
 import { ModelPerformanceGraphComponent } from '../shared/graph/model-performance-graph/model-performance-graph.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-    imports: [CommonModule, DashboardRoutingModule, ReactiveFormsModule, FormsModule],
-    declarations: [
-        DashboardViewComponent,
-        ChapterItemComponent,
-        NumberInputComponent,
-        ChapterDirective,
-        SectionDescriptionComponent,
-        LineGraphComponent,
-        ConfusionErrorGraphComponent,
-        ConfusionErrorInputComponent,
-        RangeInputComponent,
-        ModelPerformanceGraphComponent
-    ],
+    imports: [DashboardRoutingModule, SharedModule],
+    declarations: [DashboardViewComponent],
     entryComponents: [
         NumberInputComponent,
         SectionDescriptionComponent,
