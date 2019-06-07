@@ -59,7 +59,6 @@ export class DashboardViewComponent implements OnInit {
                         this.computeResource.getChapterData('hello', [0, 0, 0])
                     ),
                     map(results => {
-                        console.log(results);
                         this.chapter.graphs[0].graphs.forEach(x => (x.data = results));
                         this.chapter.graphs[1].graphs.forEach(x => (x.data = results));
 
