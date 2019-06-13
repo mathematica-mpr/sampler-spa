@@ -7,8 +7,9 @@ import { take } from 'rxjs/operators';
     providedIn: 'root'
 })
 export class ComputeResource {
+    // simulation ='https://dyagyki1xk.execute-api.us-east-2.amazonaws.com/default/simulate';
     simulation =
-        'https://dyagyki1xk.execute-api.us-east-2.amazonaws.com/default/simulate';
+        'https://13crsa04z1.execute-api.us-east-1.amazonaws.com/default/simulate';
 
     mockData = [
         { x: 0.1, y: 0.1 },

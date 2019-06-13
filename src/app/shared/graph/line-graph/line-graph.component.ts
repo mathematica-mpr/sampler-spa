@@ -10,7 +10,7 @@ import { Dimension } from '../../../core/models/dimension';
     encapsulation: ViewEncapsulation.None
 })
 export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewInit {
-    dataLinear: { x: number; y: number }[];
+    dataLinear: { X: number; Y: number }[];
     wrapperDimension: Dimension;
     margin = { top: 20, right: 10, bottom: 20, left: 10 };
     innerWidth: number;
@@ -71,8 +71,8 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
         this.mean
             .transition()
             .duration(750)
-            .attr('x1', this.xScale(d3.mean(this.dataLinear, d => d.x)))
-            .attr('x2', this.xScale(d3.mean(this.dataLinear, d => d.x)));
+            .attr('x1', this.xScale(d3.mean(this.dataLinear, d => d.X)))
+            .attr('x2', this.xScale(d3.mean(this.dataLinear, d => d.X)));
     }
 
     instantiateGraph(): void {
@@ -109,8 +109,8 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
         this.lineGenerator = d3
             .line()
             .curve(d3.curveCardinal)
-            .x(d => this.xScale(d['x']))
-            .y(d => this.yScale(d['y']));
+            .x(d => this.xScale(d['X']))
+            .y(d => this.yScale(d['Y']));
 
         this.line = this.svg
             .append('g')
@@ -135,8 +135,8 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
             )
             .append('line')
             .attr('class', 'mean-line')
-            .attr('x1', this.xScale(d3.mean(this.dataLinear, d => d.x)))
-            .attr('x2', this.xScale(d3.mean(this.dataLinear, d => d.x)))
+            .attr('x1', this.xScale(d3.mean(this.dataLinear, d => d.X)))
+            .attr('x2', this.xScale(d3.mean(this.dataLinear, d => d.X)))
             .attr('y1', 0)
             .attr('y2', -this.innerHeight)
             .style('stroke-width', 1)
@@ -172,24 +172,24 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
     getXscale() {
         return d3
             .scaleLinear()
-            .domain([this.getMin('x'), this.getMax('x')])
+            .domain([this.getMin('X'), this.getMax('X')])
             .range([0, this.innerWidth]);
     }
 
     getYScale() {
         return d3
             .scaleLinear()
-            .domain([this.getMin('y'), this.getMax('y')])
+            .domain([this.getMin('Y'), this.getMax('Y')])
             .range([this.innerHeight, 0]);
     }
 
     getMin(axis: string): number {
-        let xArr = this.dataLinear.map(coor => coor[axis]);
+        const xArr = this.dataLinear.map(coor => coor[axis]);
         return Math.min.apply(Math, xArr);
     }
 
     getMax(axis: string): number {
-        let xArr = this.dataLinear.map(coor => coor[axis]);
+        const xArr = this.dataLinear.map(coor => coor[axis]);
         return Math.max.apply(Math, xArr);
     }
 }

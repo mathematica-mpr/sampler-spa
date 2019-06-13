@@ -4,7 +4,8 @@ import { Chapter } from '../../core/models/chapter';
 import { ChapterItem } from '../../core/models/chapter-item';
 import { ChapterInputService } from '../../core/chapter-input.service';
 import { ComputeResource } from '../../core/compute.resource';
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, debounce } from 'rxjs/operators';
+import { timer } from 'rxjs';
 
 @Component({
     selector: 'app-dashboard-view',
@@ -23,20 +24,21 @@ export class DashboardViewComponent implements OnInit {
         private chapterInputService: ChapterInputService,
         private computeResource: ComputeResource
     ) {
-        this.chapterService.setChapter(this.chapterIndex);
+        this.chapterService.initChapter(this.chapterIndex);
     }
 
     ngOnInit() {
         this.chapterService.chapter.subscribe(result => {
             this.chapter = result;
-
-            if (!this.init) {
-                this.initDescriptions();
-                this.initInput();
-                this.initGraphs();
-                this.init = true;
-            } else {
-                this.updateGraphs();
+            if (this.chapter) {
+                if (!this.init) {
+                    this.initDescriptions();
+                    this.initInput();
+                    this.initGraphs();
+                    this.init = true;
+                } else {
+                    this.updateGraphs();
+                }
             }
         });
     }
@@ -55,17 +57,12 @@ export class DashboardViewComponent implements OnInit {
 
             this.chapterInputService.inputFormGroup.valueChanges
                 .pipe(
+                    debounce(() => timer(1000)),
                     switchMap(value => {
-                        return this.computeResource.getChapterData(
-                            this.chapter.name,
-                            value
-                        );
+                        return this.chapterService.getUpdatedChapter('1', value);
                     }),
                     map(results => {
-                        this.chapter.graphs[0].graphs.forEach(x => (x.data = results));
-                        this.chapter.graphs[1].graphs.forEach(x => (x.data = results));
-
-                        this.chapterService.updateChapterProperties(this.chapter);
+                        this.chapterService.updateChapterProperties(results);
                     })
                 )
                 .subscribe();
