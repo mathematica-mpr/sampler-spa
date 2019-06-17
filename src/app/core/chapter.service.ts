@@ -12,7 +12,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 export class ChapterService {
     chapter: BehaviorSubject<Chapter> = new BehaviorSubject(null);
 
-    chapterUrl = 'https://localhost:5001/api/chapter/';
+    chapterUrl =
+        'https://75r4jpxl55.execute-api.us-east-1.amazonaws.com/Prod/api/chapter';
 
     constructor(private http: HttpClient) {}
 
