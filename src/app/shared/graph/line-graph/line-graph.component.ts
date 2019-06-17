@@ -35,8 +35,8 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
 
     ngAfterViewInit(): void {
         this.config$.subscribe(response => {
+            this.config = response;
             if (!this.instantiated) {
-                this.config = response;
                 this.divId = '#' + this.config.name + this.config.order;
                 this.dataLinear = this.config.data;
                 this.setDimensions();

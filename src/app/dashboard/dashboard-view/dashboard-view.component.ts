@@ -13,7 +13,7 @@ import { timer } from 'rxjs';
     styleUrls: ['./dashboard-view.component.css']
 })
 export class DashboardViewComponent implements OnInit {
-    private chapterIndex: number = 0;
+    private chapterIndex: number = 1;
     private chapter: Chapter;
     descriptions: ChapterItem[];
     inputs: ChapterItem[];
@@ -57,7 +57,7 @@ export class DashboardViewComponent implements OnInit {
 
             this.chapterInputService.inputFormGroup.valueChanges
                 .pipe(
-                    debounce(() => timer(1000)),
+                    debounce(() => timer(300)),
                     switchMap(value => {
                         return this.chapterService.getUpdatedChapter('1', value);
                     }),

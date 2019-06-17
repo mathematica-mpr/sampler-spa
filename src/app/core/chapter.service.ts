@@ -12,7 +12,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 export class ChapterService {
     chapter: BehaviorSubject<Chapter> = new BehaviorSubject(null);
 
-    chapterUrl = 'https://localhost:5001/api/chapter/1';
+    chapterUrl = 'https://localhost:5001/api/chapter/';
 
     constructor(private http: HttpClient) {}
 
@@ -21,14 +21,14 @@ export class ChapterService {
     }
 
     initChapter(curChapter: number): void {
-        this.http.get(this.chapterUrl).subscribe((response: Chapter) => {
+        this.http.get(this.chapterUrl + curChapter).subscribe((response: Chapter) => {
             this.chapter.next(response);
         });
     }
 
     getUpdatedChapter(curChapter: string, params: any): Observable<Chapter> {
         const options = this.getOptions(params);
-        return this.http.get<Chapter>(this.chapterUrl, options);
+        return this.http.get<Chapter>(this.chapterUrl + curChapter + '/update', options);
     }
 
     getOptions(params: any) {
