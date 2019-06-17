@@ -1,3 +1,3 @@
 # Sampler App
 
-Research project for the DSE department
+Research project for the DSE department.
