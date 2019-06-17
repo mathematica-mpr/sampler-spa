@@ -13,7 +13,7 @@ export class ChapterService {
     chapter: BehaviorSubject<Chapter> = new BehaviorSubject(null);
 
     chapterUrl =
-        'https://75r4jpxl55.execute-api.us-east-1.amazonaws.com/Prod/api/chapter/';
+        'https://euuia3hh4m.execute-api.us-east-2.amazonaws.com/Prod/api/chapter/';
 
     constructor(private http: HttpClient) {}
 
