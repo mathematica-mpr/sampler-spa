@@ -1,5 +1,4 @@
-<div class="dashboard-view">
-    <!-- this logic could be moved in a chapter-Items component -->
+<div class="dashboard-view" *ngIf="chapter">
     <div class="description">
         <div class="item description-item" *ngFor="let description of descriptions">
             <app-chapter-item [chapterItem]="description"></app-chapter-item>
@@ -17,4 +16,11 @@
             <app-chapter-item [chapterItem]="graph"></app-chapter-item>
         </div>
     </div>
+</div>
+
+<div *ngIf="!chapter" class="loader-container">
+    <div class="loader" ></div>
+
+    <p class="loader-text">Running prediction... </p>
+    
 </div>
