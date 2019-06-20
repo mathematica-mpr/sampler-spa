@@ -13,8 +13,8 @@ import { timer } from 'rxjs';
     styleUrls: ['./dashboard-view.component.css']
 })
 export class DashboardViewComponent implements OnInit {
-    private chapterIndex: number = 1;
-    private chapter: Chapter;
+    chapterIndex: number = 1;
+    chapter: Chapter;
     descriptions: ChapterItem[];
     inputs: ChapterItem[];
     graphs: ChapterItem[];
