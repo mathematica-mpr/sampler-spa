@@ -17,7 +17,6 @@ export class NumberInputComponent extends BaseInput implements OnInit, AfterCont
     ngAfterContentInit(): void {
         this.config$.subscribe(response => {
             this.config = response;
-            console.log(this.config);
         });
     }
 }

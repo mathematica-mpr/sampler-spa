@@ -13,7 +13,7 @@ import { timer } from 'rxjs';
     styleUrls: ['./dashboard-view.component.css']
 })
 export class DashboardViewComponent implements OnInit {
-    private chapterIndex: number = 1;
+    private chapterIndex = 0;
     private chapter: Chapter;
     descriptions: ChapterItem[];
     inputs: ChapterItem[];
@@ -44,14 +44,15 @@ export class DashboardViewComponent implements OnInit {
     }
 
     initDescriptions(): void {
-        if (this.chapter.descriptions.length > 0)
+        if (this.chapter.descriptions) {
             this.descriptions = this.chapterService.getChapterItems(
                 this.chapter.descriptions
             );
+        }
     }
 
     initInput(): void {
-        if (this.chapter.inputs.length > 0) {
+        if (this.chapter.inputs) {
             this.chapterInputService.getInputFormGroup(this.chapter.inputs);
             this.inputs = this.chapterService.getChapterItems(this.chapter.inputs);
 
@@ -70,7 +71,7 @@ export class DashboardViewComponent implements OnInit {
     }
 
     initGraphs(): void {
-        if (this.chapter.graphs.length > 0) {
+        if (this.chapter.graphs) {
             this.graphs = this.chapterService.getChapterItems(this.chapter.graphs);
         }
     }
@@ -81,5 +82,17 @@ export class DashboardViewComponent implements OnInit {
                 this.graphs[i].chapterElement.next(graph)
             );
         }
+    }
+
+    getNextChapter() {
+        this.chapterIndex++;
+        this.init = false;
+        this.chapterService.initChapter(this.chapterIndex);
+    }
+
+    getPreviousChapter() {
+        this.chapterIndex--;
+        this.init = false;
+        this.chapterService.initChapter(this.chapterIndex);
     }
 }
