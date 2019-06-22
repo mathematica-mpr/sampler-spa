@@ -24,14 +24,15 @@ export class ChapterItemComponent implements OnInit {
     }
 
     loadComponent(): void {
-        let componentFactory = this.componentFactoryResolver.resolveComponentFactory(
+        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(
             this.chapterItem.component
         );
 
-        let viewContainerRef = this.chapterHost.viewContainerRef;
+        const viewContainerRef = this.chapterHost.viewContainerRef;
+
         viewContainerRef.clear();
 
-        let component = viewContainerRef.createComponent(componentFactory);
+        const component = viewContainerRef.createComponent(componentFactory);
 
         component.instance['config$'] = this.chapterItem.chapterElement;
     }

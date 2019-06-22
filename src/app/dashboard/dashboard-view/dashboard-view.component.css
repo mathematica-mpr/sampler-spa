@@ -3,8 +3,9 @@
     grid-column-gap: 5%;
     grid-template-areas:
         'descriptions  graphs'
-        'inputs  graphs';
-    grid-template-columns: 4fr 7fr;
+        'inputs  graphs'
+        'chapternav chapternav';
+    grid-template-columns: 4fr auto;
 }
 
 .graphs {
@@ -38,11 +39,10 @@
 .graph-item {
 }
 
-.dashboard-view > * {
-    /* remove once down with layout */
-    /* border: 1px solid black;
-    border-radius: 5px; */
-    height: auto;
+.chapter-nav {
+    grid-area: chapternav;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 .loader-container {

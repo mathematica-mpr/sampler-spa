@@ -3,26 +3,36 @@ import { ChapterService } from '../../core/chapter.service';
 import { Chapter } from '../../core/models/chapter';
 import { ChapterItem } from '../../core/models/chapter-item';
 import { ChapterInputService } from '../../core/chapter-input.service';
-import { ComputeResource } from '../../core/compute.resource';
 import { map, switchMap, debounce } from 'rxjs/operators';
 import { timer } from 'rxjs';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
     selector: 'app-dashboard-view',
     templateUrl: './dashboard-view.component.html',
-    styleUrls: ['./dashboard-view.component.css']
+    styleUrls: ['./dashboard-view.component.css'],
+    animations: [
+        trigger('slideInOut', [
+            transition(':enter', [
+                style({ transform: 'translateX(-100%)' }),
+                animate('200ms ease-in', style({ transform: 'translateX(0%)' }))
+            ]),
+            transition(':leave', [
+                animate('200ms ease-in', style({ transform: 'translateX(-100%)' }))
+            ])
+        ])
+    ]
 })
 export class DashboardViewComponent implements OnInit {
-    private chapterIndex = 0;
+    private chapterIndex = 1;
     private chapter: Chapter;
-    descriptions: ChapterItem[];
-    inputs: ChapterItem[];
-    graphs: ChapterItem[];
+    descriptions: ChapterItem[] = [];
+    inputs: ChapterItem[] = [];
+    graphs: ChapterItem[] = [];
     init = false;
     constructor(
         private chapterService: ChapterService,
-        private chapterInputService: ChapterInputService,
-        private computeResource: ComputeResource
+        private chapterInputService: ChapterInputService
     ) {
         this.chapterService.initChapter(this.chapterIndex);
     }
@@ -86,13 +96,26 @@ export class DashboardViewComponent implements OnInit {
 
     getNextChapter() {
         this.chapterIndex++;
-        this.init = false;
+        this.resetChapter();
         this.chapterService.initChapter(this.chapterIndex);
     }
 
     getPreviousChapter() {
         this.chapterIndex--;
-        this.init = false;
+        this.resetChapter();
         this.chapterService.initChapter(this.chapterIndex);
+    }
+
+    resetChapter() {
+        this.popArray(this.descriptions);
+        this.popArray(this.inputs);
+        this.popArray(this.graphs);
+        this.init = false;
+    }
+
+    popArray(array: any[]) {
+        while (array.length) {
+            array.pop();
+        }
     }
 }
