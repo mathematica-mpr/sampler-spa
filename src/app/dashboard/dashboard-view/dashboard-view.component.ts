@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { ChapterService } from '../../core/chapter.service';
 import { Chapter } from '../../core/models/chapter';
 import { ChapterItem } from '../../core/models/chapter-item';
 import { ChapterInputService } from '../../core/chapter-input.service';
 import { map, switchMap, debounce } from 'rxjs/operators';
-import { timer } from 'rxjs';
+import { timer, Subject } from 'rxjs';
 import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
@@ -12,24 +12,43 @@ import { trigger, transition, style, animate } from '@angular/animations';
     templateUrl: './dashboard-view.component.html',
     styleUrls: ['./dashboard-view.component.css'],
     animations: [
-        trigger('slideInOut', [
+        trigger('slideLeft', [
             transition(':enter', [
                 style({ transform: 'translateX(-100%)' }),
                 animate('200ms ease-in', style({ transform: 'translateX(0%)' }))
             ]),
             transition(':leave', [
-                animate('200ms ease-in', style({ transform: 'translateX(-100%)' }))
+                animate('200ms ease-out', style({ transform: 'translateX(-100%)' }))
+            ])
+        ]),
+        trigger('slideRight', [
+            transition(':enter', [
+                style({ transform: 'translateX(100%)' }),
+                animate('200ms ease-in', style({ transform: 'translateX(0%)' }))
+            ]),
+            transition(':leave', [
+                animate('200ms ease-out', style({ transform: 'translateX(100%)' }))
+            ])
+        ]),
+        trigger('slideUp', [
+            transition(':enter', [
+                style({ transform: 'translateY(-100%)' }),
+                animate('200ms ease-in', style({ transform: 'translateY(0%)' }))
+            ]),
+            transition(':leave', [
+                animate('200ms ease-out', style({ transform: 'translateY(-100%)' }))
             ])
         ])
     ]
 })
 export class DashboardViewComponent implements OnInit {
-    private chapterIndex = 1;
+    private chapterIndex = 0;
     private chapter: Chapter;
     descriptions: ChapterItem[] = [];
     inputs: ChapterItem[] = [];
     graphs: ChapterItem[] = [];
     init = false;
+
     constructor(
         private chapterService: ChapterService,
         private chapterInputService: ChapterInputService
@@ -96,21 +115,32 @@ export class DashboardViewComponent implements OnInit {
 
     getNextChapter() {
         this.chapterIndex++;
-        this.resetChapter();
-        this.chapterService.initChapter(this.chapterIndex);
+        this.resetChapter().then(() => {
+            this.init = false;
+            this.chapterService.initChapter(this.chapterIndex);
+        });
     }
 
     getPreviousChapter() {
         this.chapterIndex--;
-        this.resetChapter();
-        this.chapterService.initChapter(this.chapterIndex);
+        this.resetChapter().then(() => {
+            this.init = false;
+            this.chapterService.initChapter(this.chapterIndex);
+        });
     }
 
-    resetChapter() {
+    async resetChapter() {
         this.popArray(this.descriptions);
         this.popArray(this.inputs);
         this.popArray(this.graphs);
-        this.init = false;
+
+        const promise = new Promise((resolve, reject) => {
+            setTimeout(function() {
+                resolve();
+            }, 200);
+        });
+
+        return promise;
     }
 
     popArray(array: any[]) {
