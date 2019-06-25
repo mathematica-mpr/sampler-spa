@@ -23,6 +23,7 @@
 
 .content {
     grid-area: content;
+    z-index: 0;
 }
 
 .footer {
