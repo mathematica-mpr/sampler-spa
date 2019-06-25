@@ -17,13 +17,15 @@
         </div>
     </div>
 
+    <div class="chapter-nav">
+        <button class="chapter-nav-btn" *ngIf="chapterIndex > 0 && init" (click)="getPreviousChapter()">Previous Chapter</button>
+        <button class="chapter-nav-btn" *ngIf="chapterIndex ==0 && init" (click)="getNextChapter()">Start!</button>
+    </div>
+
     
 </div>
 
-<div class="chapter-nav">
-    <button class="chapter-nav-btn" *ngIf="chapterIndex > 0 && init" (click)="getPreviousChapter()">Previous Chapter</button>
-    <button class="chapter-nav-btn" *ngIf="chapterIndex ==0 && init" (click)="getNextChapter()">Start!</button>
-</div>
+
 
 
 <div *ngIf="!init" class="loader-container">

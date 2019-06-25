@@ -42,7 +42,7 @@
 }
 
 .chapter-nav {
-    margin-top: 2%;
+    margin: 2%;
     grid-area: chapternav;
     display: grid;
     grid-template-columns: 1fr;
