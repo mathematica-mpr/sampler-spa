@@ -4,42 +4,16 @@ import { Chapter } from '../../core/models/chapter';
 import { ChapterItem } from '../../core/models/chapter-item';
 import { ChapterInputService } from '../../core/chapter-input.service';
 import { map, switchMap, debounce } from 'rxjs/operators';
-import { timer, Subject } from 'rxjs';
-import { trigger, transition, style, animate } from '@angular/animations';
+import { timer } from 'rxjs';
+import { slideInOutLeft } from 'src/app/core/animation/slide-in-out-left';
+import { slideInOutRight } from 'src/app/core/animation/slide-in-out-right';
+import { slideInOutUp } from 'src/app/core/animation/slide-in-out-up';
 
 @Component({
     selector: 'app-dashboard-view',
     templateUrl: './dashboard-view.component.html',
     styleUrls: ['./dashboard-view.component.css'],
-    animations: [
-        trigger('slideLeft', [
-            transition(':enter', [
-                style({ transform: 'translateX(-100%)' }),
-                animate('200ms ease-in', style({ transform: 'translateX(0%)' }))
-            ]),
-            transition(':leave', [
-                animate('200ms ease-out', style({ transform: 'translateX(-100%)' }))
-            ])
-        ]),
-        trigger('slideRight', [
-            transition(':enter', [
-                style({ transform: 'translateX(100%)' }),
-                animate('200ms ease-in', style({ transform: 'translateX(0%)' }))
-            ]),
-            transition(':leave', [
-                animate('200ms ease-out', style({ transform: 'translateX(100%)' }))
-            ])
-        ]),
-        trigger('slideUp', [
-            transition(':enter', [
-                style({ transform: 'translateY(-100%)' }),
-                animate('200ms ease-in', style({ transform: 'translateY(0%)' }))
-            ]),
-            transition(':leave', [
-                animate('200ms ease-out', style({ transform: 'translateY(-100%)' }))
-            ])
-        ])
-    ]
+    animations: [slideInOutLeft, slideInOutRight, slideInOutUp]
 })
 export class DashboardViewComponent implements OnInit {
     private chapterIndex = 0;
