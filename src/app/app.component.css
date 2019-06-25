@@ -3,7 +3,7 @@
 .wrapper {
     width: auto;
     height: 100%;
-    width: 800px;
+    max-width: 800px;
     margin: 0 auto;
     display: grid;
     grid-template-areas: 'header' 'content' 'footer';
@@ -24,6 +24,5 @@
 .footer {
     grid-area: footer;
     padding: 8px;
-    border-top: 2px solid; /*move this to upper container*/
-    border-image: linear-gradient(to right, #d02b27, #018383, #f1b51c, #0b2949) 5;
+    border-top: 2px solid #018383;
 }
