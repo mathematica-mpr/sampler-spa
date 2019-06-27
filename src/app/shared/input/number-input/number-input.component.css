@@ -4,12 +4,16 @@
     justify-items: center;
 }
 
-.form-control {
-    width: 90%;
-    font-size: 60%;
-}
-
 label {
     font-size: 60%;
     text-align: center;
+}
+
+.number-input {
+    font-size: 60%;
+    width: 90%;
+    max-width: 60px;
+    border: 1px solid gray;
+    border-radius: 1px;
+    text-align: right;
 }

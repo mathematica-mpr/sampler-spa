@@ -1,24 +1,34 @@
-<div class="dashboard-view" *ngIf="chapter">
-    <div class="description">
-        <div class="item description-item" *ngFor="let description of descriptions">
+<div class="dashboard-view" *ngIf="init">
+    <div class="description" *ngIf="chapter.descriptions">
+        <div class="item description-item" *ngFor="let description of descriptions" @slideUp>
             <app-chapter-item [chapterItem]="description"></app-chapter-item>
         </div>
     </div>
 
-    <div class="inputs">
-        <div class="item input-item" *ngFor="let input of inputs">
+    <div class="inputs" *ngIf="chapter.inputs">
+        <div class="item input-item" *ngFor="let input of inputs" @slideLeft>
             <app-chapter-item [chapterItem]="input"></app-chapter-item>
         </div>
     </div>
 
-    <div class="graphs">
-        <div class="item graph-item" *ngFor="let graph of graphs" [id]="graph.chapterElement.value.name + graph.chapterElement.value.order">
+    <div class="graphs" *ngIf="chapter.graphs">
+        <div class="item graph-item" *ngFor="let graph of graphs" [id]="graph.chapterElement.value.name + graph.chapterElement.value.order" @slideRight>
             <app-chapter-item [chapterItem]="graph"></app-chapter-item>
         </div>
     </div>
+
+    <div class="chapter-nav">
+        <button class="chapter-nav-btn" *ngIf="chapterIndex > 0 && init" (click)="getPreviousChapter()">Previous Chapter</button>
+        <button class="chapter-nav-btn" *ngIf="chapterIndex ==0 && init" (click)="getNextChapter()">Start!</button>
+    </div>
+
+    
 </div>
 
-<div *ngIf="!chapter" class="loader-container">
+
+
+
+<div *ngIf="!init" class="loader-container">
     <div class="loader" ></div>
 
     <p class="loader-text">Running prediction... </p>

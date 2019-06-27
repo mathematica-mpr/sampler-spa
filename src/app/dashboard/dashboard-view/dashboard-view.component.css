@@ -1,10 +1,13 @@
-.dashboard-view {
-    display: grid;
-    grid-column-gap: 5%;
-    grid-template-areas:
-        'descriptions  graphs'
-        'inputs  graphs';
-    grid-template-columns: 4fr 7fr;
+@media only screen and (min-width: 800px) {
+    .dashboard-view {
+        display: grid;
+        grid-column-gap: 5%;
+        grid-template-areas:
+            'descriptions  graphs'
+            'inputs  graphs'
+            'chapternav chapternav';
+        grid-template-columns: 4fr;
+    }
 }
 
 .graphs {
@@ -26,7 +29,7 @@
     padding: 2%;
     border-radius: 5px;
     padding: 2px 16;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
 }
 
 .description-item {
@@ -38,11 +41,27 @@
 .graph-item {
 }
 
-.dashboard-view > * {
-    /* remove once down with layout */
-    /* border: 1px solid black;
-    border-radius: 5px; */
-    height: auto;
+.chapter-nav {
+    margin: 2%;
+    grid-area: chapternav;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center;
+}
+
+.chapter-nav-btn {
+    width: 50%;
+    background-color: #ffffff;
+    border: 1px solid #018383;
+    padding: 5px;
+    -webkit-transition-duration: 0.1s; /* Safari */
+    transition-duration: 0.1s;
+}
+
+.chapter-nav-btn:hover {
+    background-color: #018383;
+    color: #ffffff;
 }
 
 .loader-container {
