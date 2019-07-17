@@ -4,7 +4,7 @@ import { StoryViewComponent } from './story-view/story-view.component';
 
 const routes: Routes = [
     {
-        path: '',
+        path: 'story',
         component: StoryViewComponent
     }
 ];

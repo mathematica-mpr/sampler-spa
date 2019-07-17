@@ -8,9 +8,10 @@ import { ConfusionErrorInputComponent } from '../shared/input/confusion-error-in
 import { RangeInputComponent } from '../shared/input/range-input/range-input.component';
 import { ModelPerformanceGraphComponent } from '../shared/graph/model-performance-graph/model-performance-graph.component';
 import { StoryViewComponent } from './story-view/story-view.component';
+import { StoryRoutingModule } from './story-routing.module';
 
 @NgModule({
-    imports: [SharedModule],
+    imports: [SharedModule, StoryRoutingModule],
     declarations: [StoryViewComponent],
     entryComponents: [
         NumberInputComponent,
