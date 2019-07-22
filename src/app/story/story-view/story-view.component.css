@@ -3,10 +3,8 @@
         display: grid;
         grid-column-gap: 5%;
         grid-template-areas:
-            'descriptions  graphs'
-            'inputs  graphs'
-            'chapternav chapternav';
-        grid-template-columns: 4fr;
+            'inputs'
+            'graphs';
     }
 }
 
@@ -22,6 +20,7 @@
 .inputs {
     grid-area: inputs;
     display: grid;
+    grid-template-columns: 2fr 2fr 2fr;
 }
 
 .item {

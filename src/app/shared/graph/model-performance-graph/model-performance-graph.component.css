@@ -4,7 +4,7 @@
         'headerPpv headerNpv headerSensitivity headerSpecificity'
         'ppv npv sensitivity specificity';
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 1fr 2fr;
+    grid-template-rows: 1fr 6fr;
 }
 
 h3 {
