@@ -116,10 +116,7 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
             )
             .append('path')
             .attr('d', this.lineGenerator(this.dataLinear))
-            .attr('class', 'regression')
-            .on('mousemove', () => {
-                console.log(d3.mouse(d3.event.currentTarget));
-            });
+            .attr('class', 'regression');
     }
 
     updateLineGraph() {
@@ -172,10 +169,34 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
                     ')'
             )
             .attr('class', 'cursor')
-            .append('path')
+            .selectAll('line')
+            .data(this.dataLinear)
+            .enter()
+            .append('line')
+            .attr('x1', d => this.xScale(d.X))
+            .attr('x2', d => this.xScale(d.X))
+            .attr('y1', 0)
+            .attr('y2', -this.innerHeight)
             .attr('class', 'cursor-line')
-            .style('stroke', 'black')
-            .style('stroke-width', '1px');
+            .attr('stroke', 'black')
+            .attr('stroke-width', '1px')
+            .attr('opacity', '0')
+            .on('mouseenter', function() {
+                d3.select(this).attr('opacity', 1);
+            })
+            .on('mouseleave', function() {
+                d3.select(this).attr('opacity', 0);
+            });
+
+        this.cursor
+            .append('circle')
+            .attr('r', 7)
+            .style('stroke', function(d) {
+                return 'orange';
+            })
+            .style('fill', 'none')
+            .style('stroke-width', '1px')
+            .style('opacity', '1');
     }
 
     setDimensions(): void {
