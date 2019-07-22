@@ -4,7 +4,16 @@
     stroke-opacity: 1;
 }
 .regression {
-    fill: rgba(85, 208, 44, 0.3);
+    fill: url(#mainGradient);
+    fill-opacity: 0.5;
     stroke: #000;
     stroke-width: 0.5px;
+}
+
+.stop-top {
+    stop-color: white;
+}
+
+.stop-bottom {
+    stop-color: green;
 }

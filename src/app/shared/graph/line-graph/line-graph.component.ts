@@ -60,6 +60,18 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
     }
 
     instantiateGraph(): void {
+        this.setSvg();
+        this.xScale = this.getXscale();
+        this.yScale = this.getYScale();
+        this.xAxis = this.getXAxis();
+        this.setGradient();
+        this.setXAxis();
+        this.setLineGraph();
+        this.setMeanLine();
+        this.setCursor();
+    }
+
+    setSvg() {
         this.svg = d3
             .select(this.divId)
             .append('svg')
@@ -68,14 +80,6 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
                 'viewBox',
                 '0 0 ' + this.wrapperDimension.width + ' ' + this.wrapperDimension.height
             );
-
-        this.xScale = this.getXscale();
-        this.yScale = this.getYScale();
-        this.xAxis = this.getXAxis();
-        this.setXAxis();
-        this.setLineGraph();
-        this.setMeanLine();
-        this.setCursor();
     }
 
     setXAxis() {
@@ -115,8 +119,8 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
                 'translate(' + this.margin.left + ', ' + this.margin.top + ')'
             )
             .append('path')
-            .attr('d', this.lineGenerator(this.dataLinear))
-            .attr('class', 'regression');
+            .classed('regression', true)
+            .attr('d', this.lineGenerator(this.dataLinear));
     }
 
     updateLineGraph() {
@@ -124,6 +128,24 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
             .transition()
             .duration(750)
             .attr('d', this.lineGenerator(this.dataLinear));
+    }
+
+    setGradient() {
+        let svgDefs = this.svg.append('defs');
+
+        let mainGradient = svgDefs.append('linearGradient').attr('id', 'mainGradient');
+
+        // Create the stops of the main gradient. Each stop will be assigned
+        // a class to style the stop using CSS.
+        mainGradient
+            .append('stop')
+            .attr('class', 'stop-bottom')
+            .attr('offset', '0');
+
+        mainGradient
+            .append('stop')
+            .attr('class', 'stop-top')
+            .attr('offset', '1');
     }
 
     setMeanLine() {
