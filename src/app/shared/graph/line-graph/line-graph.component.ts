@@ -71,8 +71,20 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
         this.mean
             .transition()
             .duration(750)
-            .attr('x1', this.xScale(d3.mean(this.dataLinear, d => d.X)))
-            .attr('x2', this.xScale(d3.mean(this.dataLinear, d => d.X)));
+            .attr(
+                'x1',
+                this.xScale(
+                    d3.sum(this.dataLinear, d => d.X * d.Y) /
+                        d3.sum(this.dataLinear, d => d.Y)
+                )
+            )
+            .attr(
+                'x2',
+                this.xScale(
+                    d3.sum(this.dataLinear, d => d.X * d.Y) /
+                        d3.sum(this.dataLinear, d => d.Y)
+                )
+            );
     }
 
     instantiateGraph(): void {
@@ -135,8 +147,18 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
             )
             .append('line')
             .attr('class', 'mean-line')
-            .attr('x1', this.xScale(d3.mean(this.dataLinear, d => d.X)))
-            .attr('x2', this.xScale(d3.mean(this.dataLinear, d => d.X)))
+            .attr('x1', () =>
+                this.xScale(
+                    d3.sum(this.dataLinear, d => d.X * d.Y) /
+                        d3.sum(this.dataLinear, d => d.Y)
+                )
+            )
+            .attr('x2', () =>
+                this.xScale(
+                    d3.sum(this.dataLinear, d => d.X * d.Y) /
+                        d3.sum(this.dataLinear, d => d.Y)
+                )
+            )
             .attr('y1', 0)
             .attr('y2', -this.innerHeight)
             .style('stroke-width', 1)
