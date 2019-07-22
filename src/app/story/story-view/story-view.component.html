@@ -4,23 +4,22 @@
           <app-chapter-item [chapterItem]="description"></app-chapter-item>
       </div>
   </div>
-
   <div class="inputs" *ngIf="chapter.inputs">
       <div class="item input-item" *ngFor="let input of inputs" @slideLeft>
           <app-chapter-item [chapterItem]="input"></app-chapter-item>
       </div>
   </div>
-
   <div class="graphs" *ngIf="chapter.graphs">
+     
       <div class="item graph-item" *ngFor="let graph of graphs" [id]="graph.chapterElement.value.name + graph.chapterElement.value.order" @slideRight>
           <app-chapter-item [chapterItem]="graph"></app-chapter-item>
       </div>
   </div>
 
-  <div class="chapter-nav">
+  <!-- <div class="chapter-nav">
       <button class="chapter-nav-btn" *ngIf="chapterIndex > 0 && init" (click)="getPreviousChapter()">Previous Chapter</button>
       <button class="chapter-nav-btn" *ngIf="chapterIndex ==0 && init" (click)="getNextChapter()">Start!</button>
-  </div>
+  </div> -->
 
   
 </div>
