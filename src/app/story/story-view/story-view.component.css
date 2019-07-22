@@ -6,6 +6,11 @@
             'inputs'
             'graphs';
     }
+
+    .inputs {
+        grid-template-columns: 2fr 2fr 2fr;
+        justify-content: center;
+    }
 }
 
 .graphs {
@@ -20,7 +25,7 @@
 .inputs {
     grid-area: inputs;
     display: grid;
-    grid-template-columns: 2fr 2fr 2fr;
+    justify-content: center;
 }
 
 .item {
@@ -28,7 +33,7 @@
     padding: 2%;
     border-radius: 5px;
     padding: 2px 16;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2);
 }
 
 .description-item {

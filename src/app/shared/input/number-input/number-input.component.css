@@ -5,15 +5,13 @@
 }
 
 label {
-    font-size: 60%;
+    font-size: 70%;
     text-align: center;
 }
 
 .number-input {
-    font-size: 60%;
-    width: 90%;
-    max-width: 60px;
+    font-size: 90%;
     border: 1px solid gray;
-    border-radius: 1px;
+    border-radius: 5px;
     text-align: right;
 }
