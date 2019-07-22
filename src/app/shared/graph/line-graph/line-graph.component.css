@@ -4,7 +4,7 @@
     stroke-opacity: 1;
 }
 .regression {
-    fill: none;
+    fill: rgba(85, 208, 44, 0.3);
     stroke: #000;
-    stroke-width: 1px;
+    stroke-width: 0.5px;
 }
