@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DashboardModule } from './dashboard/dashboard.module';
 
 const routes: Routes = [
     {
@@ -8,8 +7,12 @@ const routes: Routes = [
         loadChildren: './dashboard/dashboard.module#DashboardModule'
     },
     {
+        path: 'story',
+        loadChildren: './story/story.module#StoryModule'
+    },
+    {
         path: '',
-        redirectTo: 'dashboard',
+        redirectTo: '/dashboard',
         pathMatch: 'full'
     }
 ];
