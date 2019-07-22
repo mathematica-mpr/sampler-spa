@@ -71,20 +71,8 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
         this.mean
             .transition()
             .duration(750)
-            .attr(
-                'x1',
-                this.xScale(
-                    d3.sum(this.dataLinear, d => d.X * d.Y) /
-                        d3.sum(this.dataLinear, d => d.Y)
-                )
-            )
-            .attr(
-                'x2',
-                this.xScale(
-                    d3.sum(this.dataLinear, d => d.X * d.Y) /
-                        d3.sum(this.dataLinear, d => d.Y)
-                )
-            );
+            .attr('x1', () => this.getWeightedMean())
+            .attr('x2', () => this.getWeightedMean());
     }
 
     instantiateGraph(): void {
@@ -147,18 +135,8 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
             )
             .append('line')
             .attr('class', 'mean-line')
-            .attr('x1', () =>
-                this.xScale(
-                    d3.sum(this.dataLinear, d => d.X * d.Y) /
-                        d3.sum(this.dataLinear, d => d.Y)
-                )
-            )
-            .attr('x2', () =>
-                this.xScale(
-                    d3.sum(this.dataLinear, d => d.X * d.Y) /
-                        d3.sum(this.dataLinear, d => d.Y)
-                )
-            )
+            .attr('x1', () => this.getWeightedMean())
+            .attr('x2', () => this.getWeightedMean())
             .attr('y1', 0)
             .attr('y2', -this.innerHeight)
             .style('stroke-width', 1)
@@ -213,5 +191,11 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
     getMax(axis: string): number {
         const xArr = this.dataLinear.map(coor => coor[axis]);
         return Math.max.apply(Math, xArr);
+    }
+
+    getWeightedMean(): number {
+        return this.xScale(
+            d3.sum(this.dataLinear, d => d.X * d.Y) / d3.sum(this.dataLinear, d => d.Y)
+        );
     }
 }
