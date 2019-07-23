@@ -10,3 +10,11 @@ body {
     display: grid;
     justify-content: center;
 }
+
+.help-icon {
+    width: 1em;
+    opacity: 0.5;
+}
+.help-icon:hover {
+    opacity: 1;
+}
