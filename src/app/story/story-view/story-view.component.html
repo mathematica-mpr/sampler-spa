@@ -5,7 +5,7 @@
       </div>
   </div>
   <div class="inputs" *ngIf="chapter.inputs">
-      <div class="item input-item" *ngFor="let input of inputs" @slideLeft>
+        <div class="item input-item" *ngFor="let input of inputs" @slideLeft>
           <app-chapter-item [chapterItem]="input"></app-chapter-item>
       </div>
   </div>

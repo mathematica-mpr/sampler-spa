@@ -2,14 +2,12 @@
     .story-view {
         display: grid;
         grid-column-gap: 5%;
-        grid-template-areas:
-            'inputs'
-            'graphs';
+        grid-template-areas: 'inputs  graphs';
+        grid-template-columns: 1fr 4fr;
     }
 
     .inputs {
-        grid-template-columns: 2fr 2fr 2fr;
-        justify-content: center;
+        /* justify-content: space-between; */
     }
 }
 
@@ -25,7 +23,7 @@
 .inputs {
     grid-area: inputs;
     display: grid;
-    justify-content: center;
+    align-content: space-around;
 }
 
 .item {
