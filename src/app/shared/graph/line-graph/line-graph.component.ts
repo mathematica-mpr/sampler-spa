@@ -191,9 +191,13 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
                     ')'
             )
             .attr('class', 'cursor')
-            .selectAll('line')
+            .selectAll('.cursor')
             .data(this.dataLinear)
             .enter()
+            .append('g')
+            .attr('class', 'cursor');
+
+        this.cursor
             .append('line')
             .attr('x1', d => this.xScale(d.X))
             .attr('x2', d => this.xScale(d.X))
@@ -202,23 +206,37 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
             .attr('class', 'cursor-line')
             .attr('stroke', 'black')
             .attr('stroke-width', '1px')
-            .attr('opacity', '0')
-            .on('mouseenter', function() {
-                d3.select(this).attr('opacity', 1);
-            })
-            .on('mouseleave', function() {
-                d3.select(this).attr('opacity', 0);
+            .attr('opacity', '0');
+
+        this.cursor
+            .append('text')
+            .attr('class', 'cursor-text')
+            .attr('x', d => this.xScale(d.X))
+            .attr('y', () => -this.innerHeight)
+            .attr('dx', 10)
+            .attr('dy', 10)
+            .attr('opacity', 0)
+            .text(d => {
+                return d.C;
             });
 
         this.cursor
-            .append('circle')
-            .attr('r', 7)
-            .style('stroke', function(d) {
-                return 'orange';
+            .on('mouseenter', function() {
+                d3.select(this)
+                    .selectAll('line')
+                    .attr('opacity', 1);
+                d3.select(this)
+                    .selectAll('text')
+                    .attr('opacity', 1);
             })
-            .style('fill', 'none')
-            .style('stroke-width', '1px')
-            .style('opacity', '1');
+            .on('mouseleave', function() {
+                d3.select(this)
+                    .selectAll('line')
+                    .attr('opacity', 0);
+                d3.select(this)
+                    .selectAll('text')
+                    .attr('opacity', 0);
+            });
     }
 
     setDimensions(): void {
