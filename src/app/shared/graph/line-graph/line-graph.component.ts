@@ -190,7 +190,7 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
                     (this.innerHeight + this.margin.top) +
                     ')'
             )
-            .attr('class', 'cursor')
+            .attr('class', 'cursors')
             .selectAll('.cursor')
             .data(this.dataLinear)
             .enter()
@@ -220,23 +220,21 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
                 return d.C;
             });
 
-        this.cursor
-            .on('mouseenter', function() {
-                d3.select(this)
-                    .selectAll('line')
-                    .attr('opacity', 1);
-                d3.select(this)
-                    .selectAll('text')
-                    .attr('opacity', 1);
-            })
-            .on('mouseleave', function() {
-                d3.select(this)
-                    .selectAll('line')
-                    .attr('opacity', 0);
-                d3.select(this)
-                    .selectAll('text')
-                    .attr('opacity', 0);
-            });
+        this.cursor.on('mouseenter', function() {
+            d3.selectAll('.selected')
+                .classed('selected', false)
+                .attr('opacity', 0);
+
+            d3.select(this)
+                .selectAll('line')
+                .attr('opacity', 1)
+                .classed('selected', true);
+
+            d3.select(this)
+                .selectAll('text')
+                .attr('opacity', 1)
+                .classed('selected', true);
+        });
     }
 
     setDimensions(): void {
