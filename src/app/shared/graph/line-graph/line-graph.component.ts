@@ -24,6 +24,7 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
     dot;
     line;
     mean;
+    cursor;
     lineGenerator;
     instantiated = false;
 
@@ -52,30 +53,25 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
     updateGraph() {
         this.xScale = this.getXscale();
         this.yScale = this.getYScale();
-
         this.xAxis = this.getXAxis();
-
-        // Update xAxis
-        d3.select('#' + 'x-axis' + this.config.name + this.config.order)
-            .transition()
-            .duration(750)
-            .call(this.xAxis);
-
-        // Update line
-        this.line
-            .transition()
-            .duration(750)
-            .attr('d', this.lineGenerator(this.dataLinear));
-
-        // Update mean line
-        this.mean
-            .transition()
-            .duration(750)
-            .attr('x1', this.xScale(d3.mean(this.dataLinear, d => d.X)))
-            .attr('x2', this.xScale(d3.mean(this.dataLinear, d => d.X)));
+        this.updateXAxis();
+        this.updateLineGraph();
+        this.updateMeanLine();
     }
 
     instantiateGraph(): void {
+        this.setSvg();
+        this.xScale = this.getXscale();
+        this.yScale = this.getYScale();
+        this.xAxis = this.getXAxis();
+        this.setGradient();
+        this.setXAxis();
+        this.setLineGraph();
+        this.setMeanLine();
+        this.setCursor();
+    }
+
+    setSvg() {
         this.svg = d3
             .select(this.divId)
             .append('svg')
@@ -84,13 +80,9 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
                 'viewBox',
                 '0 0 ' + this.wrapperDimension.width + ' ' + this.wrapperDimension.height
             );
+    }
 
-        this.xScale = this.getXscale();
-        this.yScale = this.getYScale();
-
-        this.xAxis = this.getXAxis();
-
-        // xAxis
+    setXAxis() {
         this.svg
             .append('g')
             .attr('class', 'x-axis')
@@ -104,8 +96,16 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
                     ')'
             )
             .call(this.xAxis);
+    }
 
-        // line-graph
+    updateXAxis() {
+        d3.select('#' + 'x-axis' + this.config.name + this.config.order)
+            .transition()
+            .duration(750)
+            .call(this.xAxis);
+    }
+
+    setLineGraph(): void {
         this.lineGenerator = d3
             .line()
             .curve(d3.curveCardinal)
@@ -119,10 +119,36 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
                 'translate(' + this.margin.left + ', ' + this.margin.top + ')'
             )
             .append('path')
-            .attr('d', this.lineGenerator(this.dataLinear))
-            .attr('class', 'regression');
+            .classed('regression', true)
+            .attr('d', this.lineGenerator(this.dataLinear));
+    }
 
-        // average line
+    updateLineGraph() {
+        this.line
+            .transition()
+            .duration(750)
+            .attr('d', this.lineGenerator(this.dataLinear));
+    }
+
+    setGradient() {
+        let svgDefs = this.svg.append('defs');
+
+        let mainGradient = svgDefs.append('linearGradient').attr('id', 'mainGradient');
+
+        // Create the stops of the main gradient. Each stop will be assigned
+        // a class to style the stop using CSS.
+        mainGradient
+            .append('stop')
+            .attr('class', 'stop-bottom')
+            .attr('offset', '0');
+
+        mainGradient
+            .append('stop')
+            .attr('class', 'stop-top')
+            .attr('offset', '1');
+    }
+
+    setMeanLine() {
         this.mean = this.svg
             .append('g')
             .attr(
@@ -135,14 +161,80 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
             )
             .append('line')
             .attr('class', 'mean-line')
-            .attr('x1', this.xScale(d3.mean(this.dataLinear, d => d.X)))
-            .attr('x2', this.xScale(d3.mean(this.dataLinear, d => d.X)))
+            .attr('x1', () => this.getWeightedMean())
+            .attr('x2', () => this.getWeightedMean())
             .attr('y1', 0)
             .attr('y2', -this.innerHeight)
-            .style('stroke-width', 1)
+            .style('stroke-width', 0.5)
             .style('stroke', 'black')
             .style('stroke-dasharray', '4,4')
             .style('fill', 'none');
+    }
+
+    updateMeanLine() {
+        this.mean
+            .transition()
+            .duration(750)
+            .attr('x1', () => this.getWeightedMean())
+            .attr('x2', () => this.getWeightedMean());
+    }
+
+    setCursor() {
+        this.cursor = this.svg
+            .append('g')
+            .attr(
+                'transform',
+                'translate(' +
+                    this.margin.left +
+                    ',' +
+                    (this.innerHeight + this.margin.top) +
+                    ')'
+            )
+            .attr('class', 'cursors')
+            .selectAll('.cursor')
+            .data(this.dataLinear)
+            .enter()
+            .append('g')
+            .attr('class', 'cursor');
+
+        this.cursor
+            .append('line')
+            .attr('x1', d => this.xScale(d.X))
+            .attr('x2', d => this.xScale(d.X))
+            .attr('y1', 0)
+            .attr('y2', -this.innerHeight)
+            .attr('class', 'cursor-line')
+            .attr('stroke', 'black')
+            .attr('stroke-width', '1px')
+            .attr('opacity', '0');
+
+        this.cursor
+            .append('text')
+            .attr('class', 'cursor-text')
+            .attr('x', d => this.xScale(d.X))
+            .attr('y', () => -this.innerHeight)
+            .attr('dx', 10)
+            .attr('dy', 10)
+            .attr('opacity', 0)
+            .text(d => {
+                return d.C;
+            });
+
+        this.cursor.on('mouseenter', function() {
+            d3.selectAll('.selected')
+                .classed('selected', false)
+                .attr('opacity', 0);
+
+            d3.select(this)
+                .selectAll('line')
+                .attr('opacity', 1)
+                .classed('selected', true);
+
+            d3.select(this)
+                .selectAll('text')
+                .attr('opacity', 1)
+                .classed('selected', true);
+        });
     }
 
     setDimensions(): void {
@@ -191,5 +283,11 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
     getMax(axis: string): number {
         const xArr = this.dataLinear.map(coor => coor[axis]);
         return Math.max.apply(Math, xArr);
+    }
+
+    getWeightedMean(): number {
+        return this.xScale(
+            d3.sum(this.dataLinear, d => d.X * d.Y) / d3.sum(this.dataLinear, d => d.Y)
+        );
     }
 }

@@ -2,92 +2,60 @@
     .dashboard-view {
         display: grid;
         grid-column-gap: 5%;
-        grid-template-areas:
-            'descriptions  graphs'
-            'inputs  graphs'
-            'chapternav chapternav';
-        grid-template-columns: 4fr;
+        grid-template-areas: 'welcome-text  illustration' 'welcome-nav illustration';
+        grid-template-columns: 2fr 1fr;
+    }
+
+    img {
+        display: block !important;
     }
 }
 
-.graphs {
-    grid-area: graphs;
+img {
+    display: none;
+    width: 250px;
+}
+
+.welcome-text {
+    grid-area: welcome-text;
+}
+
+.welcome-nav {
+    grid-area: welcome-nav;
     display: grid;
+    grid-row-gap: 5%;
+    grid-template-rows: 2fr 2fr;
 }
 
-.description {
-    grid-area: descriptions;
-}
-
-.inputs {
-    grid-area: inputs;
+.illustration {
+    grid-area: illustration;
     display: grid;
-}
-
-.item {
-    margin: 2%;
-    padding: 2%;
-    border-radius: 5px;
-    padding: 2px 16;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
-}
-
-.description-item {
-    display: grid;
-    justify-content: center;
-    align-content: center;
-}
-
-.graph-item {
-}
-
-.chapter-nav {
-    margin: 2%;
-    grid-area: chapternav;
-    display: grid;
-    grid-template-columns: 1fr;
     justify-items: center;
     align-items: center;
 }
 
-.chapter-nav-btn {
-    width: 50%;
-    background-color: #ffffff;
+.welcome-nav-btn.go {
     border: 1px solid #018383;
+}
+
+.welcome-nav-btn.skip {
+    border: 0px solid;
+    font-size: 13px;
+}
+
+.welcome-nav-btn {
+    background-color: #ffffff;
     padding: 5px;
     -webkit-transition-duration: 0.1s; /* Safari */
     transition-duration: 0.1s;
 }
 
-.chapter-nav-btn:hover {
+.welcome-nav-btn.go:hover {
     background-color: #018383;
     color: #ffffff;
 }
 
-.loader-container {
-    display: grid;
-    justify-items: center;
-}
-
-.loader {
-    border: 16px solid #f3f3f3;
-    border-top: 16px solid #018383;
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    animation: spin 2s linear infinite;
-}
-
-.loader-text {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+.welcome-text h2 {
+    padding-bottom: 10%;
+    font-size: 200%;
 }

@@ -1,18 +1,18 @@
-import { NgModule } from '@angular/core';
-import { DashboardRoutingModule } from './dashboard-routing.module';
-import { DashboardViewComponent } from './dashboard-view/dashboard-view.component';
+import { SharedModule } from '../shared/shared.module';
 import { NumberInputComponent } from '../shared/input/number-input/number-input.component';
+import { NgModule } from '@angular/core';
 import { SectionDescriptionComponent } from '../shared/description/section-description/section-description.component';
 import { LineGraphComponent } from '../shared/graph/line-graph/line-graph.component';
 import { ConfusionErrorGraphComponent } from '../shared/graph/confusion-error-graph/confusion-error-graph.component';
 import { ConfusionErrorInputComponent } from '../shared/input/confusion-error-input/confusion-error-input.component';
 import { RangeInputComponent } from '../shared/input/range-input/range-input.component';
 import { ModelPerformanceGraphComponent } from '../shared/graph/model-performance-graph/model-performance-graph.component';
-import { SharedModule } from '../shared/shared.module';
+import { StoryViewComponent } from './story-view/story-view.component';
+import { StoryRoutingModule } from './story-routing.module';
 
 @NgModule({
-    imports: [DashboardRoutingModule, SharedModule],
-    declarations: [DashboardViewComponent],
+    imports: [SharedModule, StoryRoutingModule],
+    declarations: [StoryViewComponent],
     entryComponents: [
         NumberInputComponent,
         SectionDescriptionComponent,
@@ -23,4 +23,4 @@ import { SharedModule } from '../shared/shared.module';
         ModelPerformanceGraphComponent
     ]
 })
-export class DashboardModule {}
+export class StoryModule {}

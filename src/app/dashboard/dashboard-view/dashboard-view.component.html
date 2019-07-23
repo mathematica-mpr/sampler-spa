@@ -1,36 +1,17 @@
-<div class="dashboard-view" *ngIf="init">
-    <div class="description" *ngIf="chapter.descriptions">
-        <div class="item description-item" *ngFor="let description of descriptions" @slideUp>
-            <app-chapter-item [chapterItem]="description"></app-chapter-item>
+<div class="dashboard-view" >
+
+    <div class="welcome-text">
+            <h2> Welcome</h2>
+            <p>            Nullam quis justo pellentesque, ornare velit non, sagittis ipsum. Quisque commodo sollicitudin elit, vel sodales tortor faucibus vitae. Curabitur libero nisi, condimentum mollis mi sed, dapibus aliquet lorem. Sed eget ipsum libero. Etiam lorem mi, mollis quis vulputate quis, ornare in dui. Fusce tempor ipsum lectus, sit amet interdum ante imperdiet in. Phasellus consectetur faucibus finibus. Donec blandit efficitur ex, in blandit ante scelerisque a.
+                </p>
         </div>
+    <div class="illustration">
+        <img src="../../../assets/network.jpg">
     </div>
-
-    <div class="inputs" *ngIf="chapter.inputs">
-        <div class="item input-item" *ngFor="let input of inputs" @slideLeft>
-            <app-chapter-item [chapterItem]="input"></app-chapter-item>
+    <div class="welcome-nav">
+            <button class="welcome-nav-btn go" (click)="navigateTo('story')">Give me the Dashboard!</button>
+            <!-- <button class="welcome-nav-btn skip">Skip to conclusion</button> -->
         </div>
-    </div>
-
-    <div class="graphs" *ngIf="chapter.graphs">
-        <div class="item graph-item" *ngFor="let graph of graphs" [id]="graph.chapterElement.value.name + graph.chapterElement.value.order" @slideRight>
-            <app-chapter-item [chapterItem]="graph"></app-chapter-item>
-        </div>
-    </div>
-
-    <div class="chapter-nav">
-        <button class="chapter-nav-btn" *ngIf="chapterIndex > 0 && init" (click)="getPreviousChapter()">Previous Chapter</button>
-        <button class="chapter-nav-btn" *ngIf="chapterIndex ==0 && init" (click)="getNextChapter()">Start!</button>
-    </div>
-
-    
 </div>
 
 
-
-
-<div *ngIf="!init" class="loader-container">
-    <div class="loader" ></div>
-
-    <p class="loader-text">Running prediction... </p>
-    
-</div>

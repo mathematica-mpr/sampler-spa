@@ -1,9 +1,9 @@
 <form [formGroup]="chapterInputForm">
+    <img class="help-icon" src="../../../../assets/baseline-help_outline-24px.svg" alt="">
   <div class="input-container" >
-          <div><label for="range-input">{{ config.title }}</label>
-                <!-- https://github.com/angular/angular/issues/12540 -->
-                <input [type]="'range'" [min]="config.min" [max]="config.max" [step]="config.step" class="form-control w-50" name="range-input" [formControlName]="config.name"/>
-        </div>
-        <div>{{chapterInputForm.value[config.name]}}</div>
+     <label for="range-input">{{ config.title }}</label>
+     {{chapterInputForm.value[config.name]}}
+    <!-- https://github.com/angular/angular/issues/12540 -->
+    <input [type]="'range'" [min]="config.min" [max]="config.max" [step]="config.step" name="range-input" [formControlName]="config.name"/> 
   </div>
   </form>
