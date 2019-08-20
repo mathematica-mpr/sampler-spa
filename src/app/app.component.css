@@ -20,6 +20,7 @@
 
 .content {
     grid-area: content;
+    display: grid;
     z-index: 0;
 }
 

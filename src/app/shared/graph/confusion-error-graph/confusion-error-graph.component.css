@@ -38,6 +38,7 @@ h3 {
     align-content: center;
     justify-content: center;
     text-align: center;
+    text-shadow: 0 0 0;
 }
 
 .column#plus {

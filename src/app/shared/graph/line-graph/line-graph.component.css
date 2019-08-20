@@ -4,8 +4,12 @@
     stroke-opacity: 1;
 }
 .regression {
-    fill: url(#mainGradient);
+    /* fill: url(#mainGradient);
     fill-opacity: 0.5;
+    stroke: #000;
+    stroke-width: 0.5px; */
+    fill-opacity: 0.5;
+    fill: green;
     stroke: #000;
     stroke-width: 0.5px;
 }
