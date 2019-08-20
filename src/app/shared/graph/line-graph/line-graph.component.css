@@ -21,3 +21,7 @@
 .stop-bottom {
     stop-color: green;
 }
+
+.title {
+    font-size: 0.8vw;
+}

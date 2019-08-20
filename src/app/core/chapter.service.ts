@@ -1,6 +1,5 @@
 import { Injectable, Type } from '@angular/core';
 import { Chapter, ChapterElement } from './models/chapter';
-import { mockChapter } from 'test/mockChapter';
 import { ChapterItem } from './models/chapter-item';
 import { ChapterItemMap } from './chapter-item.resource';
 import { BehaviorSubject, of, Subject, Observable } from 'rxjs';
@@ -12,9 +11,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 export class ChapterService {
     chapter: BehaviorSubject<Chapter> = new BehaviorSubject(null);
 
-    chapterUrl =
-        'https://euuia3hh4m.execute-api.us-east-2.amazonaws.com/Prod/api/chapter/';
-    // chapterUrl = 'http://localhost:5000/api/chapter/';
+    // chapterUrl =
+    // 'https://euuia3hh4m.execute-api.us-east-2.amazonaws.com/Prod/api/chapter/';
+    chapterUrl = 'http://localhost:5000/api/chapter/';
 
     constructor(private http: HttpClient) {}
 

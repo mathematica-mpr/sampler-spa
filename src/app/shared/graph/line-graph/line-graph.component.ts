@@ -69,6 +69,7 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
         this.setLineGraph();
         this.setMeanLine();
         this.setCursor();
+        this.setTitle();
     }
 
     setSvg() {
@@ -235,6 +236,27 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
                 .attr('opacity', 1)
                 .classed('selected', true);
         });
+    }
+
+    setTitle(): void {
+        this.cursor = this.svg
+            .append('g')
+            .attr(
+                'transform',
+                'translate(' +
+                    this.margin.left +
+                    ',' +
+                    (this.innerHeight + this.margin.top) +
+                    ')'
+            )
+            .attr('class', 'title')
+            .append('text')
+            .attr('x', () => this.innerWidth)
+            .attr('y', () => -this.innerHeight - 10)
+            .attr('text-anchor', 'end')
+            .text(() => {
+                return this.config.title;
+            });
     }
 
     setDimensions(): void {
