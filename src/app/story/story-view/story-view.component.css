@@ -1,7 +1,7 @@
 @media only screen and (min-width: 800px) {
     .story-view {
         display: grid;
-        grid-template-rows: 0px 1fr 6fr;
+        grid-template-rows: 1fr 1fr 6fr;
         /* grid-gap: 1%; */
         width: 100%;
         /* align-items: space-between; */
@@ -17,6 +17,7 @@
 }
 
 .description {
+    width: 70%;
 }
 
 .inputs {

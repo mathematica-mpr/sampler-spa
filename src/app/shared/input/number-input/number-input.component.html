@@ -1,5 +1,5 @@
 <form [formGroup]="chapterInputForm">
-<div class="input-container" >
+<div class="input-container" [id]="config.name">
         <label for="number-input">{{ config.title }}</label>
         <!-- https://github.com/angular/angular/issues/12540 -->
         <input [type]="'number'" class="number-input" name="number-input" [min]="config.min" [max]="config.max" [step]="config.step" [formControlName]="config.name"/>
