@@ -76,6 +76,7 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
         this.svg = d3
             .select(this.divId)
             .append('svg')
+            .attr('class', 'line-graph-svg')
             .attr('preserveAspectRatio', 'xMinYMin meet')
             .attr(
                 'viewBox',

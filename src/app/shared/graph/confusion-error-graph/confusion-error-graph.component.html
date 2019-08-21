@@ -17,40 +17,11 @@
       <p>d=0</p>
   </div>
 
-  <div class="cell TruePos" id= "TruePos0">
-    <app-line-graph [config$]="graphs[0]"></app-line-graph>
+  <div [class]="'cell ' + graph.value.name " (mouseover)="onMouseover(graph.value.name + i)"  [id]="graph.value.name + i" *ngFor="let graph of graphs; let i = index">
+    <app-line-graph [config$]="graph"></app-line-graph>
   </div>
-  <div class="cell FalPos" id= "FalPos1">
-    <app-line-graph [config$]="graphs[1]"></app-line-graph>
-  </div>
-  <div class="cell  FalNeg" id= "FalNeg2">
-    <app-line-graph [config$]="graphs[2]"></app-line-graph>
-  </div>
-  <div class="cell TrueNeg" id= "TrueNeg3">
-    <app-line-graph [config$]="graphs[3]"></app-line-graph>
-  </div>
-  <div class="cell Fnr" id= "Fnr4">
-    <app-line-graph [config$]="graphs[4]"></app-line-graph>
-  </div>
-  <div class="cell Fpr" id= "Fpr5">
-    <app-line-graph [config$]="graphs[5]"></app-line-graph>
-  </div>
-  <div class="cell PPV" id= "PPV6">
-    <app-line-graph [config$]="graphs[6]"></app-line-graph>
-  </div>
-  <div class="cell NPV" id= "NPV7">
-    <app-line-graph [config$]="graphs[7]"></app-line-graph>
-  </div>
-  <div class="cell Sens" id= "Sens8">
-    <app-line-graph [config$]="graphs[8]"></app-line-graph>
-  </div>
-  <div class="cell Spec" id= "Spec9">
-    <app-line-graph [config$]="graphs[9]"></app-line-graph>
-  </div>
-  <div class="cell Fdr" id= "Fdr10">
-    <app-line-graph [config$]="graphs[10]"></app-line-graph>
-  </div>
-  <div class="cell For" id= "For11">
-    <app-line-graph [config$]="graphs[11]"></app-line-graph>
+
+  <div class="legend" [id]="graph.value.name + i" *ngFor="let graph of graphs; let i = index">
+    <app-section-description [config$]="graph"></app-section-description>
   </div>
 </div>

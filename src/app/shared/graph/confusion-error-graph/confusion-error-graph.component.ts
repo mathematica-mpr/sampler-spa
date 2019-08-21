@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CompositeGraph } from '../composite-graph';
 import { BehaviorSubject } from 'rxjs';
 import { ChapterElement } from '../../../core/models/chapter';
+import * as d3 from 'd3';
 
 @Component({
     selector: 'app-confusion-error-graph',
@@ -11,6 +12,7 @@ import { ChapterElement } from '../../../core/models/chapter';
 export class ConfusionErrorGraphComponent extends CompositeGraph implements OnInit {
     graphs: BehaviorSubject<ChapterElement>[] = [];
     instantiated = false;
+    currentId = null;
     constructor() {
         super();
     }
@@ -28,5 +30,12 @@ export class ConfusionErrorGraphComponent extends CompositeGraph implements OnIn
                 });
             }
         });
+    }
+
+    onMouseover(id: string) {
+        if (this.currentId !== id) {
+            d3.selectAll('.legend').classed('active', false);
+            d3.selectAll('#' + id).classed('active', true);
+        }
     }
 }
