@@ -1,11 +1,12 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewEncapsulation } from '@angular/core';
 import { BaseDescription } from '../base-description';
 import * as d3 from 'd3';
 
 @Component({
     selector: 'app-section-description',
     templateUrl: './section-description.component.html',
-    styleUrls: ['./section-description.component.css']
+    styleUrls: ['./section-description.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
 export class SectionDescriptionComponent extends BaseDescription
     implements OnInit, AfterViewInit {

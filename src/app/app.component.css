@@ -7,10 +7,10 @@
 }
 
 .wrapper {
-    height: 100vh;
+    height: 100%;
     display: grid;
     grid-template-areas: 'header' 'content' 'footer';
-    grid-template-rows: 1fr 10fr 1fr;
+    grid-template-rows: 50px auto 50px;
 }
 
 .header {
@@ -21,6 +21,7 @@
 .content {
     grid-area: content;
     display: grid;
+    justify-content: center;
     z-index: 0;
 }
 

@@ -1,7 +1,11 @@
 p {
-    font-size: 60%;
+    font-size: 0.8vw;
 }
 
 h2 {
     font-size: 120%;
+}
+
+.explanation {
+    font-weight: 700;
 }

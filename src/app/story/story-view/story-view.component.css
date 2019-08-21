@@ -2,10 +2,8 @@
     .story-view {
         display: grid;
         grid-template-rows: 1fr 1fr 6fr;
-        /* grid-gap: 1%; */
-        width: 100%;
-        /* align-items: space-between; */
-        justify-items: center;
+        max-width: 800px;
+        align-items: space-between;
     }
 
     .inputs {
@@ -13,15 +11,12 @@
 }
 
 .graphs {
-    width: 70%;
 }
 
 .description {
-    width: 70%;
 }
 
 .inputs {
-    width: 70%;
     display: flex;
     flex-direction: row;
 }

@@ -253,7 +253,7 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
             .attr('class', 'title')
             .append('text')
             .attr('x', () => this.innerWidth)
-            .attr('y', () => -this.innerHeight - 10)
+            .attr('y', () => -this.innerHeight - this.innerHeight / 20)
             .attr('text-anchor', 'end')
             .text(() => {
                 return this.config.title;
