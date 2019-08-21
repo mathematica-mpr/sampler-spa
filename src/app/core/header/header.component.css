@@ -1,3 +1,8 @@
+.header-container {
+    display: flex;
+    justify-content: center;
+}
+
 h1 {
     font-size: 150%;
 }

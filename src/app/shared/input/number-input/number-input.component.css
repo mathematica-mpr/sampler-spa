@@ -5,13 +5,13 @@
 }
 
 label {
-    font-size: 70%;
+    text-shadow: 0 0 0;
+    font-size: 1vw;
+    font-weight: semi-bold;
     text-align: center;
 }
 
 .number-input {
-    font-size: 90%;
-    border: 1px solid gray;
-    border-radius: 5px;
+    width: 6em;
     text-align: right;
 }

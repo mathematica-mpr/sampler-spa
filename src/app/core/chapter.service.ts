@@ -1,6 +1,5 @@
 import { Injectable, Type } from '@angular/core';
 import { Chapter, ChapterElement } from './models/chapter';
-import { mockChapter } from 'test/mockChapter';
 import { ChapterItem } from './models/chapter-item';
 import { ChapterItemMap } from './chapter-item.resource';
 import { BehaviorSubject, of, Subject, Observable } from 'rxjs';
