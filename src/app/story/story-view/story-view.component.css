@@ -1,11 +1,9 @@
 @media only screen and (min-width: 800px) {
     .story-view {
         display: grid;
-        grid-template-rows: 0px 1fr 6fr;
-        /* grid-gap: 1%; */
-        width: 100%;
-        /* align-items: space-between; */
-        justify-items: center;
+        grid-template-rows: 1fr 1fr 6fr;
+        max-width: 800px;
+        align-items: space-between;
     }
 
     .inputs {
@@ -13,14 +11,12 @@
 }
 
 .graphs {
-    width: 70%;
 }
 
 .description {
 }
 
 .inputs {
-    width: 70%;
     display: flex;
     flex-direction: row;
 }
