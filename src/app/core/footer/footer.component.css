@@ -1,3 +1,8 @@
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+}
+
 p {
-    font-size: 0.8vw;
+    font-size: 60%;
 }
