@@ -11,7 +11,7 @@
 }
 
 .cursor-text {
-    font-size: 70%;
+    font-size: 0.5em;
 }
 
 .stop-top {
@@ -24,4 +24,8 @@
 
 .title {
     font-size: 60%;
+}
+
+.x-axis text {
+    font-size: 0.7em;
 }

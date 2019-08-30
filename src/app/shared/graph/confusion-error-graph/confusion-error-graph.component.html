@@ -16,7 +16,7 @@
       <p>d=0</p>
   </div>
 
-  <div [class]="'cell ' + graph.value.name " (mouseover)="onMouseover(graph.value.name + i)"  [id]="graph.value.name + i" *ngFor="let graph of graphs; let i = index">
+  <div [class]="'cell ' + graph.value.name " (mouseover)="onMouseover(graph.value.name + i)"  (click)="onClick(graph.value.name + i)" [id]="graph.value.name + i" *ngFor="let graph of graphs; let i = index">
     <app-line-graph [config$]="graph"></app-line-graph>
   </div>
 

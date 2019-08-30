@@ -12,7 +12,8 @@ import * as d3 from 'd3';
 export class ConfusionErrorGraphComponent extends CompositeGraph implements OnInit {
     graphs: BehaviorSubject<ChapterElement>[] = [];
     instantiated = false;
-    currentId = null;
+    hoveredId = null;
+    zoomedId = null;
     constructor() {
         super();
     }
@@ -32,8 +33,23 @@ export class ConfusionErrorGraphComponent extends CompositeGraph implements OnIn
         });
     }
 
+    onClick(id: String) {
+        if (this.zoomedId === id) {
+            d3.select('#' + id)
+                .transition()
+                .duration(200)
+                .style('transform', 'scale(1)translate(0%, 0%)');
+        } else {
+            this.zoomedId = id;
+            d3.select('#' + id)
+                .transition()
+                .duration(200)
+                .style('transform', 'scale(4)translate(5%, 5%)');
+        }
+    }
+
     onMouseover(id: string) {
-        if (this.currentId !== id) {
+        if (this.hoveredId !== id) {
             d3.selectAll('.legend').classed('active', false);
             d3.selectAll('#' + id).classed('active', true);
         }
