@@ -13,13 +13,13 @@
         '. fnr spec legend legend';
     grid-column-gap: 1%;
     grid-row-gap: 1%;
-    grid-template-columns: 1fr repeat(5, 19vw);
+    grid-template-columns: 15vw repeat(4, 19vw);
     grid-template-rows: repeat(5, 19vw);
 }
 
 @media (min-width: 961px) {
     .confusion-error-matrix {
-        grid-template-columns: 1fr repeat(5, 19%);
+        grid-template-columns: 13% repeat(4, 19%);
         grid-template-rows: repeat(5, 19%);
     }
 }
