@@ -1,18 +1,19 @@
 .confusion-error-matrix {
+    flex: 1 100%;
     display: grid;
     max-height: 100%;
-    max-width: 100%;
-    margin: 10px;
+    width: 95vw;
+    max-width: 900px;
     grid-template-areas:
         '. headerPlus headerMinus . .'
         'rowPlus tp fp ppv fdr '
         'rowMinus fn  tn for npv'
         '. sens fpr legend legend'
         '. fnr spec legend legend';
-    grid-column-gap: 10px;
-    grid-row-gap: 10px;
-    grid-template-columns: 1fr repeat(4, 2fr);
-    grid-template-rows: minmax(0, 1fr) repeat(4, 2.5fr);
+    grid-column-gap: 1%;
+    grid-row-gap: 1%;
+    grid-template-columns: 1fr repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
 }
 
 .cell {
@@ -23,7 +24,7 @@
 
 p {
     margin: 0%;
-    font-size: 0.8vw;
+    font-size: 60%;
 }
 
 h3 {

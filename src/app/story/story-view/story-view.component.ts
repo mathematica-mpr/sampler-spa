@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { slideInOutLeft } from 'src/app/core/animation/slide-in-out-left';
 import { slideInOutRight } from 'src/app/core/animation/slide-in-out-right';
 import { slideInOutUp } from 'src/app/core/animation/slide-in-out-up';
@@ -13,6 +13,7 @@ import { timer } from 'rxjs';
     selector: 'app-story-view',
     templateUrl: './story-view.component.html',
     styleUrls: ['./story-view.component.css'],
+    encapsulation: ViewEncapsulation.None,
     animations: [slideInOutLeft, slideInOutRight, slideInOutUp]
 })
 export class StoryViewComponent implements OnInit {

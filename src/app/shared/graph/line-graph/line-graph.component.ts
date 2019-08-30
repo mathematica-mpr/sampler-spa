@@ -64,11 +64,11 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
         this.xScale = this.getXscale();
         this.yScale = this.getYScale();
         this.xAxis = this.getXAxis();
-        this.setGradient();
-        this.setXAxis();
-        this.setLineGraph();
-        this.setMeanLine();
-        this.setCursor();
+        // this.setGradient();
+        // this.setXAxis();
+        // this.setLineGraph();
+        // this.setMeanLine();
+        // this.setCursor();
         this.setTitle();
     }
 
