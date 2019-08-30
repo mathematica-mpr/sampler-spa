@@ -1,5 +1,6 @@
 .confusion-error-matrix {
     flex: 1 100%;
+    align-content: center;
     display: grid;
     max-height: 100%;
     width: 95vw;
@@ -12,8 +13,15 @@
         '. fnr spec legend legend';
     grid-column-gap: 1%;
     grid-row-gap: 1%;
-    grid-template-columns: 1fr repeat(4, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: 1fr repeat(5, 19vw);
+    grid-template-rows: repeat(5, 19vw);
+}
+
+@media (min-width: 961px) {
+    .confusion-error-matrix {
+        grid-template-columns: 1fr repeat(5, 19%);
+        grid-template-rows: repeat(5, 19%);
+    }
 }
 
 .cell {
