@@ -36,15 +36,31 @@ export class ConfusionErrorGraphComponent extends CompositeGraph implements OnIn
     onClick(id: String) {
         if (this.zoomedId === id) {
             d3.select('#' + id)
+                .style('z-index', '0')
                 .transition()
                 .duration(200)
                 .style('transform', 'scale(1)translate(0%, 0%)');
         } else {
+            console.log(window.innerWidth);
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+
+            let x = width * 0.15;
+            let y = height * 0.33;
+            let bbox = d3
+                .select('#' + id)
+                .node()
+                .getBoundingClientRect();
+            let tx = x - bbox.x;
+            let ty = y - bbox.y;
+
             this.zoomedId = id;
             d3.select('#' + id)
+                .style('transform-origin', '0 0')
+                .style('z-index', '1000')
                 .transition()
                 .duration(200)
-                .style('transform', 'scale(4)translate(5%, 5%)');
+                .style('transform', `translate(${tx}px,${ty}px)scale(4)`);
         }
     }
 
