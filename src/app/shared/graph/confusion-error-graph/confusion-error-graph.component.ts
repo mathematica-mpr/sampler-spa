@@ -45,16 +45,19 @@ export class ConfusionErrorGraphComponent extends CompositeGraph implements OnIn
             const width = window.innerWidth;
             const height = window.innerHeight;
 
-            let x = width * 0.15;
-            let y = height * 0.33;
-            let bbox = d3
+            const x = width * 0.15;
+            const y = height * 0.33;
+
+            const bbox = d3
                 .select('#' + id)
                 .node()
                 .getBoundingClientRect();
-            let tx = x - bbox.x;
-            let ty = y - bbox.y;
+
+            const tx = x - bbox.x;
+            const ty = y - bbox.y;
 
             this.zoomedId = id;
+
             d3.select('#' + id)
                 .style('transform-origin', '0 0')
                 .style('z-index', '1000')
