@@ -12,7 +12,7 @@ import { Dimension } from '../../../core/models/dimension';
 export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewInit {
     dataLinear: { X: number; Y: number }[];
     wrapperDimension: Dimension;
-    margin = { top: 20, right: 10, bottom: 20, left: 10 };
+    margin = { top: 2, right: 1, bottom: 2, left: 1 };
     innerWidth: number;
     innerHeight: number;
     divId: string;
@@ -67,8 +67,8 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
         this.setGradient();
         this.setXAxis();
         this.setLineGraph();
-        this.setMeanLine();
-        this.setCursor();
+        // this.setMeanLine();
+        // this.setCursor();
         this.setTitle();
     }
 
@@ -265,15 +265,20 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
             '.graphs > ' + '#' + this.config.name + this.config.order;
         this.wrapperDimension = this.getDimension(wrapperClass);
         this.innerWidth =
-            this.wrapperDimension.width - this.margin.left - this.margin.right;
+            this.wrapperDimension.width -
+            (this.margin.left / this.wrapperDimension.width) * 100 -
+            (this.margin.right / this.wrapperDimension.width) * 100;
         this.innerHeight =
-            this.wrapperDimension.height - this.margin.top - this.margin.bottom;
+            this.wrapperDimension.height -
+            (this.margin.top / this.wrapperDimension.height) * 100 -
+            (this.margin.bottom / this.wrapperDimension.height) * 100;
     }
 
     getXAxis() {
         return d3
             .axisBottom(this.xScale)
             .ticks(3)
+            .tickSize(2, 0, 0)
             .tickSizeOuter(0);
     }
 

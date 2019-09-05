@@ -35,17 +35,10 @@ export class ConfusionErrorGraphComponent extends CompositeGraph implements OnIn
 
     onClick(id: String) {
         const currentDiv = this.elRef.nativeElement.querySelector('#' + id);
-        console.log(currentDiv.classList);
 
         if (this.zoomedId === id) {
             currentDiv.classList.remove('zoomed');
-
-            d3.select('#' + id)
-                .transition()
-                .duration(200)
-                .style('transform', 'translate(0%, 0%)scale(1)');
         } else {
-            console.log(window.innerWidth);
             const width = window.innerWidth;
             const height = window.innerHeight;
 
@@ -61,18 +54,6 @@ export class ConfusionErrorGraphComponent extends CompositeGraph implements OnIn
             currentDiv.classList.add('zoomed');
             currentDiv.style.setProperty('--x', tx + 'px');
             currentDiv.style.setProperty('--y', ty + 'px');
-
-            // d3.select('#' + id)
-            //     .transition()
-            //     .duration(200)
-            //     .style('-webkit-transform', `translate3d(${tx}px,${ty}px, 0)scale3d(4)`);
-
-            // d3.select('#' + id)
-            //     .transition()
-            //     .duration(200)
-            //     .attr('style', function() {
-            //         return `-webkit-transform: translate3d(${tx}px,${ty}px, 0);`;
-            //     });
         }
     }
 
