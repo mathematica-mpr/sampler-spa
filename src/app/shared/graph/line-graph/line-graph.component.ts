@@ -167,7 +167,7 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
             .attr('x2', () => this.getWeightedMean())
             .attr('y1', 0)
             .attr('y2', -this.innerHeight)
-            .style('stroke-width', 0.5)
+            .style('stroke-width', '0.25px')
             .style('stroke', 'black')
             .style('stroke-dasharray', '4,4')
             .style('fill', 'none');

@@ -1,3 +1,19 @@
+/* shou be moved into its own service */
+:root {
+    --x: 0px;
+    --y: 0px;
+}
+
+.zoomed {
+    z-index: 1000;
+    -webkit-transform: translate3d(var(--x), var(--y), 0);
+    -moz-transform: translate3d(var(--x), var(--y), 0);
+    -o-transform: translate3d(var(--x), var(--y), 0);
+    -ms-transform: translate3d(var(--x), var(--y), 0);
+    transform: translate3d(var(--x), var(--y), 0) scale3d(4, 4, 1);
+}
+
+/* real css */
 .confusion-error-matrix {
     flex: 1 100%;
     align-content: center;
@@ -30,6 +46,7 @@
     align-items: flex-end;
     border-radius: 5px;
     background: white;
+    transform-origin: 0 0;
 }
 
 p {

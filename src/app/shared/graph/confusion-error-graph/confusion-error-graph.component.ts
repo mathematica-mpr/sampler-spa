@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { CompositeGraph } from '../composite-graph';
 import { BehaviorSubject } from 'rxjs';
 import { ChapterElement } from '../../../core/models/chapter';
@@ -14,7 +14,7 @@ export class ConfusionErrorGraphComponent extends CompositeGraph implements OnIn
     instantiated = false;
     hoveredId = null;
     zoomedId = null;
-    constructor() {
+    constructor(private elRef: ElementRef) {
         super();
     }
 
@@ -34,12 +34,16 @@ export class ConfusionErrorGraphComponent extends CompositeGraph implements OnIn
     }
 
     onClick(id: String) {
+        const currentDiv = this.elRef.nativeElement.querySelector('#' + id);
+        console.log(currentDiv.classList);
+
         if (this.zoomedId === id) {
+            currentDiv.classList.remove('zoomed');
+
             d3.select('#' + id)
-                .style('z-index', '0')
                 .transition()
                 .duration(200)
-                .style('transform', 'scale(1)translate(0%, 0%)');
+                .style('transform', 'translate(0%, 0%)scale(1)');
         } else {
             console.log(window.innerWidth);
             const width = window.innerWidth;
@@ -48,22 +52,27 @@ export class ConfusionErrorGraphComponent extends CompositeGraph implements OnIn
             const x = width * 0.15;
             const y = height * 0.33;
 
-            const bbox = d3
-                .select('#' + id)
-                .node()
-                .getBoundingClientRect();
+            const bbox = currentDiv.getBoundingClientRect();
 
             const tx = x - bbox.x;
             const ty = y - bbox.y;
 
             this.zoomedId = id;
+            currentDiv.classList.add('zoomed');
+            currentDiv.style.setProperty('--x', tx + 'px');
+            currentDiv.style.setProperty('--y', ty + 'px');
 
-            d3.select('#' + id)
-                .style('transform-origin', '0 0')
-                .style('z-index', '1000')
-                .transition()
-                .duration(200)
-                .style('transform', `translate(${tx}px,${ty}px)scale(4)`);
+            // d3.select('#' + id)
+            //     .transition()
+            //     .duration(200)
+            //     .style('-webkit-transform', `translate3d(${tx}px,${ty}px, 0)scale3d(4)`);
+
+            // d3.select('#' + id)
+            //     .transition()
+            //     .duration(200)
+            //     .attr('style', function() {
+            //         return `-webkit-transform: translate3d(${tx}px,${ty}px, 0);`;
+            //     });
         }
     }
 
