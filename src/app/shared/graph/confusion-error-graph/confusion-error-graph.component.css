@@ -11,6 +11,7 @@
     -o-transform: translate(var(--x), var(--y));
     -ms-transform: translate(var(--x), var(--y));
     transform: translate(var(--x), var(--y)) scale(4, 4);
+    /* transform: scale(4, 4); */
     transition: transform 200ms linear;
 }
 

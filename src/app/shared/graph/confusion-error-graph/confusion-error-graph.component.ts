@@ -41,14 +41,13 @@ export class ConfusionErrorGraphComponent extends CompositeGraph implements OnIn
         } else {
             const width = window.innerWidth;
             const height = window.innerHeight;
-
-            const x = width * 0.15;
-            const y = height * 0.33;
-
             const bbox = currentDiv.getBoundingClientRect();
+            const xDenom: number = width < height ? 4 : 3;
+            const yDenom: number = width < height ? 3 : 4;
+            const tx = (width - bbox.width * 2) / xDenom - bbox.x;
+            const ty = (height - bbox.height * 2) / yDenom - bbox.y;
 
-            const tx = x - bbox.x;
-            const ty = y - bbox.y;
+            console.log(width, bbox.width, bbox.x, tx);
 
             this.zoomedId = id;
             currentDiv.classList.add('zoomed');
