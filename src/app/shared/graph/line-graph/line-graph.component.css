@@ -5,9 +5,9 @@
 }
 .regression {
     fill-opacity: 0.5;
-    fill: green;
-    stroke: #000;
-    stroke-width: 0.25px;
+    fill: none;
+    stroke: green;
+    stroke-width: 0.5px;
 }
 
 .cursor-text {
