@@ -46,9 +46,6 @@ export class ConfusionErrorGraphComponent extends CompositeGraph implements OnIn
             const yDenom: number = width < height ? 3 : 4;
             const tx = (width - bbox.width * 2) / xDenom - bbox.x;
             const ty = (height - bbox.height * 2) / yDenom - bbox.y;
-
-            console.log(width, bbox.width, bbox.x, tx);
-
             this.zoomedId = id;
             currentDiv.classList.add('zoomed');
             currentDiv.style.setProperty('--x', tx + 'px');
