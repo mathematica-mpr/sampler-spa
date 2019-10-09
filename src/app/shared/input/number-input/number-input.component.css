@@ -5,13 +5,20 @@
 }
 
 label {
-    font-size: 70%;
+    text-shadow: 0 0 0;
+    font-size: 0.8vw;
+    font-weight: semi-bold;
     text-align: center;
 }
 
 .number-input {
-    font-size: 90%;
-    border: 1px solid gray;
-    border-radius: 5px;
+    width: 6em;
     text-align: right;
+    margin: 5px;
+    border-radius: 4px;
+    box-shadow: none;
+}
+
+.number-input:focus {
+    border: 2px solid green;
 }

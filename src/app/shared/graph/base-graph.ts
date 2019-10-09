@@ -1,10 +1,10 @@
 import { Input } from '@angular/core';
-import { ChapterGraph, ChapterElement } from '../../core/models/chapter';
+import { ChapterGraph } from '../../core/models/chapter';
 import { BehaviorSubject } from 'rxjs';
 
 export abstract class BaseGraph {
     @Input() config$: BehaviorSubject<ChapterGraph>;
-    config;
+    config: ChapterGraph;
     constructor() {}
 
     abstract instantiateGraph();

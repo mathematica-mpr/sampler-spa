@@ -1,20 +1,26 @@
-<h3> Confusion Matrix <img class="help-icon" src="../../../../assets/baseline-help_outline-24px.svg" alt=""> </h3> 
 <div class="graphs confusion-error-matrix">
-  <div class="header table-header" id="plus"> + </div>
-  <div class="header table-header" id="minus"> - </div>
-  <div class="row table-header" id="plus"> + </div>
-  <div class="row table-header" id="minus"> - </div>
+  <div class="cell column table-header" id="plus"> 
+<p>Actual Positive </p> 
+   <p> Y=1 </p>   
+    </div>
+  <div class="cell column table-header" id="minus">
+  <p>Actual Negative</p>
+      <p> Y=0</p>
+     </div>
+  <div class="cell row table-header" id="plus">
+     <p>Predicted Positive</p>
+     <p>d=1</p>
+    </div>
+  <div class="cell row table-header" id="minus">
+      <p>Predicted Negative</p>
+      <p>d=0</p>
+  </div>
 
-  <div class="TruePos" id= "TruePos0">
-    <app-line-graph [config$]="graphs[0]"></app-line-graph>
+  <div [class]="'cell ' + graph.value.name " (mouseover)="onMouseover(graph.value.name + i)"  (click)="onClick(graph.value.name + i)" [id]="graph.value.name + i" *ngFor="let graph of graphs; let i = index">
+    <app-line-graph [config$]="graph"></app-line-graph>
   </div>
-  <div class="FalPos" id= "FalPos1">
-    <app-line-graph [config$]="graphs[1]"></app-line-graph>
-  </div>
-  <div class="FalNeg" id= "FalNeg2">
-    <app-line-graph [config$]="graphs[2]"></app-line-graph>
-  </div>
-  <div class="TrueNeg" id= "TrueNeg3">
-    <app-line-graph [config$]="graphs[3]"></app-line-graph>
+
+  <div class="legend" [id]="graph.value.name + i" *ngFor="let graph of graphs; let i = index">
+    <app-section-description [config$]="graph"></app-section-description>
   </div>
 </div>

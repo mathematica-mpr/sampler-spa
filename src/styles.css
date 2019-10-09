@@ -2,13 +2,12 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 * {
     font-family: 'Open Sans', sans-serif;
+    box-sizing: border-box;
 }
 
 html,
 body {
-    height: 100%;
-    display: grid;
-    justify-content: center;
+    margin: 0;
 }
 
 .help-icon {

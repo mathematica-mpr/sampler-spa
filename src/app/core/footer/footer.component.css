@@ -1,3 +1,4 @@
-p {
-    font-size: 8px;
+.footer-container {
+    display: flex;
+    justify-content: space-between;
 }

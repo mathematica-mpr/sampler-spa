@@ -13,11 +13,10 @@ export class ChapterElement {
     order: number;
     type?: string;
     data?: any[];
+    content?: string;
 }
 
-export class ChapterDescription extends ChapterElement {
-    content: string;
-}
+export class ChapterDescription extends ChapterElement {}
 
 export class ChapterInput extends ChapterElement {
     inputs?: ChapterInput[];

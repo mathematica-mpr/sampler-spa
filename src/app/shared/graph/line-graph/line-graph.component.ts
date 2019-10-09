@@ -12,7 +12,7 @@ import { Dimension } from '../../../core/models/dimension';
 export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewInit {
     dataLinear: { X: number; Y: number }[];
     wrapperDimension: Dimension;
-    margin = { top: 20, right: 10, bottom: 20, left: 10 };
+    margin = { top: 2, right: 1, bottom: 2, left: 1 };
     innerWidth: number;
     innerHeight: number;
     divId: string;
@@ -67,14 +67,16 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
         this.setGradient();
         this.setXAxis();
         this.setLineGraph();
-        this.setMeanLine();
-        this.setCursor();
+        // this.setMeanLine();
+        // this.setCursor();
+        this.setTitle();
     }
 
     setSvg() {
         this.svg = d3
             .select(this.divId)
             .append('svg')
+            .attr('class', 'line-graph-svg')
             .attr('preserveAspectRatio', 'xMinYMin meet')
             .attr(
                 'viewBox',
@@ -165,7 +167,7 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
             .attr('x2', () => this.getWeightedMean())
             .attr('y1', 0)
             .attr('y2', -this.innerHeight)
-            .style('stroke-width', 0.5)
+            .style('stroke-width', '0.25px')
             .style('stroke', 'black')
             .style('stroke-dasharray', '4,4')
             .style('fill', 'none');
@@ -237,20 +239,46 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
         });
     }
 
+    setTitle(): void {
+        this.cursor = this.svg
+            .append('g')
+            .attr(
+                'transform',
+                'translate(' +
+                    this.margin.left +
+                    ',' +
+                    (this.innerHeight + this.margin.top) +
+                    ')'
+            )
+            .attr('class', 'title')
+            .append('text')
+            .attr('x', () => this.innerWidth)
+            .attr('y', () => -this.innerHeight - this.innerHeight / 20)
+            .attr('text-anchor', 'end')
+            .text(() => {
+                return this.config.title;
+            });
+    }
+
     setDimensions(): void {
         const wrapperClass: string =
             '.graphs > ' + '#' + this.config.name + this.config.order;
         this.wrapperDimension = this.getDimension(wrapperClass);
         this.innerWidth =
-            this.wrapperDimension.width - this.margin.left - this.margin.right;
+            this.wrapperDimension.width -
+            (this.margin.left / this.wrapperDimension.width) * 100 -
+            (this.margin.right / this.wrapperDimension.width) * 100;
         this.innerHeight =
-            this.wrapperDimension.height - this.margin.top - this.margin.bottom;
+            this.wrapperDimension.height -
+            (this.margin.top / this.wrapperDimension.height) * 100 -
+            (this.margin.bottom / this.wrapperDimension.height) * 100;
     }
 
     getXAxis() {
         return d3
             .axisBottom(this.xScale)
             .ticks(3)
+            .tickSize(2, 0, 0)
             .tickSizeOuter(0);
     }
 

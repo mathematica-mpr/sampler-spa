@@ -4,14 +4,14 @@
     stroke-opacity: 1;
 }
 .regression {
-    fill: url(#mainGradient);
     fill-opacity: 0.5;
-    stroke: #000;
+    fill: none;
+    stroke: green;
     stroke-width: 0.5px;
 }
 
 .cursor-text {
-    font-size: 70%;
+    font-size: 0.5em;
 }
 
 .stop-top {
@@ -20,4 +20,12 @@
 
 .stop-bottom {
     stop-color: green;
+}
+
+.title {
+    font-size: 60%;
+}
+
+.x-axis text {
+    font-size: 0.7em;
 }
