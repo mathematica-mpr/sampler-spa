@@ -16,11 +16,11 @@
       <p>d=0</p>
   </div>
 
-  <div [class]="'cell ' + graph.value.name " (mouseover)="onMouseover(graph.value.name + i)"  (click)="onClick(graph.value.name + i)" [id]="graph.value.name + i" *ngFor="let graph of graphs; let i = index">
+  <div [class]="'cell ' + graph.value.name "  (click)="onClick(graph.value.name + i)" [id]="'graph' + graph.value.name + i"  *ngFor="let graph of graphs; let i = index">
     <app-line-graph [config$]="graph"></app-line-graph>
   </div>
 
-  <div class="legend" [id]="graph.value.name + i" *ngFor="let graph of graphs; let i = index">
+  <div  [class]="'legend cell ' + graph.value.name "  [id]="'legend' + graph.value.name + i"  *ngFor="let graph of graphs; let i = index">
     <app-section-description [config$]="graph"></app-section-description>
   </div>
 </div>

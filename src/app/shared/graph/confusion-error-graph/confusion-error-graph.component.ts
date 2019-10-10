@@ -34,10 +34,13 @@ export class ConfusionErrorGraphComponent extends CompositeGraph implements OnIn
     }
 
     onClick(id: String) {
-        const currentDiv = this.elRef.nativeElement.querySelector('#' + id);
+        // refactor into a function and do it for both graph and legend
+        const currentDiv = this.elRef.nativeElement.querySelector('#graph' + id);
+        const legendDiv = this.elRef.nativeElement.querySelector('#legend' + id);
 
         if (this.zoomedId === id) {
             currentDiv.classList.remove('zoomed');
+            legendDiv.classList.remove('zoomed');
         } else {
             const width = window.innerWidth;
             const height = window.innerHeight;
@@ -50,6 +53,10 @@ export class ConfusionErrorGraphComponent extends CompositeGraph implements OnIn
             currentDiv.classList.add('zoomed');
             currentDiv.style.setProperty('--x', tx + 'px');
             currentDiv.style.setProperty('--y', ty + 'px');
+
+            legendDiv.classList.add('zoomed');
+            legendDiv.style.setProperty('--x', tx + 'px');
+            legendDiv.style.setProperty('--y', ty + 'px');
         }
     }
 

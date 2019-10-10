@@ -1,4 +1,10 @@
-import { Component, OnInit, AfterViewInit, ViewEncapsulation } from '@angular/core';
+import {
+    Component,
+    OnInit,
+    AfterViewInit,
+    ViewEncapsulation,
+    AfterViewChecked
+} from '@angular/core';
 import * as d3 from 'd3';
 import { BaseGraph } from '../base-graph';
 import { Dimension } from '../../../core/models/dimension';
@@ -9,7 +15,7 @@ import { Dimension } from '../../../core/models/dimension';
     styleUrls: ['./line-graph.component.css'],
     encapsulation: ViewEncapsulation.None
 })
-export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewInit {
+export class LineGraphComponent extends BaseGraph implements AfterViewInit {
     dataLinear: { X: number; Y: number }[];
     wrapperDimension: Dimension;
     margin = { top: 2, right: 1, bottom: 2, left: 1 };
@@ -31,8 +37,6 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
     constructor() {
         super();
     }
-
-    ngOnInit(): void {}
 
     ngAfterViewInit(): void {
         this.config$.subscribe(response => {
@@ -262,7 +266,7 @@ export class LineGraphComponent extends BaseGraph implements OnInit, AfterViewIn
 
     setDimensions(): void {
         const wrapperClass: string =
-            '.graphs > ' + '#' + this.config.name + this.config.order;
+            '.graphs > * ' + '#' + this.config.name + this.config.order;
         this.wrapperDimension = this.getDimension(wrapperClass);
         this.innerWidth =
             this.wrapperDimension.width -
