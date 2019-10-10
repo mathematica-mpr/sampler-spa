@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewEncapsulation } from '@angular/core';
 import { CompositeGraph } from '../composite-graph';
 import { BehaviorSubject } from 'rxjs';
 import { ChapterElement } from '../../../core/models/chapter';
@@ -7,7 +7,8 @@ import * as d3 from 'd3';
 @Component({
     selector: 'app-confusion-error-graph',
     templateUrl: './confusion-error-graph.component.html',
-    styleUrls: ['./confusion-error-graph.component.css']
+    styleUrls: ['./confusion-error-graph.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
 export class ConfusionErrorGraphComponent extends CompositeGraph implements OnInit {
     graphs: BehaviorSubject<ChapterElement>[] = [];

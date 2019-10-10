@@ -77,6 +77,14 @@ h3 {
     display: none;
 }
 
+.legend h2 {
+    font-size: 3px;
+}
+
+.legend p {
+    font-size: 3px;
+}
+
 .table-header {
     display: grid;
     justify-content: center;
