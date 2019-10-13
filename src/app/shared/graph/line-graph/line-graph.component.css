@@ -1,6 +1,7 @@
 .line-graph {
     height: 100%;
     width: 100%;
+    padding: 1% 2%;
 }
 
 .circle {
@@ -11,8 +12,8 @@
 .regression {
     fill-opacity: 0.5;
     fill: none;
-    stroke: green;
-    stroke-width: 0.5px;
+    stroke: rgb(0, 151, 20);
+    stroke-width: 0.3px;
 }
 
 .cursor-text {
@@ -31,6 +32,14 @@
     font-size: 60%;
 }
 
+.x-axis path {
+    stroke-width: 0.5px;
+}
+
+.x-axis line {
+    stroke-width: 0.5px;
+}
+
 .x-axis text {
-    font-size: 0.7em;
+    font-size: 0.4em;
 }
