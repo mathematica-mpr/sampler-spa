@@ -6,13 +6,25 @@
 
 .zoomed {
     z-index: 1000;
+    display: inline !important;
     -webkit-transform: translate(var(--x), var(--y));
     -moz-transform: translate(var(--x), var(--y));
     -o-transform: translate(var(--x), var(--y));
     -ms-transform: translate(var(--x), var(--y));
-    transform: translate(var(--x), var(--y)) scale(4, 4);
-    /* transform: scale(4, 4); */
+    transform: translate(var(--x), var(--y)) scale(4);
     transition: transform 200ms linear;
+}
+
+.cell.zoomed {
+    box-shadow: 0 1em 2em 0 rgba(0, 0, 0, 0.5) !important;
+}
+
+.zoomed > .legend {
+    display: flex;
+    height: auto;
+    /* max-height:  something so it doesn't go off screen*/
+    margin-top: 0.2em;
+    padding: 2px;
 }
 
 /* real css */
@@ -21,7 +33,7 @@
     align-content: center;
     display: grid;
     max-height: 100%;
-    width: 95vw;
+    width: 75vw;
     max-width: 900px;
     grid-template-areas:
         '. headerPlus headerMinus . .'
@@ -29,8 +41,8 @@
         'rowMinus fn  tn for npv'
         '. sens fpr legend legend'
         '. fnr spec legend legend';
-    grid-column-gap: 1%;
-    grid-row-gap: 1%;
+    grid-column-gap: 2%;
+    grid-row-gap: 2%;
     grid-template-columns: 15vw repeat(4, 19vw);
     grid-template-rows: repeat(5, 19vw);
 }
@@ -43,12 +55,23 @@
 }
 
 .cell {
-    border: 0.5px solid;
-    display: grid;
+    display: flex;
+    flex-direction: column;
     align-items: flex-end;
-    border-radius: 5px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 2.5px; /* 5px rounded corners */
     background: white;
     transform-origin: 0 0;
+    transition: 0.2s;
+}
+
+.cell.graph:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+}
+
+.cell > * {
+    height: 100%;
+    width: 100%;
 }
 
 p {
@@ -64,12 +87,12 @@ h3 {
     display: none;
 }
 
-.legend.active {
-    display: inline;
+.legend h2 {
+    font-size: 3px;
 }
 
-.cell {
-    padding: 2px;
+.legend p {
+    font-size: 3px;
 }
 
 .table-header {
@@ -138,8 +161,4 @@ h3 {
 
 .Spec {
     grid-area: spec;
-}
-
-.legend {
-    grid-area: legend;
 }

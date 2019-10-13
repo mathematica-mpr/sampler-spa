@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewEncapsulation } from '@angular/core';
 import { CompositeGraph } from '../composite-graph';
 import { BehaviorSubject } from 'rxjs';
 import { ChapterElement } from '../../../core/models/chapter';
@@ -7,7 +7,8 @@ import * as d3 from 'd3';
 @Component({
     selector: 'app-confusion-error-graph',
     templateUrl: './confusion-error-graph.component.html',
-    styleUrls: ['./confusion-error-graph.component.css']
+    styleUrls: ['./confusion-error-graph.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
 export class ConfusionErrorGraphComponent extends CompositeGraph implements OnInit {
     graphs: BehaviorSubject<ChapterElement>[] = [];
@@ -34,10 +35,12 @@ export class ConfusionErrorGraphComponent extends CompositeGraph implements OnIn
     }
 
     onClick(id: String) {
-        const currentDiv = this.elRef.nativeElement.querySelector('#' + id);
+        // refactor into a function and do it for both graph and legend
+        const currentDiv = this.elRef.nativeElement.querySelector('.graph.' + id);
 
         if (this.zoomedId === id) {
             currentDiv.classList.remove('zoomed');
+            this.zoomedId = null;
         } else {
             const width = window.innerWidth;
             const height = window.innerHeight;
