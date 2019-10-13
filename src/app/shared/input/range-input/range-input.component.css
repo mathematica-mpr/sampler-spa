@@ -10,7 +10,6 @@ text {
 
 .input-container {
     display: grid;
-    /* grid-template-columns: 3fr 1fr; */
     align-items: center;
     justify-items: center;
     margin: 2%;
