@@ -1,10 +1,4 @@
-import {
-    Component,
-    OnInit,
-    AfterViewInit,
-    ViewEncapsulation,
-    AfterViewChecked
-} from '@angular/core';
+import { Component, AfterViewInit, ViewEncapsulation } from '@angular/core';
 import * as d3 from 'd3';
 import { BaseGraph } from '../base-graph';
 import { Dimension } from '../../../core/models/dimension';
@@ -17,8 +11,9 @@ import { Dimension } from '../../../core/models/dimension';
 })
 export class LineGraphComponent extends BaseGraph implements AfterViewInit {
     dataLinear: { X: number; Y: number }[];
+    wrapperClass: string;
     wrapperDimension: Dimension;
-    margin = { top: 2, right: 1, bottom: 2, left: 1 };
+    margin = { top: 2, right: 1, bottom: 6, left: 1 };
     innerWidth: number;
     innerHeight: number;
     divId: string;
@@ -73,7 +68,7 @@ export class LineGraphComponent extends BaseGraph implements AfterViewInit {
         this.setLineGraph();
         // this.setMeanLine();
         // this.setCursor();
-        this.setTitle();
+        // this.setTitle();
     }
 
     setSvg() {
@@ -265,9 +260,8 @@ export class LineGraphComponent extends BaseGraph implements AfterViewInit {
     }
 
     setDimensions(): void {
-        const wrapperClass: string =
-            '.graphs > * ' + '#' + this.config.name + this.config.order;
-        this.wrapperDimension = this.getDimension(wrapperClass);
+        this.wrapperClass = '.graphs > * ' + '#' + this.config.name + this.config.order;
+        this.wrapperDimension = this.getDimension(this.wrapperClass);
         this.innerWidth =
             this.wrapperDimension.width -
             (this.margin.left / this.wrapperDimension.width) * 100 -
