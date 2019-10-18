@@ -2,6 +2,8 @@ import { Component, AfterViewInit, ViewEncapsulation } from '@angular/core';
 import * as d3 from 'd3';
 import { BaseGraph } from '../base-graph';
 import { Dimension } from '../../../core/models/dimension';
+import { GraphItem } from 'src/app/core/models/chapter';
+import { Scales } from 'src/app/core/models/scales';
 
 @Component({
     selector: 'app-line-graph',
@@ -17,8 +19,7 @@ export class LineGraphComponent extends BaseGraph implements AfterViewInit {
     innerWidth: number;
     innerHeight: number;
     divId: string;
-    xScale;
-    yScale;
+    scales: Scales;
     xAxis;
     svg;
     g;
@@ -38,7 +39,7 @@ export class LineGraphComponent extends BaseGraph implements AfterViewInit {
             this.config = response;
             if (!this.instantiated) {
                 this.divId = '#' + this.config.name + this.config.order;
-                this.dataLinear = this.config.data;
+                this.dataLinear = this.config.graphItems[0].coordinates;
                 this.setDimensions();
                 this.instantiateGraph();
                 this.instantiated = true;
@@ -50,8 +51,7 @@ export class LineGraphComponent extends BaseGraph implements AfterViewInit {
     }
 
     updateGraph() {
-        this.xScale = this.getXscale();
-        this.yScale = this.getYScale();
+        this.getScales();
         this.xAxis = this.getXAxis();
         this.updateXAxis();
         this.updateLineGraph();
@@ -60,12 +60,19 @@ export class LineGraphComponent extends BaseGraph implements AfterViewInit {
 
     instantiateGraph(): void {
         this.setSvg();
-        this.xScale = this.getXscale();
-        this.yScale = this.getYScale();
+        this.getScales();
         this.xAxis = this.getXAxis();
         this.setGradient();
         this.setXAxis();
-        this.setLineGraph();
+
+        this.config.graphItems.forEach((graphItem: GraphItem, index: number) => {
+            if (index === 0) {
+                this.setLineGraph(graphItem);
+            }
+
+            graphItem.coordinates.forEach(x => (x.X = x.X + 100));
+            this.setLineGraph(graphItem);
+        });
         // this.setMeanLine();
         // this.setCursor();
         // this.setTitle();
@@ -106,12 +113,12 @@ export class LineGraphComponent extends BaseGraph implements AfterViewInit {
             .call(this.xAxis);
     }
 
-    setLineGraph(): void {
+    setLineGraph(graphItem: GraphItem): void {
         this.lineGenerator = d3
             .line()
             .curve(d3.curveCardinal)
-            .x(d => this.xScale(d['X']))
-            .y(d => this.yScale(d['Y']));
+            .x(d => this.scales.xScale(d['X']))
+            .y(d => this.scales.yScale(d['Y']));
 
         this.line = this.svg
             .append('g')
@@ -121,7 +128,10 @@ export class LineGraphComponent extends BaseGraph implements AfterViewInit {
             )
             .append('path')
             .classed('regression', true)
-            .attr('d', this.lineGenerator(this.dataLinear));
+            .attr('stroke', () => {
+                return this.scales.colorScale(graphItem.guid);
+            })
+            .attr('d', this.lineGenerator(graphItem.coordinates));
     }
 
     updateLineGraph() {
@@ -200,8 +210,8 @@ export class LineGraphComponent extends BaseGraph implements AfterViewInit {
 
         this.cursor
             .append('line')
-            .attr('x1', d => this.xScale(d.X))
-            .attr('x2', d => this.xScale(d.X))
+            .attr('x1', d => this.scales.xScale(d.X))
+            .attr('x2', d => this.scales.xScale(d.X))
             .attr('y1', 0)
             .attr('y2', -this.innerHeight)
             .attr('class', 'cursor-line')
@@ -212,7 +222,7 @@ export class LineGraphComponent extends BaseGraph implements AfterViewInit {
         this.cursor
             .append('text')
             .attr('class', 'cursor-text')
-            .attr('x', d => this.xScale(d.X))
+            .attr('x', d => this.scales.xScale(d.X))
             .attr('y', () => -this.innerHeight)
             .attr('dx', 10)
             .attr('dy', 10)
@@ -274,7 +284,7 @@ export class LineGraphComponent extends BaseGraph implements AfterViewInit {
 
     getXAxis() {
         return d3
-            .axisBottom(this.xScale)
+            .axisBottom(this.scales.xScale)
             .ticks(3)
             .tickSize(2, 0, 0)
             .tickSizeOuter(0);
@@ -287,7 +297,14 @@ export class LineGraphComponent extends BaseGraph implements AfterViewInit {
             .getBoundingClientRect();
     }
 
-    getXscale() {
+    getScales() {
+        this.scales = new Scales();
+        this.scales.colorScale = this.getColorScale();
+        this.scales.xScale = this.getXScale();
+        this.scales.yScale = this.getYScale();
+    }
+
+    getXScale() {
         return d3
             .scaleLinear()
             .domain([this.getMin('X'), this.getMax('X')])
@@ -301,6 +318,12 @@ export class LineGraphComponent extends BaseGraph implements AfterViewInit {
             .range([this.innerHeight, 0]);
     }
 
+    getColorScale() {
+        return d3
+            .scaleOrdinal(d3.schemeCategory10)
+            .domain(this.config.graphItems.map(x => x.guid));
+    }
+
     getMin(axis: string): number {
         const xArr = this.dataLinear.map(coor => coor[axis]);
         return Math.min.apply(Math, xArr);
@@ -312,7 +335,7 @@ export class LineGraphComponent extends BaseGraph implements AfterViewInit {
     }
 
     getWeightedMean(): number {
-        return this.xScale(
+        return this.scales.xScale(
             d3.sum(this.dataLinear, d => d.X * d.Y) / d3.sum(this.dataLinear, d => d.Y)
         );
     }

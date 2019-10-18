@@ -27,6 +27,17 @@ export class ChapterInput extends ChapterElement {
 }
 
 export class ChapterGraph extends ChapterElement {
-    data?: any[];
+    graphItems: GraphItem[];
     graphs?: ChapterGraph[];
+}
+
+export class GraphItem {
+    guid: string;
+    coordinates: Coordinates[];
+}
+
+export class Coordinates {
+    X: number;
+    Y: number;
+    C: number;
 }
