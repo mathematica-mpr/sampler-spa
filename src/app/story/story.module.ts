@@ -9,6 +9,7 @@ import { RangeInputComponent } from '../shared/input/range-input/range-input.com
 import { ModelPerformanceGraphComponent } from '../shared/graph/model-performance-graph/model-performance-graph.component';
 import { StoryViewComponent } from './story-view/story-view.component';
 import { StoryRoutingModule } from './story-routing.module';
+import { MenuComponent } from '../shared/menu/menu.component';
 
 @NgModule({
     imports: [SharedModule, StoryRoutingModule],

@@ -10,6 +10,7 @@ import { ConfusionErrorInputComponent } from './input/confusion-error-input/conf
 import { RangeInputComponent } from './input/range-input/range-input.component';
 import { ModelPerformanceGraphComponent } from './graph/model-performance-graph/model-performance-graph.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
     imports: [CommonModule, ReactiveFormsModule, FormsModule],
@@ -22,7 +23,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
         ConfusionErrorGraphComponent,
         ConfusionErrorInputComponent,
         RangeInputComponent,
-        ModelPerformanceGraphComponent
+        ModelPerformanceGraphComponent,
+        MenuComponent
     ],
     exports: [
         CommonModule,
@@ -36,7 +38,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
         ConfusionErrorGraphComponent,
         ConfusionErrorInputComponent,
         RangeInputComponent,
-        ModelPerformanceGraphComponent
+        ModelPerformanceGraphComponent,
+        MenuComponent
     ]
 })
 export class SharedModule {}

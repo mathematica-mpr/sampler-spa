@@ -1,0 +1,14 @@
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+
+  <div class="inputs" *ngIf="inputs">
+      <div class="item input-item" *ngFor="let inputItem of inputItems">
+          <app-chapter-item [chapterItem]="inputItem"></app-chapter-item>
+      </div>
+  </div>  
+
+</div>
+
+<span (click)="openNav()"><i class="material-icons">
+  menu
+  </i></span>
