@@ -22,7 +22,7 @@ export class ChapterService {
     }
 
     initChapter(curChapter: number): void {
-        this.http.get(this.chapterUrl + curChapter).subscribe((response: Chapter) => {
+        this.http.get(this.chapterUrl + 'init').subscribe((response: Chapter) => {
             this.chapter.next(response);
         });
     }

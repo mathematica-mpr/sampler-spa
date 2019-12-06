@@ -1,5 +1,9 @@
 <div class="story-view" *ngIf="init">
-  <app-menu [inputs]="chapter.inputs"></app-menu>
+
+  <div class="main-menu">
+    <app-story-view-menu [menus]="chapter.menus"></app-story-view-menu>
+  </div>
+  
 
   <div class="graphs" *ngIf="chapter.graphs">
       <div class="item graph-item" *ngFor="let graph of graphs" [id]="graph.chapterElement.value.name + graph.chapterElement.value.order">

@@ -3,10 +3,14 @@ export class Chapter {
     name: string;
     order: number;
     descriptions: ChapterDescription[];
-    inputs: ChapterInput[];
+    menus: Menu[];
     graphs: ChapterGraph[];
 }
 
+export class Menu {
+    guid: string;
+    inputs: ChapterInput[];
+}
 export class ChapterElement {
     name: string;
     title: string;
@@ -24,6 +28,7 @@ export class ChapterInput extends ChapterElement {
     min?: number;
     init?: number;
     step?: number;
+    value: number;
 }
 
 export class ChapterGraph extends ChapterElement {

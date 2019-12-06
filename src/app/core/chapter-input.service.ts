@@ -28,7 +28,7 @@ export class ChapterInputService {
     }
 
     getFormControl(chapterInput: ChapterInput): FormControl {
-        let initVal = chapterInput.init ? chapterInput.init : null;
+        const initVal = chapterInput.value ? chapterInput.value : null;
         return new FormControl(initVal);
     }
 }

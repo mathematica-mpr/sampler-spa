@@ -1,17 +1,18 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ChapterItem } from 'src/app/core/models/chapter-item';
 import { ChapterInputService } from 'src/app/core/chapter-input.service';
-import { ChapterInput } from 'src/app/core/models/chapter';
+import { ChapterInput, Menu } from 'src/app/core/models/chapter';
 import { ChapterService } from 'src/app/core/chapter.service';
 
 @Component({
     selector: 'app-menu',
     templateUrl: './menu.component.html',
-    styleUrls: ['./menu.component.css']
+    styleUrls: ['./menu.component.css'],
+    providers: [ChapterInputService]
 })
 export class MenuComponent implements OnInit {
-    @Input() inputs: ChapterInput[];
-    inputItems: ChapterItem[];
+    @Input() menu: Menu;
+    chapterItems: ChapterItem[];
 
     constructor(
         private chapterInputService: ChapterInputService,
@@ -19,20 +20,10 @@ export class MenuComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.chapterInputService.getInputFormGroup(this.inputs);
-        this.inputItems = this.chapterService.getChapterItems(this.inputs);
-
+        this.chapterInputService.getInputFormGroup(this.menu.inputs);
+        this.chapterItems = this.chapterService.getChapterItems(this.menu.inputs);
         this.chapterInputService.inputFormGroup.valueChanges.subscribe(values =>
-            console.log(values)
+            console.log(this.menu.guid, values)
         );
-    }
-
-    openNav() {
-        document.getElementById('mySidenav').style.width = '250px';
-    }
-
-    /* Set the width of the side navigation to 0 */
-    closeNav() {
-        document.getElementById('mySidenav').style.width = '0';
     }
 }
