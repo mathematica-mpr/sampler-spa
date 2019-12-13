@@ -3,6 +3,7 @@ import { ChapterItem } from 'src/app/core/models/chapter-item';
 import { ChapterInputService } from 'src/app/core/chapter-input.service';
 import { ChapterInput, Menu } from 'src/app/core/models/chapter';
 import { ChapterService } from 'src/app/core/chapter.service';
+import { MenuService } from './menu.service';
 
 @Component({
     selector: 'app-menu',
@@ -16,7 +17,8 @@ export class MenuComponent implements OnInit {
 
     constructor(
         private chapterInputService: ChapterInputService,
-        private chapterService: ChapterService
+        private chapterService: ChapterService,
+        public menuService: MenuService
     ) {}
 
     ngOnInit() {
@@ -25,5 +27,9 @@ export class MenuComponent implements OnInit {
         this.chapterInputService.inputFormGroup.valueChanges.subscribe(values =>
             console.log(this.menu.guid, values)
         );
+    }
+
+    onRemoveMenu(guid: string): void {
+        this.menuService.removeMenu(guid);
     }
 }
