@@ -52,13 +52,9 @@ export class LineGraphComponent extends BaseGraph implements AfterViewInit {
     instantiateGraph(): void {
         this.setSvg();
         this.setXAxis();
+        console.log(this.graphService.config);
         this.graphService.config.graphItems.forEach(
             (graphItem: GraphItem, index: number) => {
-                if (index === 0) {
-                    this.setLineGraph(graphItem);
-                }
-
-                graphItem.coordinates.forEach(x => (x.X = x.X + 100));
                 this.setLineGraph(graphItem);
             }
         );
