@@ -1,9 +1,9 @@
 import { Injectable, Type } from '@angular/core';
 import { Chapter, ChapterElement } from './models/chapter';
 import { ChapterItem } from './models/chapter-item';
-import { ChapterItemMap } from './chapter-item.resource';
 import { BehaviorSubject, of, Subject, Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { REGISTRY } from './chapter-item.resource';
 
 @Injectable({
     providedIn: 'root'
@@ -47,7 +47,7 @@ export class ChapterService {
     }
 
     getComponentType(chapterElementType: string): Type<any> {
-        return ChapterItemMap[chapterElementType];
+        return REGISTRY[chapterElementType];
     }
 
     getChapterItems(chapterElements: ChapterElement[]): ChapterItem[] {

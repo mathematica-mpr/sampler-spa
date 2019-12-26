@@ -7,7 +7,7 @@ import { ConfusionErrorInputComponent } from '../shared/input/confusion-error-in
 import { RangeInputComponent } from '../shared/input/range-input/range-input.component';
 import { ModelPerformanceGraphComponent } from '../shared/graph/model-performance-graph/model-performance-graph.component';
 
-export const ChapterItemMap: { [key: string]: Type<any> } = {
+export const REGISTRY: { [key: string]: Type<any> } = {
     SectionDescription: SectionDescriptionComponent,
     NumberInput: NumberInputComponent,
     LineGraph: LineGraphComponent,

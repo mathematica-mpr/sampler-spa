@@ -1,6 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Menu } from 'src/app/core/models/chapter';
-import { MenuService } from 'src/app/shared/menu/menu.service';
+import { Component, OnInit } from '@angular/core';
+import { MenuService } from 'src/app/core/menu.service';
 
 @Component({
     selector: 'app-story-view-menu',
@@ -24,5 +23,9 @@ export class StoryViewMenuComponent implements OnInit {
 
     onAddMenu(): void {
         this.menuService.addMenu();
+    }
+
+    onInputChange(event) {
+        //updateGraph()
     }
 }

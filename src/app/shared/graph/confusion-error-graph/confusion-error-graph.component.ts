@@ -12,7 +12,7 @@ import { ZoomService } from 'src/app/core/zoom.service';
     encapsulation: ViewEncapsulation.None
 })
 export class ConfusionErrorGraphComponent extends CompositeGraph implements OnInit {
-    graphs: BehaviorSubject<ChapterElement>[] = [];
+    graphs: ChapterElement[] = [];
     instantiated = false;
     hoveredId = null;
     zoomedId = null;
@@ -21,18 +21,16 @@ export class ConfusionErrorGraphComponent extends CompositeGraph implements OnIn
     }
 
     ngOnInit() {
-        this.config$.subscribe(response => {
-            if (!this.instantiated) {
-                response.graphs.forEach(graph => {
-                    this.graphs.push(new BehaviorSubject(graph));
-                });
-                this.instantiated = true;
-            } else {
-                response.graphs.forEach((graph, i) => {
-                    this.graphs[i].next(graph);
-                });
-            }
-        });
+        if (!this.instantiated) {
+            this.config.graphs.forEach(graph => {
+                this.graphs.push(graph);
+            });
+            this.instantiated = true;
+        } else {
+            this.config.graphs.forEach((graph, i) => {
+                this.graphs[i] = graph;
+            });
+        }
     }
 
     onClick(id: String) {

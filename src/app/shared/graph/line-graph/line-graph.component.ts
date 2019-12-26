@@ -28,19 +28,17 @@ export class LineGraphComponent extends BaseGraph implements AfterViewInit {
     }
 
     ngAfterViewInit(): void {
-        this.config$.subscribe(response => {
-            this.graphService.config = response;
-            if (!this.instantiated) {
-                this.divId =
-                    '#' + this.graphService.config.name + this.graphService.config.order;
-                this.graphService.setDimensions();
-                this.graphService.setScales();
-                this.instantiateGraph();
-                this.instantiated = true;
-            } else {
-                this.updateGraph();
-            }
-        });
+        this.graphService.config = this.config;
+        if (!this.instantiated) {
+            this.divId =
+                '#' + this.graphService.config.name + this.graphService.config.order;
+            this.graphService.setDimensions();
+            this.graphService.setScales();
+            this.instantiateGraph();
+            this.instantiated = true;
+        } else {
+            this.updateGraph();
+        }
     }
 
     updateGraph() {

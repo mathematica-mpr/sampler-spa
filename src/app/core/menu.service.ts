@@ -1,19 +1,22 @@
 import { MenuResource } from './menu.resource';
 import { Injectable } from '@angular/core';
-import { Menu } from '../../core/models/chapter';
+import { Menu } from './models/chapter';
+import { GraphsService } from './graphs.service';
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 export class MenuService {
     menus: Menu[] = [];
 
-    constructor(private menuResource: MenuResource) {}
+    constructor(
+        private menuResource: MenuResource,
+        private graphsService: GraphsService
+    ) {}
 
     addMenu(): void {
         this.menuResource.getMenu().subscribe((menu: Menu) => {
-            console.log(menu);
+            // TODO: refactor so it passes the input initial values here
             this.menus.push(menu);
+            this.graphsService.addGraph(menu.guid);
         });
     }
 

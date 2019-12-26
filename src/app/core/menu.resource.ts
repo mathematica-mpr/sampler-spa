@@ -1,10 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Menu } from '../../core/models/chapter';
+import { Menu } from './models/chapter';
 import { Injectable } from '@angular/core';
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 export class MenuResource {
     menuUrl = 'http://localhost:5000/api/menu';
 

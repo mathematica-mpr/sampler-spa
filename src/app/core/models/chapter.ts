@@ -4,7 +4,7 @@ export class Chapter {
     order: number;
     descriptions: ChapterDescription[];
     menus: Menu[];
-    graphs: ChapterGraph[];
+    graphs: Graph[];
 }
 
 export class Menu {
@@ -31,9 +31,9 @@ export class ChapterInput extends ChapterElement {
     value: number;
 }
 
-export class ChapterGraph extends ChapterElement {
+export class Graph extends ChapterElement {
     graphItems: GraphItem[];
-    graphs?: ChapterGraph[];
+    graphs?: Graph[];
 }
 
 export class GraphItem {

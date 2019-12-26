@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Dimension } from './models/dimension';
 import * as d3 from 'd3';
 import { Scales } from './models/scales';
+import { GraphResource } from './graph.resource';
 
 @Injectable({
     providedIn: 'root'

@@ -1,15 +1,14 @@
 import { Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ChapterInputService } from '../../core/chapter-input.service';
+import { MenuInputService } from '../../core/menu-input.service';
 import { ChapterInput } from '../../core/models/chapter';
 import { BehaviorSubject } from 'rxjs';
 
 export class BaseInput {
-    @Input() config$: BehaviorSubject<ChapterInput>;
-    config: ChapterInput;
+    @Input() config: ChapterInput;
     chapterInputForm: FormGroup;
 
-    constructor(private chapterInputService: ChapterInputService) {
+    constructor(private chapterInputService: MenuInputService) {
         this.chapterInputForm = this.chapterInputService.inputFormGroup;
     }
 }

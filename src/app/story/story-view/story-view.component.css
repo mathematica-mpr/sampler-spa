@@ -6,30 +6,6 @@
     height: 100%;
 }
 
-.graphs {
-    display: flex;
-    flex-direction: column;
-    flex: 1 100%;
-}
-
-.item {
-    display: flex;
-    flex-direction: column;
-    flex: 1 100%;
-}
-
-app-chapter-item {
-    display: flex;
-    flex: 1 100%;
-    flex-direction: column;
-}
-
-app-chapter-item > * {
-    display: flex;
-    flex: 1 100%;
-    flex-direction: column;
-}
-
 .loader-container {
     display: grid;
     justify-items: center;

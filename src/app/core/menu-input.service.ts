@@ -5,15 +5,15 @@ import { FormGroup, FormControl } from '@angular/forms';
 @Injectable({
     providedIn: 'root'
 })
-export class ChapterInputService {
+export class MenuInputService {
     inputFormGroup: FormGroup = new FormGroup({});
 
     constructor() {}
 
-    getInputFormGroup(chapterInputs: ChapterInput[]): void {
+    setInputFormGroup(chapterInputs: ChapterInput[]): void {
         chapterInputs.forEach((chapterInput: ChapterInput) => {
             if (chapterInput.inputs) {
-                this.getInputFormGroup(chapterInput.inputs);
+                this.setInputFormGroup(chapterInput.inputs);
             } else {
                 this.addControl(chapterInput);
             }

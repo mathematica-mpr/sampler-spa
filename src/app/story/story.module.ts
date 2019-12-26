@@ -10,10 +10,11 @@ import { ModelPerformanceGraphComponent } from '../shared/graph/model-performanc
 import { StoryViewComponent } from './story-view/story-view.component';
 import { StoryRoutingModule } from './story-routing.module';
 import { StoryViewMenuComponent } from './story-view/story-view-menu/story-view-menu.component';
+import { StoryViewGraphsComponent } from './story-view/story-view-graphs/story-view-graphs.component';
 
 @NgModule({
     imports: [SharedModule, StoryRoutingModule],
-    declarations: [StoryViewComponent, StoryViewMenuComponent],
+    declarations: [StoryViewComponent, StoryViewMenuComponent, StoryViewGraphsComponent],
     entryComponents: [
         NumberInputComponent,
         SectionDescriptionComponent,

@@ -17,17 +17,17 @@ export class ModelPerformanceGraphComponent extends CompositeGraph implements On
     }
 
     ngOnInit() {
-        this.config$.subscribe(response => {
-            if (!this.instantiated) {
-                response.graphs.forEach(graph => {
-                    this.graphs.push(new BehaviorSubject(graph));
-                });
-                this.instantiated = true;
-            } else {
-                response.graphs.forEach((graph, i) => {
-                    this.graphs[i].next(graph);
-                });
-            }
-        });
+        // this.config$.subscribe(response => {
+        //     if (!this.instantiated) {
+        //         response.graphs.forEach(graph => {
+        //             this.graphs.push(new BehaviorSubject(graph));
+        //         });
+        //         this.instantiated = true;
+        //     } else {
+        //         response.graphs.forEach((graph, i) => {
+        //             this.graphs[i].next(graph);
+        //         });
+        //     }
+        // });
     }
 }
