@@ -24,4 +24,9 @@ export class GraphsService {
     updateGraph() {}
 
     removeGraph() {}
+
+    setGraphData(graphsOld: Graph[], graphNew: Graph) {
+        // TODO maybe setGraphs Data here instead of backend
+        // backend only return Simulation
+    }
 }

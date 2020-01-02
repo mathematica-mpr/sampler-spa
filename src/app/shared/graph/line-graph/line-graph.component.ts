@@ -52,7 +52,6 @@ export class LineGraphComponent extends BaseGraph implements AfterViewInit {
     instantiateGraph(): void {
         this.setSvg();
         this.setXAxis();
-        console.log(this.graphService.config);
         this.graphService.config.graphItems.forEach(
             (graphItem: GraphItem, index: number) => {
                 this.setLineGraph(graphItem);
