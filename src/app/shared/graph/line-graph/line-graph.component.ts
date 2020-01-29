@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewEncapsulation } from '@angular/core';
+import { Component, AfterViewInit, ViewEncapsulation, DoCheck } from '@angular/core';
 import * as d3 from 'd3';
 import { BaseGraph } from '../base-graph';
 import { GraphItem } from 'src/app/core/models/chapter';
@@ -11,7 +11,7 @@ import { GraphService } from 'src/app/core/graph.service';
     encapsulation: ViewEncapsulation.None,
     providers: [GraphService]
 })
-export class LineGraphComponent extends BaseGraph implements AfterViewInit {
+export class LineGraphComponent extends BaseGraph implements AfterViewInit, DoCheck {
     divId: string;
     xAxis;
     svg;
@@ -22,6 +22,7 @@ export class LineGraphComponent extends BaseGraph implements AfterViewInit {
     cursor;
     lineGenerator;
     instantiated = false;
+    nbLines;
 
     constructor(private graphService: GraphService) {
         super();
@@ -32,32 +33,43 @@ export class LineGraphComponent extends BaseGraph implements AfterViewInit {
         if (!this.instantiated) {
             this.divId =
                 '#' + this.graphService.config.name + this.graphService.config.order;
-            this.graphService.setDimensions();
-            this.graphService.setScales();
-            this.instantiateGraph();
+
+            this.setCanvas();
+            this.drawGraphs();
             this.instantiated = true;
-        } else {
-            this.updateGraph();
+            this.nbLines = this.config.graphItems.length;
         }
     }
 
-    updateGraph() {
+    ngDoCheck() {
+        if (this.instantiated && this.config.graphItems.length !== this.nbLines) {
+            this.nbLines = this.config.graphItems.length;
+            this.updateGraphs();
+        }
+    }
+
+    updateGraphs() {
         this.graphService.setScales();
         this.xAxis = this.getXAxis();
         this.updateXAxis();
-        // this.updateLineGraph();
-        // this.updateMeanLine();
+        this.drawGraphs();
     }
 
-    instantiateGraph(): void {
+    setCanvas(): void {
+        this.graphService.setDimensions();
+        this.graphService.setScales();
         this.setSvg();
         this.setXAxis();
+
+        // this.setMeanLine();
+    }
+
+    drawGraphs(): void {
         this.graphService.config.graphItems.forEach(
             (graphItem: GraphItem, index: number) => {
                 this.setLineGraph(graphItem);
             }
         );
-        // this.setMeanLine();
     }
 
     setSvg() {
