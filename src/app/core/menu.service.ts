@@ -22,5 +22,6 @@ export class MenuService {
     removeMenu(guid: string): void {
         const index: number = this.menus.findIndex((menu: Menu) => menu.guid === guid);
         this.menus.splice(index, 1);
+        this.graphsService.removeGraph(guid);
     }
 }
