@@ -5,6 +5,6 @@ export abstract class BaseGraph {
     @Input() config: Graph;
     constructor() {}
 
-    abstract instantiateGraph();
-    abstract updateGraph();
+    abstract setCanvas();
+    abstract updateGraphs();
 }
