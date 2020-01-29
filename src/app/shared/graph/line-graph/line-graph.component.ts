@@ -1,7 +1,6 @@
 import { Component, AfterViewInit, ViewEncapsulation, DoCheck } from '@angular/core';
 import * as d3 from 'd3';
 import { BaseGraph } from '../base-graph';
-import { GraphItem } from 'src/app/core/models/chapter';
 import { GraphService } from 'src/app/core/graph.service';
 
 @Component({
@@ -28,6 +27,7 @@ export class LineGraphComponent extends BaseGraph implements AfterViewInit, DoCh
         super();
     }
 
+    // runs at instantiation
     ngAfterViewInit(): void {
         this.graphService.config = this.config;
         if (!this.instantiated) {
@@ -35,12 +35,13 @@ export class LineGraphComponent extends BaseGraph implements AfterViewInit, DoCh
                 '#' + this.graphService.config.name + this.graphService.config.order;
 
             this.setCanvas();
-            this.drawGraphs();
+            this.setLineGraph();
             this.instantiated = true;
             this.nbLines = this.config.graphItems.length;
         }
     }
 
+    // runs when modification occurs
     ngDoCheck() {
         if (this.instantiated && this.config.graphItems.length !== this.nbLines) {
             this.nbLines = this.config.graphItems.length;
@@ -49,27 +50,14 @@ export class LineGraphComponent extends BaseGraph implements AfterViewInit, DoCh
     }
 
     updateGraphs() {
-        this.graphService.setScales();
-        this.xAxis = this.getXAxis();
-        this.updateXAxis();
-        this.drawGraphs();
+        // this.graphService.setScales();
+        this.setLineGraph();
     }
 
     setCanvas(): void {
         this.graphService.setDimensions();
         this.graphService.setScales();
         this.setSvg();
-        this.setXAxis();
-
-        // this.setMeanLine();
-    }
-
-    drawGraphs(): void {
-        this.graphService.config.graphItems.forEach(
-            (graphItem: GraphItem, index: number) => {
-                this.setLineGraph(graphItem);
-            }
-        );
     }
 
     setSvg() {
@@ -87,44 +75,7 @@ export class LineGraphComponent extends BaseGraph implements AfterViewInit, DoCh
             );
     }
 
-    setXAxis() {
-        this.xAxis = this.getXAxis();
-
-        this.svg
-            .append('g')
-            .attr('class', 'x-axis')
-            .attr(
-                'id',
-                x =>
-                    'x-axis' +
-                    this.graphService.config.name +
-                    this.graphService.config.order
-            )
-            .attr(
-                'transform',
-                'translate(' +
-                    this.graphService.margins.left +
-                    ',' +
-                    (this.graphService.innerDimensions.height +
-                        this.graphService.margins.top) +
-                    ')'
-            )
-            .call(this.xAxis);
-    }
-
-    updateXAxis() {
-        d3.select(
-            '#' +
-                'x-axis' +
-                this.graphService.config.name +
-                this.graphService.config.order
-        )
-            .transition()
-            .duration(750)
-            .call(this.xAxis);
-    }
-
-    setLineGraph(graphItem: GraphItem): void {
+    setLineGraph(): void {
         this.lineGenerator = d3
             .line()
             .curve(d3.curveCardinal)
@@ -132,21 +83,14 @@ export class LineGraphComponent extends BaseGraph implements AfterViewInit, DoCh
             .y(d => this.graphService.scales.yScale(d['Y']));
 
         this.line = this.svg
-            .append('g')
-            .attr(
-                'transform',
-                'translate(' +
-                    this.graphService.margins.left +
-                    ', ' +
-                    this.graphService.margins.top +
-                    ')'
-            )
-            .append('path')
+            .selectAll('path')
+            .data(this.graphService.config.graphItems)
+            .join('path')
             .classed('regression', true)
-            .attr('stroke', () => {
-                return this.graphService.scales.colorScale(graphItem.guid);
+            .attr('stroke', d => {
+                return this.graphService.scales.colorScale(d.guid);
             })
-            .attr('d', this.lineGenerator(graphItem.coordinates));
+            .attr('d', d => this.lineGenerator(d.coordinates));
     }
 
     // updateLineGraph() {
@@ -155,42 +99,4 @@ export class LineGraphComponent extends BaseGraph implements AfterViewInit, DoCh
     //         .duration(750)
     //         .attr('d', this.lineGenerator(graphItem.coordinates));
     // }
-
-    setMeanLine() {
-        this.mean = this.svg
-            .append('g')
-            .attr(
-                'transform',
-                'translate(' +
-                    this.graphService.margins.left +
-                    ',' +
-                    (this.graphService.innerDimensions.height +
-                        this.graphService.margins.top) +
-                    ')'
-            )
-            .append('line')
-            .attr('class', 'mean-line')
-            .attr('x1', d => this.getWeightedMean(d))
-            .attr('x2', d => this.getWeightedMean(d))
-            .attr('y1', 0)
-            .attr('y2', -this.graphService.innerDimensions.height)
-            .style('stroke-width', '0.25px')
-            .style('stroke', 'black')
-            .style('stroke-dasharray', '4,4')
-            .style('fill', 'none');
-    }
-
-    getXAxis() {
-        return d3
-            .axisBottom(this.graphService.scales.xScale)
-            .ticks(3)
-            .tickSize(2, 0, 0)
-            .tickSizeOuter(0);
-    }
-
-    getWeightedMean(coordinates: Coordinates): number {
-        return this.graphService.scales.xScale(
-            d3.sum(coordinates, d => d.X * d.Y) / d3.sum(coordinates, d => d.Y)
-        );
-    }
 }

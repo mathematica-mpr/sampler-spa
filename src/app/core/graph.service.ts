@@ -19,7 +19,9 @@ export class GraphService {
 
     setScales() {
         this.scales = new Scales();
-        this.scales.colorScale = this.getColorScale();
+        if (!this.scales.colorScale) {
+            this.scales.colorScale = this.getColorScale();
+        }
         this.scales.xScale = this.getXScale();
         this.scales.yScale = this.getYScale();
     }
