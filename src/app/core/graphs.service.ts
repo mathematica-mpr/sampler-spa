@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Graph } from './models/chapter';
+import { Graph, GraphItem } from './models/chapter';
 import { GraphResource } from './graph.resource';
 
 @Injectable()
@@ -28,7 +28,24 @@ export class GraphsService {
 
     updateGraph() {}
 
-    removeGraph() {}
+    removeGraph(guid: string) {
+        this.graphs.forEach((graph: Graph) => {
+            this.removeGraphItem(graph, guid);
+        });
+    }
+
+    removeGraphItem(graph: Graph, guid: string) {
+        if (graph.graphs.length === 0) {
+            const index: number = graph.graphItems.findIndex(
+                (item: GraphItem) => item.guid === guid
+            );
+            graph.graphItems.splice(index, 1);
+        } else {
+            graph.graphs.forEach((graph: Graph) => {
+                this.removeGraphItem(graph, guid);
+            });
+        }
+    }
 
     addGraphItem(currParent: Graph, newParent: Graph) {
         if (newParent.graphs.length === 0) {
