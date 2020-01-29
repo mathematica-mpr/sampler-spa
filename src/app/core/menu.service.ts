@@ -14,7 +14,6 @@ export class MenuService {
 
     addMenu(): void {
         this.menuResource.getMenu().subscribe((menu: Menu) => {
-            // TODO: refactor so it passes the input initial values here
             this.menus.push(menu);
             this.graphsService.addGraph(menu.guid);
         });
