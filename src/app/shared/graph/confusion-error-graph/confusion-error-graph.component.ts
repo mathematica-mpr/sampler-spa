@@ -1,6 +1,5 @@
 import { Component, OnInit, ElementRef, ViewEncapsulation } from '@angular/core';
 import { CompositeGraph } from '../composite-graph';
-import { BehaviorSubject } from 'rxjs';
 import { ChapterElement } from '../../../core/models/chapter';
 import * as d3 from 'd3';
 import { ZoomService } from 'src/app/core/zoom.service';
