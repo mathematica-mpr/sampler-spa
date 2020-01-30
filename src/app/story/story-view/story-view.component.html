@@ -1,23 +1,14 @@
 <div class="story-view" *ngIf="init">
-  <!-- <div class="description" *ngIf="chapter.descriptions">
-      <div class="item description-item" *ngFor="let description of descriptions">
-          <app-chapter-item [chapterItem]="description"></app-chapter-item>
-      </div>
+
+  <div class="main-menu">
+    <app-story-view-menu></app-story-view-menu>
   </div>
-  <div class="inputs" *ngIf="chapter.inputs">
-        <div class="item input-item" *ngFor="let input of inputs" >
-          <app-chapter-item [chapterItem]="input"></app-chapter-item>
-      </div>
-  </div> -->
-  <div class="graphs" *ngIf="chapter.graphs">
-      <div class="item graph-item" *ngFor="let graph of graphs" [id]="graph.chapterElement.value.name + graph.chapterElement.value.order">
-          <app-chapter-item [chapterItem]="graph"></app-chapter-item>
-      </div>
+  
+
+  <div class="graphs">
+    <app-story-view-graphs></app-story-view-graphs>
   </div>  
 </div>
-
-
-
 
 <div *ngIf="!init" class="loader-container">
   <div class="loader" ></div>

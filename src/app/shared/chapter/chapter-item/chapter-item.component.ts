@@ -3,10 +3,14 @@ import {
     OnInit,
     Input,
     ViewChild,
-    ComponentFactoryResolver
+    ComponentFactoryResolver,
+    Type
 } from '@angular/core';
 import { ChapterItem } from '../../../core/models/chapter-item';
 import { ChapterDirective } from '../chapter.directive';
+import { REGISTRY } from 'src/app/core/chapter-item.resource';
+import { BehaviorSubject } from 'rxjs';
+import { ChapterElement } from 'src/app/core/models/chapter';
 
 @Component({
     selector: 'app-chapter-item',
@@ -14,7 +18,7 @@ import { ChapterDirective } from '../chapter.directive';
     styleUrls: ['./chapter-item.component.css']
 })
 export class ChapterItemComponent implements OnInit {
-    @Input() chapterItem: ChapterItem;
+    @Input() chapterItem: ChapterElement;
     @ViewChild(ChapterDirective) chapterHost: ChapterDirective;
 
     constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
@@ -25,15 +29,15 @@ export class ChapterItemComponent implements OnInit {
 
     loadComponent(): void {
         const componentFactory = this.componentFactoryResolver.resolveComponentFactory(
-            this.chapterItem.component
+            this.getComponent(this.chapterItem.type)
         );
-
         const viewContainerRef = this.chapterHost.viewContainerRef;
-
         viewContainerRef.clear();
-
         const component = viewContainerRef.createComponent(componentFactory);
+        component.instance['config'] = this.chapterItem;
+    }
 
-        component.instance['config$'] = this.chapterItem.chapterElement;
+    getComponent(chartType: string): Type<any> {
+        return REGISTRY[chartType];
     }
 }

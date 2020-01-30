@@ -1,0 +1,3 @@
+<div class="graph-item" *ngFor="let graph of graphsService.graphs" [id]="graph.name + graph.order">
+  <app-chapter-item [chapterItem]="graph"></app-chapter-item>
+</div>

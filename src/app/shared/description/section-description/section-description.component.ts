@@ -14,11 +14,7 @@ export class SectionDescriptionComponent extends BaseDescription
         super();
     }
 
-    ngOnInit() {
-        this.config$.subscribe(response => {
-            this.config = response;
-        });
-    }
+    ngOnInit() {}
 
     ngAfterViewInit(): void {
         d3.selectAll('.explanation')

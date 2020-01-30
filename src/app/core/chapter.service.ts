@@ -1,9 +1,9 @@
 import { Injectable, Type } from '@angular/core';
 import { Chapter, ChapterElement } from './models/chapter';
 import { ChapterItem } from './models/chapter-item';
-import { ChapterItemMap } from './chapter-item.resource';
 import { BehaviorSubject, of, Subject, Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { REGISTRY } from './chapter-item.resource';
 
 @Injectable({
     providedIn: 'root'
@@ -11,9 +11,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 export class ChapterService {
     chapter: BehaviorSubject<Chapter> = new BehaviorSubject(null);
 
-    chapterUrl =
-        'https://euuia3hh4m.execute-api.us-east-2.amazonaws.com/Prod/api/chapter/';
-    // chapterUrl = 'http://localhost:5000/api/chapter/';
+    // chapterUrl =
+    //     'https://euuia3hh4m.execute-api.us-east-2.amazonaws.com/Prod/api/chapter/';
+    chapterUrl = 'http://localhost:5000/api/chapter/';
 
     constructor(private http: HttpClient) {}
 
@@ -22,7 +22,7 @@ export class ChapterService {
     }
 
     initChapter(curChapter: number): void {
-        this.http.get(this.chapterUrl + curChapter).subscribe((response: Chapter) => {
+        this.http.get(this.chapterUrl + 'init').subscribe((response: Chapter) => {
             this.chapter.next(response);
         });
     }
@@ -34,8 +34,7 @@ export class ChapterService {
 
     getOptions(params: any) {
         return {
-            params: this.getParams(params),
-            headers: null // this.getHeader()
+            params: this.getParams(params)
         };
     }
 
@@ -48,7 +47,7 @@ export class ChapterService {
     }
 
     getComponentType(chapterElementType: string): Type<any> {
-        return ChapterItemMap[chapterElementType];
+        return REGISTRY[chapterElementType];
     }
 
     getChapterItems(chapterElements: ChapterElement[]): ChapterItem[] {

@@ -1,0 +1,10 @@
+
+<button *ngIf="menuService.menus.length > 0"  (click)="onRemoveMenu(menu.guid)">X</button>
+
+<div class="chapter chapter-item" *ngFor="let input of menu.inputs">
+    <app-chapter-item [chapterItem]="input"></app-chapter-item>
+</div>
+
+<hr>
+
+

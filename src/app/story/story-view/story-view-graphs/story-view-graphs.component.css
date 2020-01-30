@@ -1,0 +1,17 @@
+.graphs {
+    display: flex;
+    flex-direction: column;
+    flex: 1 100%;
+}
+
+app-chapter-item {
+    display: flex;
+    flex: 1 100%;
+    flex-direction: column;
+}
+
+app-chapter-item > * {
+    display: flex;
+    flex: 1 100%;
+    flex-direction: column;
+}

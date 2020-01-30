@@ -39,8 +39,8 @@
         '. headerPlus headerMinus . .'
         'rowPlus tp fp ppv fdr '
         'rowMinus fn  tn for npv'
-        '. sens fpr legend legend'
-        '. fnr spec legend legend';
+        '. sens fpr . .'
+        '. fnr spec . .';
     grid-column-gap: 2%;
     grid-row-gap: 2%;
     grid-template-columns: 15vw repeat(4, 19vw);

@@ -3,10 +3,14 @@ export class Chapter {
     name: string;
     order: number;
     descriptions: ChapterDescription[];
-    inputs: ChapterInput[];
-    graphs: ChapterGraph[];
+    menus: Menu[];
+    graphs: Graph[];
 }
 
+export class Menu {
+    guid: string;
+    inputs: ChapterInput[];
+}
 export class ChapterElement {
     name: string;
     title: string;
@@ -24,9 +28,22 @@ export class ChapterInput extends ChapterElement {
     min?: number;
     init?: number;
     step?: number;
+    value: number;
 }
 
-export class ChapterGraph extends ChapterElement {
-    data?: any[];
-    graphs?: ChapterGraph[];
+export class Graph extends ChapterElement {
+    graphItems: GraphItem[];
+    graphs?: Graph[];
+}
+
+export class GraphItem {
+    guid: string;
+    timeStamp: number;
+    coordinates: Coordinates[];
+}
+
+export class Coordinates {
+    X: number;
+    Y: number;
+    C: number;
 }
