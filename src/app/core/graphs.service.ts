@@ -28,11 +28,12 @@ export class GraphsService {
     }
 
     updateGraph(params: SimulateParams) {
-        console.log(this.graphs);
         this.graphResource.updateGraph(params).subscribe((graphs: Graph[]) => {
-            this.graphs = graphs;
+            graphs.forEach((graph: Graph) => {
+                const curr = this.graphs.find(x => x.name === graph.name);
+                this.addGraphItem(curr, graph);
+            });
         });
-        console.log(this.graphs);
     }
 
     removeGraph(guid: string) {
@@ -57,9 +58,9 @@ export class GraphsService {
     addGraphItem(currParent: Graph, newParent: Graph) {
         if (newParent.graphs.length === 0) {
             newParent.graphItems.forEach(item => {
-                let uniqueItem = currParent.graphItems.find(x => x.guid === item.guid);
+                const uniqueItem = currParent.graphItems.find(x => x.guid === item.guid);
                 if (uniqueItem) {
-                    uniqueItem = item;
+                    Object.assign(uniqueItem, item);
                 } else {
                     currParent.graphItems.push(item);
                 }

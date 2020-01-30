@@ -6,5 +6,6 @@ export abstract class BaseGraph {
     constructor() {}
 
     abstract setCanvas();
+    abstract addRemoveGraph();
     abstract updateGraphs();
 }

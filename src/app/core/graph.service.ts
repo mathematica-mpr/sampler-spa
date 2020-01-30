@@ -2,23 +2,22 @@ import { Injectable } from '@angular/core';
 import { Dimension } from './models/dimension';
 import * as d3 from 'd3';
 import { Scales } from './models/scales';
-import { GraphResource } from './graph.resource';
+import { Graph } from './models/chapter';
 
 @Injectable({
     providedIn: 'root'
 })
 export class GraphService {
-    config;
+    config: Graph;
     wrapperName: string;
     wrapperDimensions: Dimension;
     margins: Dimension = { top: 2, right: 1, bottom: 2, left: 1 };
     innerDimensions: Dimension;
-    scales: Scales;
+    scales: Scales = new Scales();
 
     constructor() {}
 
     setScales() {
-        this.scales = new Scales();
         if (!this.scales.colorScale) {
             this.scales.colorScale = this.getColorScale();
         }

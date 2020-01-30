@@ -46,23 +46,26 @@ export class LineGraphComponent extends BaseGraph implements AfterViewInit, DoCh
     ngDoCheck() {
         if (this.instantiated && this.config.graphItems.length !== this.nbLines) {
             this.nbLines = this.config.graphItems.length;
-            this.lastUpdated = this.config.graphItems[0].timeStamp;
+            this.lastUpdated = this.getLastUpdated();
+            this.addRemoveGraph();
+        } else if (this.instantiated && this.getLastUpdated() > this.lastUpdated) {
+            this.lastUpdated = this.getLastUpdated();
             this.updateGraphs();
-        } else if (
-            this.instantiated &&
-            this.config.graphItems[0].timeStamp > this.lastUpdated
-        ) {
-            this.lastUpdated = this.config.graphItems[0].timeStamp;
-            this.line
-                .transition()
-                .duration(750)
-                .attr('d', d => this.lineGenerator(d.coordinates));
         }
     }
 
-    updateGraphs() {
-        // this.graphService.setScales();
+    getLastUpdated(): number {
+        return this.config.graphItems.map(x => x.timeStamp).reduce((a, b) => a + b, 0);
+    }
+
+    addRemoveGraph() {
+        this.graphService.setScales();
         this.setLineGraph();
+    }
+
+    updateGraphs() {
+        this.graphService.setScales();
+        this.updateLineGraph();
     }
 
     setCanvas(): void {
@@ -93,31 +96,45 @@ export class LineGraphComponent extends BaseGraph implements AfterViewInit, DoCh
             .x(d => this.graphService.scales.xScale(d['X']))
             .y(d => this.graphService.scales.yScale(d['Y']));
 
-        let test = this.svg
+        this.line = this.svg
             .selectAll('path')
             .data(this.graphService.config.graphItems)
             .join('path')
             .classed('regression', true)
             .attr('stroke', d => {
                 return this.graphService.scales.colorScale(d.guid);
-            });
+            })
+            .attr('d', d => this.lineGenerator(d.coordinates));
+    }
 
-        this.line = test
+    updateLineGraph() {
+        this.line
             .transition()
             .duration(750)
             .attr('d', d => this.lineGenerator(d.coordinates));
     }
 
-    // updateLineGraph() {
-    //     this.line
-    //         .transition()
-    //         .duration(750)
-    //         .attr('d', this.lineGenerator(graphItem.coordinates));
-    // }
+    setXAxis() {
+        this.svg
+            .append('g')
+            .attr('class', 'x-axis')
+            .attr('id', x => 'x-axis' + this.config.name + this.config.order)
+            .attr(
+                'transform',
+                'translate(' +
+                    this.graphService.margins.left +
+                    ',' +
+                    (this.graphService.innerDimensions.height +
+                        this.graphService.margins.top) +
+                    ')'
+            )
+            .call(this.xAxis);
+    }
 
-    ngOnDestroy(): void {
-        //Called once, before the instance is destroyed.
-        //Add 'implements OnDestroy' to the class.
-        console.log('Im being destroyed');
+    getXAxis() {
+        return d3
+            .axisBottom(this.graphService.scales.xScale)
+            .ticks(3)
+            .tickSizeOuter(0);
     }
 }
