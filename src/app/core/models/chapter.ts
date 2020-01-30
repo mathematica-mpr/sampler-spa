@@ -38,6 +38,7 @@ export class Graph extends ChapterElement {
 
 export class GraphItem {
     guid: string;
+    timeStamp: number;
     coordinates: Coordinates[];
 }
 

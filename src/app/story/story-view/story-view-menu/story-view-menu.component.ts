@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from 'src/app/core/menu.service';
+import { GraphsService } from 'src/app/core/graphs.service';
+import { SimulateParams } from 'src/app/core/models/simulate-params';
 
 @Component({
     selector: 'app-story-view-menu',
@@ -7,7 +9,7 @@ import { MenuService } from 'src/app/core/menu.service';
     styleUrls: ['./story-view-menu.component.css']
 })
 export class StoryViewMenuComponent implements OnInit {
-    constructor(public menuService: MenuService) {}
+    constructor(public menuService: MenuService, private graphsService: GraphsService) {}
 
     ngOnInit(): void {
         this.menuService.addMenu();
@@ -25,7 +27,8 @@ export class StoryViewMenuComponent implements OnInit {
         this.menuService.addMenu();
     }
 
-    onInputChange(event) {
+    onInputChange(params: SimulateParams) {
+        this.graphsService.updateGraph(params);
         //updateGraph()
     }
 }

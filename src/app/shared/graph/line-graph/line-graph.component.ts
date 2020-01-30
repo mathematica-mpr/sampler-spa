@@ -22,6 +22,7 @@ export class LineGraphComponent extends BaseGraph implements AfterViewInit, DoCh
     lineGenerator;
     instantiated = false;
     nbLines;
+    lastUpdated = 0;
 
     constructor(private graphService: GraphService) {
         super();
@@ -45,7 +46,17 @@ export class LineGraphComponent extends BaseGraph implements AfterViewInit, DoCh
     ngDoCheck() {
         if (this.instantiated && this.config.graphItems.length !== this.nbLines) {
             this.nbLines = this.config.graphItems.length;
+            this.lastUpdated = this.config.graphItems[0].timeStamp;
             this.updateGraphs();
+        } else if (
+            this.instantiated &&
+            this.config.graphItems[0].timeStamp > this.lastUpdated
+        ) {
+            this.lastUpdated = this.config.graphItems[0].timeStamp;
+            this.line
+                .transition()
+                .duration(750)
+                .attr('d', d => this.lineGenerator(d.coordinates));
         }
     }
 
@@ -82,14 +93,18 @@ export class LineGraphComponent extends BaseGraph implements AfterViewInit, DoCh
             .x(d => this.graphService.scales.xScale(d['X']))
             .y(d => this.graphService.scales.yScale(d['Y']));
 
-        this.line = this.svg
+        let test = this.svg
             .selectAll('path')
             .data(this.graphService.config.graphItems)
             .join('path')
             .classed('regression', true)
             .attr('stroke', d => {
                 return this.graphService.scales.colorScale(d.guid);
-            })
+            });
+
+        this.line = test
+            .transition()
+            .duration(750)
             .attr('d', d => this.lineGenerator(d.coordinates));
     }
 
@@ -99,4 +114,10 @@ export class LineGraphComponent extends BaseGraph implements AfterViewInit, DoCh
     //         .duration(750)
     //         .attr('d', this.lineGenerator(graphItem.coordinates));
     // }
+
+    ngOnDestroy(): void {
+        //Called once, before the instance is destroyed.
+        //Add 'implements OnDestroy' to the class.
+        console.log('Im being destroyed');
+    }
 }

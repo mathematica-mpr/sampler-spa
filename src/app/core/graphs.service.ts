@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Graph, GraphItem } from './models/chapter';
 import { GraphResource } from './graph.resource';
+import { SimulateParams } from './models/simulate-params';
 
 @Injectable()
 export class GraphsService {
@@ -26,7 +27,13 @@ export class GraphsService {
         );
     }
 
-    updateGraph() {}
+    updateGraph(params: SimulateParams) {
+        console.log(this.graphs);
+        this.graphResource.updateGraph(params).subscribe((graphs: Graph[]) => {
+            this.graphs = graphs;
+        });
+        console.log(this.graphs);
+    }
 
     removeGraph(guid: string) {
         this.graphs.forEach((graph: Graph) => {
@@ -41,8 +48,8 @@ export class GraphsService {
             );
             graph.graphItems.splice(index, 1);
         } else {
-            graph.graphs.forEach((graph: Graph) => {
-                this.removeGraphItem(graph, guid);
+            graph.graphs.forEach((g: Graph) => {
+                this.removeGraphItem(g, guid);
             });
         }
     }

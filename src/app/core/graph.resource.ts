@@ -15,9 +15,9 @@ export class GraphResource {
         return this.http.get<Graph[]>(this.graphUrl, options);
     }
 
-    updateGraph(params: SimulateParams): Observable<Graph> {
+    updateGraph(params: SimulateParams): Observable<Graph[]> {
         const options = this.getOptions(params);
-        return this.http.get<Graph>(this.graphUrl + '/update', options);
+        return this.http.get<Graph[]>(this.graphUrl + '/update', options);
     }
 
     getOptions(params: any) {
