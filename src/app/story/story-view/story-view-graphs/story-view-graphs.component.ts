@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { GraphsService } from 'src/app/core/graphs.service';
 
 @Component({
@@ -6,8 +6,6 @@ import { GraphsService } from 'src/app/core/graphs.service';
     templateUrl: './story-view-graphs.component.html',
     styleUrls: ['./story-view-graphs.component.css']
 })
-export class StoryViewGraphsComponent implements OnInit {
+export class StoryViewGraphsComponent {
     constructor(public graphsService: GraphsService) {}
-
-    ngOnInit() {}
 }
