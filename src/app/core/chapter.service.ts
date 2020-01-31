@@ -11,9 +11,9 @@ import { REGISTRY } from './chapter-item.resource';
 export class ChapterService {
     chapter: BehaviorSubject<Chapter> = new BehaviorSubject(null);
 
-    // chapterUrl =
-    //     'https://euuia3hh4m.execute-api.us-east-2.amazonaws.com/Prod/api/chapter/';
-    chapterUrl = 'http://localhost:5000/api/chapter/';
+    chapterUrl =
+        'https://g15m5ndpj5.execute-api.us-east-2.amazonaws.com/Prod/api/chapter/';
+    // chapterUrl = 'http://localhost:5000/api/chapter/';
 
     constructor(private http: HttpClient) {}
 
