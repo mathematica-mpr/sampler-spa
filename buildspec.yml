@@ -15,6 +15,6 @@ phases:
 
 artifacts:
     files:
-        - '/'
+        - 'rare-app-SPA/'
     base-directory: 'dist*'
     discard-paths: yes
