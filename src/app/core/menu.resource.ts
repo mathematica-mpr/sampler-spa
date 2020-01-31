@@ -4,7 +4,7 @@ import { Menu } from './models/chapter';
 import { Injectable } from '@angular/core';
 @Injectable()
 export class MenuResource {
-    menuUrl = 'http://localhost:5000/api/menu';
+    menuUrl = 'https://g15m5ndpj5.execute-api.us-east-2.amazonaws.com/Prod/api/menu';
 
     constructor(private http: HttpClient) {}
 

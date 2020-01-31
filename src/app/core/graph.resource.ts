@@ -6,7 +6,7 @@ import { SimulateParams } from './models/simulate-params';
 
 @Injectable()
 export class GraphResource {
-    graphUrl = 'http://localhost:5000/api/graph';
+    graphUrl = 'https://g15m5ndpj5.execute-api.us-east-2.amazonaws.com/Prod/api/graph';
 
     constructor(private http: HttpClient) {}
 
