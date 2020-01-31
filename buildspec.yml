@@ -11,10 +11,10 @@ phases:
     build:
         commands:
             - echo Build started on `date`
-            - ng build --prod --aot
+            - ng build --prod --aot --base-href /rare-app-SPA/
 
 artifacts:
     files:
-        - 'rare-app-SPA/'
+        - '/'
     base-directory: 'dist*'
     discard-paths: yes
