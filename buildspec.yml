@@ -14,5 +14,7 @@ phases:
             - ng build --prod --aot
 
 artifacts:
+    files:
+        - '/'
     base-directory: 'dist*'
     discard-paths: yes
