@@ -23,6 +23,11 @@ export class LineGraphComponent extends BaseGraph implements AfterViewInit, DoCh
     instantiated = false;
     nbLines;
     lastUpdated = 0;
+    focus;
+    focusText;
+    bisect;
+    rect;
+    legend;
 
     constructor(private graphService: GraphService) {
         super();
@@ -105,6 +110,44 @@ export class LineGraphComponent extends BaseGraph implements AfterViewInit, DoCh
                 return this.graphService.scales.colorScale(d.guid);
             })
             .attr('d', d => this.lineGenerator(d.coordinates));
+
+        // This allows to find the closest X index of the mouse:
+        this.bisect = d3.bisector(function(d) {
+            return d.X;
+        }).left;
+
+        // Create the circle that travels along the curve of chart
+        this.focus = this.svg
+            .selectAll('circle')
+            .data(this.graphService.config.graphItems)
+            .join('circle')
+            .style('fill', 'none')
+            .attr('stroke', d => this.graphService.scales.colorScale(d.guid))
+            .attr('stroke-width', 0.25)
+            .attr('r', 1.5)
+            .style('opacity', 0);
+
+        this.legend = this.svg
+            .selectAll('text')
+            .data(this.graphService.config.graphItems)
+            .join('text')
+            .attr('text-anchor', 'left')
+            .attr('alignment-baseline', 'middle')
+            .attr('x', 120)
+            .attr('y', (d, i) => 10 + i * 6)
+            .attr('font-size', 5)
+            .attr('fill', d => this.graphService.scales.colorScale(d.guid))
+            .html('c:');
+
+        this.rect = this.svg
+            .append('rect')
+            .style('fill', 'none')
+            .style('pointer-events', 'all')
+            .attr('width', this.graphService.innerDimensions.width)
+            .attr('height', this.graphService.innerDimensions.height)
+            .on('mouseover', () => this.mouseover())
+            .on('mousemove', () => this.mousemove())
+            .on('mouseout', () => this.mouseout());
     }
 
     updateLineGraph() {
@@ -112,6 +155,33 @@ export class LineGraphComponent extends BaseGraph implements AfterViewInit, DoCh
             .transition()
             .duration(750)
             .attr('d', d => this.lineGenerator(d.coordinates));
+    }
+
+    mouseover() {
+        this.focus.style('opacity', 1);
+    }
+
+    mousemove() {
+        // recover coordinate we need
+        const xPos = d3.mouse(this.rect.node())[0];
+        const x0 = this.graphService.scales.xScale.invert(xPos);
+
+        const bisectVals = this.config.graphItems.map(x =>
+            this.bisect(x.coordinates, x0)
+        );
+
+        this.focus
+            .attr('cx', (d, i) =>
+                this.graphService.scales.xScale(d.coordinates[bisectVals[i]].X)
+            )
+            .attr('cy', (d, i) =>
+                this.graphService.scales.yScale(d.coordinates[bisectVals[i]].Y)
+            );
+
+        this.legend.html((d, i) => 'c:' + d.coordinates[bisectVals[i]].C);
+    }
+    mouseout() {
+        this.focus.style('opacity', 0);
     }
 
     setXAxis() {
