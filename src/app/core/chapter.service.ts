@@ -4,6 +4,7 @@ import { ChapterItem } from './models/chapter-item';
 import { BehaviorSubject, of, Subject, Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { REGISTRY } from './chapter-item.resource';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -11,10 +12,7 @@ import { REGISTRY } from './chapter-item.resource';
 export class ChapterService {
     chapter: BehaviorSubject<Chapter> = new BehaviorSubject(null);
 
-    chapterUrl =
-        'https://g15m5ndpj5.execute-api.us-east-2.amazonaws.com/Prod/api/chapter/';
-    // chapterUrl = 'http://localhost:5000/api/chapter/';
-
+    chapterUrl = environment.baseUrl + '/chapter/';
     constructor(private http: HttpClient) {}
 
     updateChapterProperties(newChapter: Chapter) {
