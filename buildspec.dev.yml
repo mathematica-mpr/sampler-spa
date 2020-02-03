@@ -1,0 +1,23 @@
+version: 0.2
+environment_variables:
+    plaintext:
+        S3_BUCKET: 'sampler-spa-dev'
+phases:
+    install:
+        runtime-versions:
+            nodejs: 10
+        commands:
+            - echo Installing source NPM dependencies...
+            - npm install
+            - npm install -g @angular/cli
+
+    build:
+        commands:
+            - echo Build started on `date`
+            - ng build --configuration=staging
+
+artifacts:
+    files:
+        - '**/*'
+    base-directory: 'dist*'
+    discard-paths: no

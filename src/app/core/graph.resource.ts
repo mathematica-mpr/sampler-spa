@@ -3,10 +3,11 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Graph } from './models/chapter';
 import { SimulateParams } from './models/simulate-params';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class GraphResource {
-    graphUrl = 'https://g15m5ndpj5.execute-api.us-east-2.amazonaws.com/Prod/api/graph';
+    graphUrl = environment.baseUrl + '/graph';
 
     constructor(private http: HttpClient) {}
 

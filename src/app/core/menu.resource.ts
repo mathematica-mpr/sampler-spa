@@ -2,9 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Menu } from './models/chapter';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 @Injectable()
 export class MenuResource {
-    menuUrl = 'https://g15m5ndpj5.execute-api.us-east-2.amazonaws.com/Prod/api/menu';
+    menuUrl = environment.baseUrl + '/menu';
 
     constructor(private http: HttpClient) {}
 
