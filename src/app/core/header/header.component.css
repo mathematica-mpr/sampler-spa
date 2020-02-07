@@ -1,31 +1,19 @@
 .header-container {
+    height: 100%;
     display: flex;
     flex-direction: column;
+    background-color: #018383;
+    justify-content: center;
 }
 
-.about-container {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
-}
 .title-container {
     display: flex;
     justify-content: center;
 }
 
 #app-title {
-    font-size: 150%;
-}
-
-#about {
-    cursor: pointer;
-    color: black;
-}
-
-a {
-    text-decoration: none;
-}
-
-.logo {
-    width: 50vw;
+    font-size: 17px;
+    letter-spacing: 0.02em;
+    color: white;
+    font-weight: 500;
 }
