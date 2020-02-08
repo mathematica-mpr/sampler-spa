@@ -12,8 +12,7 @@
 .regression {
     fill-opacity: 0.5;
     fill: none;
-    stroke-width: 0.3px;
-    stroke-dasharray: 1, 0.5;
+    stroke-width: 0.2px;
 }
 
 .cursor-text {
