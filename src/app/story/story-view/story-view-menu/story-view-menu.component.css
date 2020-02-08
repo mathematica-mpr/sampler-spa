@@ -1,6 +1,6 @@
 /* The side navigation menu */
 .sidenav {
-    height: 100%; /* 100% Full-height */
+    height: 100vh; /* 100% Full-height */
     width: 0; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
     z-index: 1; /* Stay on top */
@@ -10,6 +10,10 @@
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 60px; /* Place content 60px from the top */
     transition: 0.5s;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-between;
 }
 
 .sidenav.extended {
@@ -49,4 +53,21 @@
     .sidenav a {
         font-size: 18px;
     }
+}
+
+.menu {
+    margin: 10px;
+    border-radius: 5%;
+}
+
+.menu:first-of-type {
+    background-color: #c5e2e2;
+}
+
+.menu:nth-of-type(2) {
+    background-color: #a6cee3;
+}
+
+.menu:last-of-type {
+    background-color: #e5e5e5;
 }
