@@ -1,18 +1,19 @@
-<div class="story-view" *ngIf="init">
-
-  <div class="main-menu">
+<div class="story-view" >
+  <div class="main-menu" *ngIf="init">
     <app-story-view-menu></app-story-view-menu>
   </div>
   
 
-  <div class="graphs">
+  <div class="graphs" *ngIf="init">
     <app-story-view-graphs></app-story-view-graphs>
   </div>  
+
+  <div class="loader-container" *ngIf="!init">
+      <div class="loader" ></div>
+    
+      <p class="loader-text">Running simulations... </p>
+      
+    </div>
 </div>
 
-<div *ngIf="!init" class="loader-container">
-  <div class="loader" ></div>
 
-  <p class="loader-text">Running simulations... </p>
-  
-</div>

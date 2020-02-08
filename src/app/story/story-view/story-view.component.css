@@ -4,6 +4,7 @@
     width: 95vw;
     max-width: 900px;
     height: 100%;
+    justify-content: center;
 }
 
 .graphs {
@@ -19,6 +20,7 @@
 .loader-container {
     display: grid;
     justify-items: center;
+    align-content: center;
 }
 
 .loader {
