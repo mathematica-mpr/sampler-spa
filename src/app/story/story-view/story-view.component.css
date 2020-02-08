@@ -8,6 +8,8 @@
 
 .graphs {
     height: 100%;
+    justify-content: center;
+    display: flex;
 }
 
 .graphs * {

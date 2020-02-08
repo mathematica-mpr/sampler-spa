@@ -41,7 +41,7 @@ export class StoryViewComponent implements OnInit {
 
     initGraphs(): void {
         if (this.chapter.graphs) {
-            this.graphs = this.chapterService.getChapterItems(this.chapter.graphs);
+            thiss = this.chapterService.getChapterItems(this.chapter.graphs);
         }
     }
 

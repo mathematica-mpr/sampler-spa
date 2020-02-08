@@ -36,14 +36,13 @@
     width: 75vw;
     max-width: 900px;
     grid-template-areas:
-        '. headerPlus headerMinus . .'
-        'rowPlus tp fp ppv fdr '
-        'rowMinus fn  tn for npv'
-        '. sens fpr . .'
-        '. fnr spec . .';
+        ' tp fp ppv fdr '
+        ' fn  tn for npv'
+        ' sens fpr . .'
+        ' fnr spec . .';
     grid-column-gap: 2%;
     grid-row-gap: 2%;
-    grid-template-columns: 15vw repeat(4, 19vw);
+    grid-template-columns: repeat(4, 19vw);
     grid-template-rows: repeat(5, 19vw);
 }
 
@@ -58,15 +57,17 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
-    border-radius: 2.5px; /* 5px rounded corners */
-    background: white;
     transform-origin: 0 0;
     transition: 0.2s;
+    background: #ffffff;
+    border: 0.5px solid #000000;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
 }
 
 .cell.graph:hover {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.5);
 }
 
 .cell > * {
