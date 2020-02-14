@@ -5,7 +5,6 @@
 }
 
 .zoomed {
-    z-index: 1000;
     display: inline !important;
     -webkit-transform: translate(var(--x), var(--y));
     -moz-transform: translate(var(--x), var(--y));
@@ -15,12 +14,14 @@
     transition: transform 200ms linear;
 }
 
+.cell.zoomed {
+    z-index: 1000;
+}
+
 .overlay.zoomed {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    bottom: 0px;
-    right: 0px;
+    position: fixed;
+    height: 100%;
+    width: 100%;
     z-index: 999;
     background-color: rgba(0, 0, 0, 0.5);
 }
@@ -28,7 +29,6 @@
 .zoomed > .legend {
     display: flex;
     height: auto;
-    /* max-height:  something so it doesn't go off screen*/
     margin-top: 0.2em;
     padding: 2px;
 }
