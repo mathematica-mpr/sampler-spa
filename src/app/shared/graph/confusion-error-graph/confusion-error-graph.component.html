@@ -1,23 +1,7 @@
 <div class="graphs confusion-error-matrix">
-  <!-- <div class="cell column table-header" id="plus"> 
-<p>Actual Positive </p> 
-   <p> Y=1 </p>   
-    </div>
-  <div class="cell column table-header" id="minus">
-  <p>Actual Negative</p>
-      <p> Y=0</p>
-     </div>
-  <div class="cell row table-header" id="plus">
-     <p>Predicted Positive</p>
-     <p>d=1</p>
-    </div>
-  <div class="cell row table-header" id="minus">
-      <p>Predicted Negative</p>
-      <p>d=0</p>
-  </div> -->
-
   <div [class]="'graph cell ' + graph.name " (click)="onClick(graph.name)"  *ngFor="let graph of graphs; let i = index">
     <app-line-graph  [id]="'graph' + graph.name + i"  [config]="graph"></app-line-graph>
     <app-section-description  class="legend cell"  [id]="'legend' + graph.name + i"[config]="graph"></app-section-description>
   </div>
+  <div class="overlay"></div>
 </div>

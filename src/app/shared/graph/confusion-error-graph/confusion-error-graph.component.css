@@ -15,8 +15,14 @@
     transition: transform 200ms linear;
 }
 
-.cell.zoomed {
-    box-shadow: 0 1em 2em 0 rgba(0, 0, 0, 0.5) !important;
+.overlay.zoomed {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .zoomed > .legend {

@@ -21,6 +21,8 @@
 .content {
     grid-area: content;
     z-index: 0;
+    display: flex;
+    justify-content: center;
 }
 
 .footer {
