@@ -35,14 +35,21 @@ export class ConfusionErrorGraphComponent extends CompositeGraph implements OnIn
     onClick(id: String) {
         // refactor into a function and do it for both graph and legend
         const currentDiv = this.elRef.nativeElement.querySelector('.graph.' + id);
+        const overlay = this.elRef.nativeElement.querySelector('.overlay');
 
-        if (this.zoomedId === id) {
-            this.zoomedId = null;
-            this.zoomService.zoomOut(currentDiv);
-        } else {
+        if (this.zoomedId !== id) {
             this.zoomedId = id;
             this.zoomService.zoomIn(currentDiv);
+            overlay.classList.add('zoomed');
         }
+    }
+
+    onClose() {
+        const overlay = this.elRef.nativeElement.querySelector('.overlay.zoomed');
+        const currentDiv = this.elRef.nativeElement.querySelector('.cell.zoomed');
+        this.zoomService.zoomOut(currentDiv);
+        overlay.classList.remove('zoomed');
+        // this.zoomedId = null;
     }
 
     onMouseover(id: string) {

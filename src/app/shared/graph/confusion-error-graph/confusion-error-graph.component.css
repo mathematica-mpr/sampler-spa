@@ -5,7 +5,6 @@
 }
 
 .zoomed {
-    z-index: 1000;
     display: inline !important;
     -webkit-transform: translate(var(--x), var(--y));
     -moz-transform: translate(var(--x), var(--y));
@@ -16,18 +15,57 @@
 }
 
 .cell.zoomed {
-    box-shadow: 0 1em 2em 0 rgba(0, 0, 0, 0.5) !important;
+    z-index: 1000;
+}
+
+.overlay {
+    display: none;
+}
+
+.overlay.zoomed {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.cell a {
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.5s;
+}
+
+.cell .close-btn {
+    display: none;
+    position: absolute;
+    top: -25%;
+    left: 90%;
+    font-size: 12px;
+    color: black;
+    z-index: 1001;
+    transition: 0.5s;
+    height: 1em;
+    width: 1em;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1px;
+    background-color: white;
 }
 
 .zoomed > .legend {
     display: flex;
     height: auto;
-    /* max-height:  something so it doesn't go off screen*/
     margin-top: 0.2em;
     padding: 2px;
 }
 
-/* real css */
+.zoomed > .close-btn {
+    display: flex;
+}
+
 .confusion-error-matrix {
     flex: 1 100%;
     align-content: center;
@@ -36,14 +74,13 @@
     width: 75vw;
     max-width: 900px;
     grid-template-areas:
-        '. headerPlus headerMinus . .'
-        'rowPlus tp fp ppv fdr '
-        'rowMinus fn  tn for npv'
-        '. sens fpr . .'
-        '. fnr spec . .';
+        ' tp fp ppv fdr '
+        ' fn  tn for npv'
+        ' sens fpr . .'
+        ' fnr spec . .';
     grid-column-gap: 2%;
     grid-row-gap: 2%;
-    grid-template-columns: 15vw repeat(4, 19vw);
+    grid-template-columns: repeat(4, 19vw);
     grid-template-rows: repeat(5, 19vw);
 }
 
@@ -58,15 +95,17 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
-    border-radius: 2.5px; /* 5px rounded corners */
-    background: white;
     transform-origin: 0 0;
     transition: 0.2s;
+    background: #ffffff;
+    border: 0.5px solid #000000;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
 }
 
 .cell.graph:hover {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.5);
 }
 
 .cell > * {

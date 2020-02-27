@@ -15,12 +15,10 @@ export class StoryViewMenuComponent implements OnInit {
         this.menuService.addMenu();
     }
 
-    openNav() {
-        document.getElementById('mySidenav').style.width = '250px';
-    }
-
     closeNav() {
         document.getElementById('mySidenav').style.width = '0';
+        document.getElementById('mySidenav').classList.remove('extended');
+        document.getElementById('main').style.marginLeft = '0px';
     }
 
     onAddMenu(): void {

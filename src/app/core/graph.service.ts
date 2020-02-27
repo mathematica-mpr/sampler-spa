@@ -41,7 +41,7 @@ export class GraphService {
 
     getColorScale() {
         return d3
-            .scaleOrdinal(d3.schemeCategory10)
+            .scaleOrdinal(['green', 'blue'])
             .domain(this.config.graphItems.map(x => x.guid));
     }
 
