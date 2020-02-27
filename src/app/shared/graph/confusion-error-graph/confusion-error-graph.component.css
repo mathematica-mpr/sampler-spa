@@ -18,12 +18,41 @@
     z-index: 1000;
 }
 
+.overlay {
+    display: none;
+}
+
 .overlay.zoomed {
     position: fixed;
     height: 100%;
     width: 100%;
     z-index: 999;
     background-color: rgba(0, 0, 0, 0.5);
+}
+
+.cell a {
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.5s;
+}
+
+.cell .close-btn {
+    display: none;
+    position: absolute;
+    top: -25%;
+    left: 90%;
+    font-size: 12px;
+    color: black;
+    z-index: 1001;
+    transition: 0.5s;
+    height: 1em;
+    width: 1em;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1px;
+    background-color: white;
 }
 
 .zoomed > .legend {
@@ -33,7 +62,10 @@
     padding: 2px;
 }
 
-/* real css */
+.zoomed > .close-btn {
+    display: flex;
+}
+
 .confusion-error-matrix {
     flex: 1 100%;
     align-content: center;

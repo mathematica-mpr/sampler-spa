@@ -49,6 +49,7 @@ export class ConfusionErrorGraphComponent extends CompositeGraph implements OnIn
         const currentDiv = this.elRef.nativeElement.querySelector('.cell.zoomed');
         this.zoomService.zoomOut(currentDiv);
         overlay.classList.remove('zoomed');
+        // this.zoomedId = null;
     }
 
     onMouseover(id: string) {
