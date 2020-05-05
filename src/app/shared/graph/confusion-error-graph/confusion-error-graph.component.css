@@ -41,7 +41,7 @@
 .cell .close-btn {
     display: none;
     position: absolute;
-    top: -25%;
+    top: -20px;
     left: 90%;
     font-size: 12px;
     color: black;
@@ -86,7 +86,7 @@
 
 @media (min-width: 961px) {
     .confusion-error-matrix {
-        grid-template-columns: 13% repeat(4, 19%);
+        grid-template-columns: repeat(4, 19%);
         grid-template-rows: repeat(4, 19%);
     }
 }

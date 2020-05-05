@@ -2,25 +2,25 @@
     height: 100%;
     display: flex;
     background-color: #018383;
-    align-content: center;
+    align-items: center;
     justify-content: center;
 }
 
 .title-container {
     display: flex;
-    justify-content: center;
     justify-self: center;
 }
 
 .menu-button {
     position: relative;
     left: -2em;
-    top: 0.45em;
+    top: 0.25em;
 }
 
 #menu-icon {
     font-size: 30px;
     color: white;
+    margin: 0px;
 }
 
 #app-title {
@@ -28,4 +28,5 @@
     letter-spacing: 0.02em;
     color: white;
     font-weight: 500;
+    margin: 0px;
 }
