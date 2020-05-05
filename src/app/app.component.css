@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
-@media only screen and (min-width: 800px) {
-}
-
 #main {
     transition: margin-left 0.5s;
 }

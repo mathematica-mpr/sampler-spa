@@ -9,12 +9,15 @@
 
 .graphs {
     height: 100%;
+    width: 70%;
     justify-content: center;
+    align-self: center;
     display: flex;
 }
 
 .graphs * {
     height: 100%;
+    width: 100%;
 }
 
 .loader-container {
