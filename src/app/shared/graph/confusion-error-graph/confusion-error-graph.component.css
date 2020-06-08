@@ -70,9 +70,6 @@
     flex: 1 100%;
     align-content: center;
     display: grid;
-    max-height: 100%;
-    width: 75vw;
-    max-width: 900px;
     grid-template-areas:
         ' tp fp ppv fdr '
         ' fn  tn for npv'
@@ -80,8 +77,8 @@
         ' fnr spec . .';
     grid-column-gap: 2%;
     grid-row-gap: 2%;
-    grid-template-columns: repeat(4, 19vw);
-    grid-template-rows: repeat(4, 19vw);
+    grid-template-columns: repeat(4, 20vw);
+    grid-template-rows: repeat(4, 20vw);
 }
 
 @media (min-width: 961px) {
