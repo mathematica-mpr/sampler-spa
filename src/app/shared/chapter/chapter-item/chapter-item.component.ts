@@ -19,7 +19,7 @@ import { ChapterElement } from 'src/app/core/models/chapter';
 })
 export class ChapterItemComponent implements OnInit {
     @Input() chapterItem: ChapterElement;
-    @ViewChild(ChapterDirective) chapterHost: ChapterDirective;
+    @ViewChild(ChapterDirective, { static: true }) chapterHost: ChapterDirective;
 
     constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
 
