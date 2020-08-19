@@ -1,5 +1,4 @@
 <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
     <app-menu class="menu" *ngFor="let menu of menuService.menus" (inputsEmitter)="onInputChange($event)" [menu]="menu"></app-menu> 
     <button *ngIf="menuService.menus.length < 3" (click)="onAddMenu()">add</button>
 </div>
