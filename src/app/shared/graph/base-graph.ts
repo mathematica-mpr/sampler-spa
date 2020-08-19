@@ -1,6 +1,7 @@
-import { Input } from '@angular/core';
+import { Input, Directive } from '@angular/core';
 import { Graph } from '../../core/models/chapter';
 
+@Directive()
 export abstract class BaseGraph {
     @Input() config: Graph;
     constructor() {}
