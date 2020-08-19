@@ -11,9 +11,10 @@ import { RangeInputComponent } from './input/range-input/range-input.component';
 import { ModelPerformanceGraphComponent } from './graph/model-performance-graph/model-performance-graph.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MenuComponent } from './menu/menu.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-    imports: [CommonModule, ReactiveFormsModule, FormsModule],
+    imports: [CommonModule, ReactiveFormsModule, FormsModule, NgbModule],
     declarations: [
         LineGraphComponent,
         NumberInputComponent,

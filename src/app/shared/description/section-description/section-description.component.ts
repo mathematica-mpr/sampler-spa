@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit, ViewEncapsulation } from '@angular/core';
 import { BaseDescription } from '../base-description';
-import * as d3 from 'd3';
+import { ChapterElement } from 'src/app/core/models/chapter';
 
 @Component({
     selector: 'app-section-description',
@@ -10,6 +10,7 @@ import * as d3 from 'd3';
 })
 export class SectionDescriptionComponent extends BaseDescription
     implements OnInit, AfterViewInit {
+    currentContent = '';
     constructor() {
         super();
     }
@@ -17,21 +18,13 @@ export class SectionDescriptionComponent extends BaseDescription
     ngOnInit() {}
 
     ngAfterViewInit(): void {
-        d3.selectAll('.explanation')
-            .on('mouseover', function() {
-                const inputId = d3.select(this).attr('value');
-                d3.select('#' + inputId)
-                    .transition()
-                    .duration(200)
-                    .style('transform', 'scale(1.2)');
-            })
-            .on('mouseout', function() {
-                const inputId = d3.select(this).attr('value');
-                d3.select('#' + inputId)
-                    .transition()
-                    .duration(200)
-                    .style('background-color', 'white')
-                    .style('transform', 'scale(1)');
-            });
+        this.currentContent = this.currentContent = this.config.data[0].content;
+    }
+
+    showContent(name: string): void {
+        console.log('click', name);
+        this.currentContent = this.config.data.find(
+            (x: ChapterElement) => x.name === name
+        ).content;
     }
 }

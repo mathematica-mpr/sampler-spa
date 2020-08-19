@@ -11,9 +11,10 @@ import { StoryViewComponent } from './story-view/story-view.component';
 import { StoryRoutingModule } from './story-routing.module';
 import { StoryViewMenuComponent } from './story-view/story-view-menu/story-view-menu.component';
 import { StoryViewGraphsComponent } from './story-view/story-view-graphs/story-view-graphs.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-    imports: [SharedModule, StoryRoutingModule],
+    imports: [SharedModule, StoryRoutingModule, NgbModule],
     declarations: [StoryViewComponent, StoryViewMenuComponent, StoryViewGraphsComponent],
     entryComponents: [
         NumberInputComponent,

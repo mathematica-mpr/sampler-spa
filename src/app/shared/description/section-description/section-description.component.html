@@ -1,3 +1,24 @@
-<h2 [innerHtml]="config.title"></h2>
-<p [innerHtml]="config.content">
-</p>
+
+
+
+<div class="container-sm">
+    <div class="row">
+        <div class="col-md">
+            <ul class="">
+                <li  *ngFor="let data of config.data" >
+                  <a (click)="showContent(data.name)">{{data.title}}</a>
+                </li>
+            </ul>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-sm">
+              <p>
+                  {{currentContent}}
+              </p>
+          </div>
+      </div>
+  </div>
+
+
+

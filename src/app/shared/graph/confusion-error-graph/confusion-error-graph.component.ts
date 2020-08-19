@@ -21,7 +21,7 @@ export class ConfusionErrorGraphComponent extends CompositeGraph implements OnIn
 
     ngOnInit() {
         if (!this.instantiated) {
-            this.config.graphs.forEach(graph => {
+            this.config.graphs.forEach((graph) => {
                 this.graphs.push(graph);
             });
             this.instantiated = true;
