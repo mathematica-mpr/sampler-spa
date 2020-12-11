@@ -6,13 +6,6 @@
 
 html,
 body {
+    height: 100%;
     margin: 0;
-}
-
-.help-icon {
-    width: 1em;
-    opacity: 0.5;
-}
-.help-icon:hover {
-    opacity: 1;
 }

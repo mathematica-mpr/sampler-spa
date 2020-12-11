@@ -1,5 +1,4 @@
-<div id="mySidenav" class="sidenav">
+<nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
     <app-menu class="menu" *ngFor="let menu of menuService.menus" (inputsEmitter)="onInputChange($event)" [menu]="menu"></app-menu> 
-    <button *ngIf="menuService.menus.length < 3" (click)="onAddMenu()">add</button>
-</div>
-  
+    <button class="btn btn-light" *ngIf="menuService.menus.length < 3" (click)="onAddMenu()">add</button>
+</nav>

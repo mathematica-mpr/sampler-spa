@@ -1,5 +1,4 @@
-<header class="header-container">  
-        <div class="title-container">
-                <h1 id="app-title">Bayesed and Confused</h1>
-        </div>
-</header>
+<nav class="col-md-5 col-lg-10 d-md-block h-100 bg-dark sidebar collapse">
+        <app-menu *ngFor="let menu of menuService.menus" (inputsEmitter)="onInputChange($event)" [menu]="menu"></app-menu> 
+        <button class="btn btn-light" *ngIf="menuService.menus.length < 3" (click)="onAddMenu()">add</button>
+</nav>
