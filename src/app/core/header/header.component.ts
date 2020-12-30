@@ -22,4 +22,10 @@ export class HeaderComponent implements OnInit {
     onInputChange(params: SimulateParams) {
         this.graphsService.updateGraph(params);
     }
+
+    openNav() {
+        document.getElementById('mySidenav').style.width = '250px';
+        document.getElementById('mySidenav').classList.add('extended');
+        document.getElementById('main').style.marginLeft = '250px';
+    }
 }

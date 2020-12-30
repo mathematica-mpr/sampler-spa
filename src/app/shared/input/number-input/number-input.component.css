@@ -1,0 +1,24 @@
+.input-container {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+label {
+    text-shadow: 0 0 0;
+    font-size: 0.8vw;
+    font-weight: semi-bold;
+    text-align: center;
+}
+
+.number-input {
+    width: 6em;
+    text-align: right;
+    margin: 5px;
+    border-radius: 4px;
+    box-shadow: none;
+}
+
+.number-input:focus {
+    border: 2px solid green;
+}
