@@ -98,5 +98,8 @@
       }
     }
   },
-  "defaultProject": "rare-app-SPA"
+  "defaultProject": "rare-app-SPA",
+  "cli": {
+    "analytics": false
+  }
 }

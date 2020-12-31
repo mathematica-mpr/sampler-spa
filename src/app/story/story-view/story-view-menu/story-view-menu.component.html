@@ -3,4 +3,3 @@
     <app-menu class="menu" *ngFor="let menu of menuService.menus" (inputsEmitter)="onInputChange($event)" [menu]="menu"></app-menu> 
     <button *ngIf="menuService.menus.length < 3" (click)="onAddMenu()">add</button>
 </div>
-  

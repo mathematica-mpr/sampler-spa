@@ -1,6 +1,7 @@
 import { Graph } from '../../core/models/chapter';
-import { Input } from '@angular/core';
+import { Input, Directive } from '@angular/core';
 
+@Directive()
 export abstract class CompositeGraph {
     @Input() config: Graph;
 }

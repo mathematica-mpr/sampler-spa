@@ -7,9 +7,10 @@ import { MenuResource } from './menu.resource';
 import { MenuService } from './menu.service';
 import { GraphsService } from './graphs.service';
 import { GraphResource } from './graph.resource';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-    imports: [CommonModule, HttpClientModule],
+    imports: [CommonModule, HttpClientModule, SharedModule],
     declarations: [HeaderComponent, FooterComponent],
     exports: [HeaderComponent, FooterComponent],
     providers: [MenuResource, MenuService, GraphsService, GraphResource]
