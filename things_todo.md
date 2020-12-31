@@ -14,3 +14,11 @@ Hi Nissa, there is not much to add for v2 besides those items below
 ## Graphs
 
 In Frontend: - add axis back
+
+## Menu
+
+Allow user to remove a set of inputs
+
+## Admin
+
+Probably need to get a subdomain of mathematica.org for v2 (I got yelled at for http://www.ethics-mathematica.com/)
