@@ -23,7 +23,7 @@
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
     "core-js": "^2.6.9",
-    "d3": "^5.9.7",
+    "d3": "^7.6.1",
     "intl": "^1.2.5",
     "jasmine": "^3.4.0",
     "rxjs": "6.3.3",
